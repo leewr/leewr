@@ -18,6 +18,21 @@ class TopicsController extends Controller {
       accesstoken: ctx.query.accesstoken || ''
     })
   }
+  async index () {
+    const { ctx } = this
+    ctx.validate({
+      page: {type: 'string', format: /\d+/, required: false},
+      tab: {type: 'enum', values: ['ask', 'share', 'job', 'good'], required: false},
+      limit: {type: 'string', format: /\d+/, required: false}
+    },ctx.query)
+
+    ctx.body = await ctx.service.topics.list({
+      page: ctx.query.page,
+      tab: ctx.params.id,
+      limit: ctx.query.limit,
+      mdrender: ctx.query.mdrender !== 'fase'
+    })
+  }
   async create () {
     const ctx = this.ctx
     ctx.validate(createRule)
