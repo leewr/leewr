@@ -7,7 +7,10 @@ module.exports = appInfo => {
   config.keys = appInfo.name + '_1523858787680_3058';
 
   // add your config here
-  config.middleware = [];
+  config.middleware = ['errorHandler'];
+  config.errorHandler = {
+    match: '/api'
+  }
   config.view = {
     defaultViewEngine: 'nunjucks',
     mapping: {
