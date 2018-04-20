@@ -21,5 +21,23 @@ module.exports = appInfo => {
     pageSize: 20,
     serverUrl: 'https://cnodejs.org/api/v1'
   }
+
+  config.mysql = {
+    client: {
+      host: 'localhost',
+      port: '3306',
+      user: 'root',
+      password: 'root',
+      database: 'dcdabase'
+    },
+    app: true,
+    agent: false
+  }
+
+  config.passportLocal = {
+    usernameField: 'username',
+    passwordField: 'password'
+  }
+
   return config;
 };

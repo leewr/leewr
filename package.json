@@ -5,6 +5,9 @@
   "private": true,
   "dependencies": {
     "egg": "^2.2.1",
+    "egg-mysql": "^3.0.0",
+    "egg-passport": "^2.0.1",
+    "egg-passport-local": "^1.2.1",
     "egg-scripts": "^2.5.0",
     "egg-view-nunjucks": "^2.2.0"
   },
