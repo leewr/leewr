@@ -11,11 +11,15 @@ module.exports = app => {
   router.get('/news/:id', controller.news.detail);
   router.resources('topics', '/api/v2/topics', app.controller.topics)
 
+  // 登录
   router.get('/signin', sign.showLogin)
-  
   const localStrategy = app.passport.authenticate('local', {
     successRedirect: '/',
     failureRedirect: '/signin'
   })
   router.post('/passport/local', localStrategy)
+
+  // 注册
+  router.get('signup', {} ,sign.showSignup)
+  router.post('signup', {} ,sign.signup)
 };
