@@ -9,4 +9,5 @@ module.exports = app => {
   router.get('/news', controller.news.list);
   router.get('/news/:id', controller.news.detail);
   router.resources('topics', '/api/v2/topics', app.controller.topics)
+  router.get('login', '/api/v2/login', app.controller.login)
 };
