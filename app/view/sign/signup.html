@@ -1,0 +1,27 @@
+<div>
+  <h1>register</h1>
+  <div class="error">
+    {{error}}
+  </div>
+  <form action="/signup" method="post">
+      <div>
+        <lebel>
+          <span>用户名注册</span>
+          <input name="loginname" placeholder="请输入用户名">
+        </lebel>
+      </div>
+      <div>
+        <lebel>
+          <span>密码</span>
+          <input name="password" type="password" placeholder="请输入密码">
+        </lebel>
+      </div>
+      <div>
+          <lebel>
+            <span>重复密码</span>
+            <input name="repassword" type="password" placeholder="请输入密码">
+          </lebel>
+        </div>
+      <div><button type="submit">提交</button></div>
+  </form>
+  </div>

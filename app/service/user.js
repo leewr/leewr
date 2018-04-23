@@ -7,8 +7,29 @@ class userService extends Service {
    */
   getUserByLoginName(username) {
     const query = { username: username }
-    console.log(this.app.mysql.get('user', query))
     return this.app.mysql.get('user', query)
+  }
+
+  /**
+   * 登录时用户名重复查询
+   * @param {*} username 
+   */
+   getUserQuery (username) {
+    const query = { username: username}
+    return  this.app.mysql.get('user', query)
+  }
+
+  addAndSave(name, username, password, avatar_url, active) {
+    const row = {
+      name,
+      username,
+      password,
+      avatar_url,
+      active
+    }
+    const result = this.app.mysql.insert('user', row)
+    console.log('result:' + result)
+    return result
   }
 }
 

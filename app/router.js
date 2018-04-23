@@ -4,8 +4,10 @@
  * @param {Egg.Application} app - egg application
  */
 module.exports = app => {
-  const { router, controller } = app;
+  const { router, controller, middleware, config } = app;
   const { sign } = controller
+  const { createUserLimit } = middleware.createUserLimit(config.create_user_per_ip)
+
   router.get('/', controller.home.index);
   router.get('/news', controller.news.list);
   router.get('/news/:id', controller.news.detail);
@@ -20,6 +22,7 @@ module.exports = app => {
   router.post('/passport/local', localStrategy)
 
   // 注册
-  router.get('signup', {} ,sign.showSignup)
-  router.post('signup', {} ,sign.signup)
+  router.get('/signup', sign.showSignup)
+  // todo createUserLimit
+  router.post('/signup', sign.signup)
 };
