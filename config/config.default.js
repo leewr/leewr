@@ -2,12 +2,13 @@
 
 module.exports = appInfo => {
   const config = exports = {};
-
+  config.name = 'cnLee'
   // use for cookie sign key, should change to your own and keep security
   config.keys = appInfo.name + '_1523858787680_3058';
 
+  config.tabs = [['article', '随想'], ['found', '发现'], ['top', '精华']]
   // add your config here
-  config.middleware = ['errorHandler'];
+  config.middleware = ['authUser', 'errorHandler'];
   config.errorHandler = {
     match: '/api'
   }

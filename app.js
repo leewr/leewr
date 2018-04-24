@@ -38,7 +38,7 @@ module.exports = app => {
     const exitUser = await hander(ctx, user)
     console.log(exitUser)
     if (exitUser) {
-      // 设置cookie
+      // 设置cookies
       const auth_token = exitUser._id + '$$$$'
       const opts = {
         path: '/',
@@ -46,7 +46,7 @@ module.exports = app => {
         signed: true,
         httpOnly: true
       }
-      ctx.cookie.set(app.config.auth_token_name, auth_token, opts)
+      ctx.cookies.set('token', auth_token, opts)
     }
     return exitUser
   })

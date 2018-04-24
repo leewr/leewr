@@ -82,12 +82,13 @@ class signController extends Controller {
   }
 
   async signout() {
+    console.log('signout')
     const { ctx } = this
     ctx.session = null
     // egg-passport api 
     // Exit and clear user information from session
     ctx.logout()
-    ctx.render('/')
+    ctx.redirect('/')
   }
 }
 
