@@ -19,6 +19,9 @@ class userService extends Service {
     return  this.app.mysql.get('user', query)
   }
 
+  /**
+   * 保存新增用户
+   */
   addAndSave(name, username, password, avatar_url, active) {
     const row = {
       name,
@@ -30,6 +33,13 @@ class userService extends Service {
     const result = this.app.mysql.insert('user', row)
     console.log('result:' + result)
     return result
+  }
+
+  increaseArticleCount (authorId, score, num) {
+    const result = this.app.mysql.query('update user set score = (score + ?) where id = ?', [score, authorId])
+    console.log(typeof result)
+    const updateSuccess = result.affectedRows === 1
+    console.log('increaseArticleCount:' + updateSuccess)
   }
 }
 

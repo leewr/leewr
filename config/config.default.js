@@ -40,5 +40,11 @@ module.exports = appInfo => {
     passwordField: 'password'
   }
 
+  config.security = {
+    xframe: {
+      enable: false
+    }
+  }
+
   return config;
 };
