@@ -34,6 +34,11 @@ module.exports = app => {
   // 新建文章界面
   router.get('/topic/create',userRequired, topic.create)
   // 保存文章
-  router.post('/topic/create', topic.put)
-  
+  router.post('/topic/create', userRequired, topic.put)
+  // 修改文章提交
+  router.post('/topic/update', userRequired, topic.update)
+  // 文章展示
+  router.get('/topic/:id', topic.view)
+  // 修改文章展示
+  router.get('/topic/note/:id', userRequired, topic.edit)
 };

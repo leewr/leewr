@@ -35,9 +35,9 @@ class userService extends Service {
     return result
   }
 
-  increaseArticleCount (authorId, score, num) {
-    const result = this.app.mysql.query('update user set score = (score + ?) where id = ?', [score, authorId])
-    console.log(typeof result)
+  async increaseArticleCount (authorId, score, num) {
+    const result = await this.app.mysql.query('update user set score = (score + ?) where id = ?', [score, authorId])
+    console.log(result.affectedRows)
     const updateSuccess = result.affectedRows === 1
     console.log('increaseArticleCount:' + updateSuccess)
   }
