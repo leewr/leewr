@@ -1,0 +1,16 @@
+.header{
+	height: 58px;
+	background: #232426;
+	font-size: 16px;
+	display: flex;
+	a{
+		line-height: 58px;
+		padding: 0 10px;
+		color: #ccc;
+		border-bottom: 2px solid transparent;
+		&.active{
+			color: #62b8d3;
+			border-bottom-color: #62b8d3
+		}
+	}
+}

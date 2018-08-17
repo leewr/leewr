@@ -5,7 +5,7 @@
  */
 module.exports = app => {
   const { router, controller, middleware, config } = app;
-  const { sign, topic } = controller
+  const { sign, topic, api } = controller
   const { createUserLimit } = middleware.createUserLimit(config.create_user_per_ip)
 
   const userRequired = middleware.userRequired()
@@ -41,4 +41,5 @@ module.exports = app => {
   router.get('/topic/:id', topic.view)
   // 修改文章展示
   router.get('/topic/note/:id', userRequired, topic.edit)
+
 };
