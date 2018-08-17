@@ -18,8 +18,8 @@ class Index extends Component {
 				<Header navData={this.state.navData} />
 				<div className="itemWarap">
 					{
-						this.state.itemData.map(val => (
-							<Item />
+						this.state.itemData.map((val, key) => (
+							<Item key={key} />
 						))
 					}
 				</div>

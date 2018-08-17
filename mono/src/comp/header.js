@@ -11,7 +11,7 @@ class Header extends Component {
 			<div className="header">
 				{
 					this.props.navData && this.props.navData.map((name, key) => (
-						<a key={key} className={key == 0 ? 'active': ''}>
+						<a key={key} className={key === 0 ? 'active': ''}>
 							{name}
 						</a>
 					))
