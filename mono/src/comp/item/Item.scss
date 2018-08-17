@@ -1,0 +1,14 @@
+.item{
+	background:#fff;
+	margin-bottom: 20px;
+	padding: 12px;
+	.itemHead{
+		display: flex;
+	    justify-content: space-between;
+	}
+	.itemImg{
+		height: 220px;
+		width: 100%;
+		vertical-align: bottom;
+	}
+}
