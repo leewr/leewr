@@ -1,6 +1,18 @@
 const Controller = require('egg').Controller
 
 class TopicController extends Controller {
+
+  // 文章列表
+  async index() {
+    const { ctx, service } = this
+    const topis = await service.topic.getArticleList()
+    ctx.body = {
+      success: true,
+      topis
+    }
+  }
+
+
   // 创建文章
   async create() {
     const { ctx, config } = this
@@ -45,7 +57,7 @@ class TopicController extends Controller {
       let editError
       if (title === '') {
         editError = '标题不能为空'
-      } else if (title.length < 5 || title.length > 100) {
+      } else if (title.length < 2 || title.length > 100) {
         editError = '标题字数太多或太少'
       } else if (!tab) {
         editError = '必须选择一个版块。'
@@ -93,7 +105,7 @@ class TopicController extends Controller {
       title: {
         type: 'string',
         max: 100,
-        min: 5
+        min: 1
       },
       content: {
         type: 'string'
@@ -103,9 +115,10 @@ class TopicController extends Controller {
         values: allTabs
       }
     }
-    const validate = ctx.validate(RULE_CREATE, ctx.request.body)
+    console.log('requestbody', ctx.request.body)
+    const validate = await ctx.validate(RULE_CREATE, ctx.request.body)
     if (!validate) {
-
+      ctx.render('/signin')
     }
     // 数据库保存
     const topic = await service.topic.newAndSave(
@@ -114,10 +127,10 @@ class TopicController extends Controller {
       body.tab,
       ctx.user.id
     )
-    console.log('topic: '+ topic)
     // 增加用户帖子发表数量 increaseArticleCount
     await service.user.increaseArticleCount(ctx.user.id, 5, 1)
-    await ctx.render('/topic/'+ topic.insertId)
+    ctx.redirect('/topic/' + topic.insertId)
+    // await ctx.render('/topic/'+ topic.insertId)
   }
 }
 

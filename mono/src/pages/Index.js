@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Header from '../comp/header.js'
 import Item from '../comp/item/Item.js'
+import Axios from '../utils/request.js'
 
 import './index/index.scss'
 class Index extends Component {
@@ -9,8 +10,26 @@ class Index extends Component {
 		const navData = ["早午茶", "我的关注", "猜你喜欢", "视频", "音乐"]
 		this.state = {
 			navData: navData,
-			itemData: ["早午茶", "我的关注", "猜你喜欢", "视频", "音乐"]
+			itemData: []
 		}
+	}
+	componentDidMount () {
+		this.getIndexList()
+	}
+	getIndexList () {
+		let that = this
+		Axios.get('/api/v1/topics')
+			.then(res => {
+				if (res.success) {
+					that.setState({
+						itemData: res.data
+					})
+				}
+				
+				console.log(res)
+			}).catch(err => {
+				console.log(err)
+			})
 	}
 	render () {
 		return (
@@ -18,8 +37,8 @@ class Index extends Component {
 				<Header navData={this.state.navData} />
 				<div className="itemWarap">
 					{
-						this.state.itemData.map((val, key) => (
-							<Item key={key} />
+						this.state.itemData.length && this.state.itemData.map((val, key) => (
+							<Item key={key} itemVal={val}/>
 						))
 					}
 				</div>

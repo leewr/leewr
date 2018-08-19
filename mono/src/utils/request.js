@@ -4,8 +4,8 @@ export default {
     get (url, params) {
         return new Promise((resolve, reject) => {
             Axios.get(url, { params: params })
-            .then(response => {
-                resolve(response);
+            .then(res => {
+                resolve(res.data);
             })
             .catch(err => {
                 reject(err);

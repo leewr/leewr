@@ -32,3 +32,8 @@ exports.passportLocal = {
   enable: true,
   package: 'egg-passport-local'
 }
+
+exports.routerPlus = {
+  enable: true,
+  package: 'egg-router-plus',
+};

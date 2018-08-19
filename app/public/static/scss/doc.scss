@@ -1,0 +1,117 @@
+    body{
+      margin: 0;
+      font-family: PingFang SC,Microsoft YaHei,-apple-system-font,\\9ED1\4F53,Helvetica Neue,Helvetica,STHeiTi,sans-serif;
+    }
+    a{
+        text-decoration: none;
+    }
+    .header{
+        position: relative;
+        z-index: 110;
+      height: 50px;
+      background: #fff;
+      box-shadow: 0 2px 3px 0 hsla(0,0%,39%,.15);
+      a{
+        
+      }
+    }
+    .header a.logo{
+        font-size: 24px;
+        color: #333;
+        text-decoration: none;
+        padding-left: 20px;
+        line-height: 50px;
+    }
+    .header .fr{
+        float: right;
+        display: flex;
+        height: 50px;
+        align-items: center;
+        margin-right: 20px;
+    }
+    .header button.btn,
+    .header a.btn{
+        display: inline-block;
+        height: 24px;
+        background: #fff;
+        border-radius: 3px;
+        border:1px solid #e5e5e5;
+        line-height: 24px;
+        padding: 0 12px;
+        font-size: 12px;
+        color: #333;
+        margin-right:12px;
+        width: 76px;
+        text-align: center;
+        box-sizing: content-box;
+    }
+    .header a.btn.add{
+        background-color: #0d88fb;
+        color: #fff;
+        border:1px solid #0d88fb;
+    }
+    .header button.btn.save:hover{
+        box-shadow: 0 0 3px #efefef;
+    }
+    
+    .user-avatar{
+        border-radius: 50%;
+        cursor: pointer;
+    }
+    .user-avatar:hover{
+        box-shadow: 2px 2px 3px rgba(0,0,0,.1)
+    }
+    .edittoolbar{
+        height: 40px;
+    }
+    .docwrap{
+        background-color: #f5f6f7;
+    }
+    .editor-wrapper{
+        
+    }
+    .editor-box{
+        width: 794px;
+        overflow: hidden;
+        box-shadow: 0 1px 6px #ccc;
+        width: 794px;
+        min-height: 995px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 25px;
+        margin-bottom: 25px;
+        background: #fff;
+    }
+    .editor{
+        padding: 20px 100px 0 100px;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        counter-reset: chapter section subsec;
+        outline: none;
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+        border: none;
+    }
+    .editor-title{
+        margin: 0 100px;
+        width: auto;
+        
+        height: 60px;
+        padding-top: 90px;
+        border-bottom: 1px solid #e8ecf1;
+        font-family: -apple-system,BlinkMacSystemFont,PingFang SC,Helvetica,Tahoma,Arial,Hiragino Sans GB,Microsoft YaHei,\\5FAE\8F6F\96C5\9ED1,sans-serif;
+    }
+    .editor-title input {
+        font-size: 22.5pt;
+        outline: none;
+        border: none;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        display: block;
+        width: 100%;
+        height: 50px;
+        line-height: 50px;
+        color: #333;
+        font-weight: 700;
+    }

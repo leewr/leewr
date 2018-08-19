@@ -5,6 +5,7 @@ module.exports = () => {
     ctx.locals.current_user = null
 
     const { user } = ctx
+    console.log('user:', user)
     if (!user) {
       return await next()
     }

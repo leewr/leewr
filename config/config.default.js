@@ -45,6 +45,10 @@ module.exports = appInfo => {
       enable: false
     }
   }
+  config.default_page = 1
+  config.default_limit = 20
 
+  config.site_static_host = process.env.EGG_SITE_STATIC_HOST || ''
+  
   return config;
 };

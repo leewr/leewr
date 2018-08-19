@@ -1,9 +1,20 @@
 const Service = require('egg').Service
 
 class TopicService extends Service {
+  /**
+   * 获取文章列表
+   */
+  async getArticleList() {
+    const result = await this.app.mysql.select('article', {
+      orders:[['createTime','desc'], ['id', 'desc']],
+      limit: 10,
+      offset: 0
+    })
+    return result
+  }
 
   /**
-   *
+   * 获取文章
    */
   async getArticleById(id) {
     const result = await this.app.mysql.get('article', {id: id})

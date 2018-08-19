@@ -3,24 +3,30 @@ import './Item.scss'
 class Item extends Component {
 	constructor(props) {
 		super(props)
-
+	}
+	typeFilter (val) {
+		let obj = {
+			'share': '分享',
+			'ask': '问答'
+		}
+		return obj[val]
 	}
 	render() {
 		return (
 			<div className="item">
 				<div className="itemHead">
 					<div>
-						<img src="http://d303.paixin.com/thumbs/7782150/196592460/staff_1024.jpg?imageView2/2/w/400/h/400" />
-						<span>MONO电台</span>
+						<img src={this.props.itemVal.author.avatar_url} />
+						<span>{this.props.itemVal.author.loginname}</span>
 					</div>
 					<span className="f12">
-						影视
+						{this.typeFilter(this.props.itemVal.tab)}
 					</span>
 				</div>
 				<div className="itemBody">
 					<img src="http://d303.paixin.com/thumbs/7782150/196592460/staff_1024.jpg?imageView2/2/w/400/h/400" className="itemImg" />
 					<div className="title">
-						MONO电台 | 从《四个春天》到私影响
+						MONO电台 | {this.props.itemVal.title}
 					</div>
 					<div className="tags">
 						<span>录制：海岸线、野菜</span>
