@@ -116,9 +116,10 @@ class TopicController extends Controller {
       }
     }
     console.log('requestbody', ctx.request.body)
-    const validate = await ctx.validate(RULE_CREATE, ctx.request.body)
-    if (!validate) {
-      ctx.render('/signin')
+    const errors = await ctx.validate(RULE_CREATE, ctx.request.body)
+    if (errors) {
+      ctx.redirect('/topic/create')
+      return
     }
     // 数据库保存
     const topic = await service.topic.newAndSave(

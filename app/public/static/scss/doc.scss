@@ -1,10 +1,4 @@
-    body{
-      margin: 0;
-      font-family: PingFang SC,Microsoft YaHei,-apple-system-font,\\9ED1\4F53,Helvetica Neue,Helvetica,STHeiTi,sans-serif;
-    }
-    a{
-        text-decoration: none;
-    }
+@import 'one/common.scss';
     .header{
         position: relative;
         z-index: 110;
@@ -63,6 +57,8 @@
     }
     .edittoolbar{
         height: 40px;
+        justify-content: center;
+        align-items: center;
     }
     .docwrap{
         background-color: #f5f6f7;
@@ -83,15 +79,13 @@
         background: #fff;
     }
     .editor{
-        padding: 20px 100px 0 100px;
-        white-space: pre-wrap;
-        word-wrap: break-word;
         counter-reset: chapter section subsec;
         outline: none;
         display: block;
         width: 100%;
         box-sizing: border-box;
         border: none;
+        padding: 10px 100px 0 100px;
     }
     .editor-title{
         margin: 0 100px;

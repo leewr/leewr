@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<title>{{data.title}} -- READY READ -- 锐读</title>
 	<link rel="stylesheet" type="text/css" href="/public/static/css/index.css">
+  <link rel="stylesheet" type="text/css" href="/public/static/js/plugin/wangeditor.css">
 </head>
 <body>
   <div class="header">
@@ -35,8 +36,8 @@
 	    	<div class="title-box">
 				<h3 class="title">{{data.title}}</h3>
 	    	</div>
-	    	<div class="article">
-				{{data.content}}
+	    	<div class="article w-e-text">
+				{{ data.content | safe}}
 	    	</div>
 	    </div>
     </div>
