@@ -26,9 +26,12 @@ class TopicService extends Service {
   /**
    * 新增文章
    */
-  async newAndSave (title, content, tab, authorId) {
-    const result = await this.app.mysql.insert('article', { title, content, tab, authorId });
-    console.log(result)
+  async newAndSave (title, content, summary, tab, authorId) {
+    const result = await this.app.mysql.insert('article', 
+      { 
+        title, content, summary, tab, authorId, createTime: this.app.mysql.literals.now
+      }
+      );
     return result
   }
 
@@ -44,6 +47,13 @@ class TopicService extends Service {
       modifytime: this.app.mysql.literals.now
     }
     const result = await this.app.mysql.update('article', row)
+  }
+
+  /**
+   * 增加阅读量
+   */
+  async save (id) {
+    return await this.app.mysql.query('update article set view = (view + ?) where id = ?', [1, id])
   }
 
 }

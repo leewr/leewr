@@ -27,6 +27,8 @@ class TopicController extends Controller {
     const id = ctx.params.id
     const topic = await service.topic.getArticleById(id)
     console.log('view topic: ' + topic)
+    const addView = await service.topic.save(id)
+    console.log(addView)
     await ctx.render('/topic/view.tpl', { data: topic})
   }
 
@@ -115,16 +117,21 @@ class TopicController extends Controller {
         values: allTabs
       }
     }
-    console.log('requestbody', ctx.request.body)
     const errors = await ctx.validate(RULE_CREATE, ctx.request.body)
     if (errors) {
       ctx.redirect('/topic/create')
       return
     }
+    console.log(body.summary)
+    if (!body.summary) {
+      body.summary = body.content.substr(0, 100)
+    }
+    console.log(body.summary)
     // 数据库保存
     const topic = await service.topic.newAndSave(
       body.title,
       body.content,
+      body.summary,
       body.tab,
       ctx.user.id
     )

@@ -9,7 +9,7 @@
   <div class="header">
     <div class="headerwrap">
       <div class="logo">
-        <a href="#">READY READ</a>
+        <a href="/">READY READ</a>
       </div>
       <div class="navbar">
         <ul>

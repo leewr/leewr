@@ -6,8 +6,9 @@
 <body>
 <div>
    <form method="post" action="/topic/create">
-   <input type="hidden" name="tab" value="article">
+    <input type="hidden" name="tab" value="article">
     <input type="hidden" name="content" value="">
+    <input type="hidden" name="summary" value="">
    <div class="header">
         <a href="#" class="logo">
             MONO 文档

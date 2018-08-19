@@ -6,8 +6,10 @@ seajs.config({
 }).use(['wangeditor.min', 'jquery'], function() {
 	var E = window.wangEditor
 	var editor = new E('#toolbar', '#editor')
-	editor.create()
-	$('#editor').click(function () {
-		$('input[name="content"]').val(editor.txt.html())
-	})
+	
+	editor.customConfig.onchange = function () {
+        $('input[name="content"]').val(editor.txt.html())
+        $('input[name="summary"]').val(editor.txt.text().substr(0, 20))
+    }
+    editor.create()
 });
