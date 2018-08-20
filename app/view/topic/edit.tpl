@@ -8,6 +8,8 @@
    <form method="post" action="/topic/update">
    <input type="hidden" name="tab" value="article">
    <input type="hidden" name="id" value="{{data.id}}">
+   <input type="hidden" name="content" value="{{data.content}}">
+   <input type="hidden" name="summary" value="{{data.summary}}">
    <div class="header">
         <a href="#" class="logo">
             MONO 文档
@@ -21,28 +23,23 @@
         </div>
    </div>
    <div class="docwrap">
-      <div class="edittoolbar"></div>
+      <div class="edittoolbar" id="toolbar"></div>
       <div class="editor-wrapper">
         <div class="editor-box">
             <div class="editor-title">
-                 <input type="text" name="title" value="{{data.title}}"  placeholder="{{data.title}}"/>
+                 <input type="text" value="{{data.title}}" name="title" placeholder="{{data.title}}"/>
             </div>
-            <textarea id="editor" class="editor" name="content" autocorrect="off" autocomplete="off"  tabindex="-1" contenteditable="true">{{data.content}}</textarea>
+            <div class="editor">
+              <div id="editor">
+                {{data.content | safe}}
+              </div>
+            </div>
         </div>
       </div>
    </div>
    </form>
-    <!-- {% for tab in tabs%}
-    {{tab[0]}}
-    {% endfor%}
-    <form method="post" action="/topic/create">
-        <select name="tab">
-            <option>article</option>
-        </select>
-        <input type="text" name="title"/>
-        <textarea name="content"></textarea>
-        <button type="submit">提交</button>
-    </form> -->
+   <script type="text/javascript" src="/public/static/js/plugin/sea.js"></script>
+   <script type="text/javascript" src="/public/static/js/editor.js"></script>
 </div>
 </body>
 </html>

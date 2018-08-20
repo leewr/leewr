@@ -1,18 +1,45 @@
-<div>
-  <h1>{{success}}</h1>
-  <form action="/passport/local" method="post">
-      <div>
-        <lebel>
-          <span>用户名</span>
-          <input name="username" placeholder="请输入用户名">
-        </lebel>
+<!DOCTYPE html>
+<!--[if IE 6]><html class="ie lt-ie8"><![endif]-->
+<!--[if IE 7]><html class="ie lt-ie8"><![endif]-->
+<!--[if IE 8]><html class="ie ie8"><![endif]-->
+<!--[if IE 9]><html class="ie ie9"><![endif]-->
+<!--[if !IE]><!--> <html> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+    <title>Hacker News</title>
+    <link rel="stylesheet" href="/public/static/css/login.css" />
+  </head>
+  <body>
+    <div class="main">
+      <div class="sign">
+        <div class="loginHead">
+          <a href="/signin">
+            登录
+          </a>
+          <a href="/signup">
+            注册
+          </a>
+        </div>
+          <h1>{{success}}</h1>
+
+          <form action="/passport/local" method="post">
+              <div>
+                <lebel>
+                  <span>用户名</span>
+                  <input name="username" placeholder="请输入用户名">
+                </lebel>
+              </div>
+              <div>
+                <lebel>
+                  <span>密码</span>
+                  <input name="password" type="password" placeholder="请输入密码">
+                </lebel>
+              </div>
+              <div><button type="submit">登录</button></div>
+          </form>
       </div>
-      <div>
-        <lebel>
-          <span>密码</span>
-          <input name="password" type="password" placeholder="请输入密码">
-        </lebel>
-      </div>
-      <div><button type="submit">登录</button></div>
-  </form>
-  </div>
+    </div>
+  </body>
+</html>

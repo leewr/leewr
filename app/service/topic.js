@@ -18,7 +18,6 @@ class TopicService extends Service {
    */
   async getArticleById(id) {
     const result = await this.app.mysql.get('article', {id: id})
-    console.log('getById: ' + result.id)
     return result
   }
 
@@ -38,21 +37,24 @@ class TopicService extends Service {
   /**
    * 保存文章
    */
-  async save (id, title, content, tab) {
+  async save (id, title, content, summary, tab) {
     const row = {
       id,
       title,
       content,
+      summary,
       tab,
       modifytime: this.app.mysql.literals.now
     }
     const result = await this.app.mysql.update('article', row)
+    
+    return result
   }
 
   /**
    * 增加阅读量
    */
-  async save (id) {
+  async addView (id) {
     return await this.app.mysql.query('update article set view = (view + ?) where id = ?', [1, id])
   }
 

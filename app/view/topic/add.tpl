@@ -32,7 +32,6 @@
               <div id="editor">
               </div>
             </div>
-            <!-- <textarea id="editor" class="editor" name="content" autocorrect="off" autocomplete="off"  tabindex="-1" contenteditable="true"></textarea> -->
         </div>
       </div>
    </div>

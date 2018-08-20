@@ -17,9 +17,7 @@ class NewController extends Controller {
   async detail() {
     const ctx = this.ctx
     const id = ctx.params.id
-    console.log(id)
     const detail = await ctx.service.news.detail(id)
-    console.log(detail)
     await this.ctx.render('news/detail.tpl', {detail})
   }
 }

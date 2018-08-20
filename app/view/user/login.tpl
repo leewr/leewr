@@ -1,10 +1,18 @@
-<html>
+<!DOCTYPE html>
+<!--[if IE 6]><html class="ie lt-ie8"><![endif]-->
+<!--[if IE 7]><html class="ie lt-ie8"><![endif]-->
+<!--[if IE 8]><html class="ie ie8"><![endif]-->
+<!--[if IE 9]><html class="ie ie9"><![endif]-->
+<!--[if !IE]><!--> <html> <!--<![endif]-->
   <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
     <title>Hacker News</title>
-    <link rel="stylesheet" href="/public/css/news.css" />
+    <link rel="stylesheet" href="/public/css/login.css" />
   </head>
   <body>
-   <div>
+   <div class="sign">
      <form>
         <div>
           <lebel>

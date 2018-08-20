@@ -26,9 +26,7 @@ class TopicController extends Controller {
     const { ctx, service } = this
     const id = ctx.params.id
     const topic = await service.topic.getArticleById(id)
-    console.log('view topic: ' + topic)
-    const addView = await service.topic.save(id)
-    console.log(addView)
+    const addView = await service.topic.addView(id)
     await ctx.render('/topic/view.tpl', { data: topic})
   }
 
@@ -42,12 +40,12 @@ class TopicController extends Controller {
 
   async update() {
     const { ctx, service, config } = this
-    let { id, title, tab, content } = ctx.request.body
+    let { id, title, tab, content, summary } = ctx.request.body
     const topic = await service.topic.getArticleById(id)
-    console.log('topicId: ' + topic.id)
     if (!topic) {
       ctx.status = 404
       ctx.message = '此话题不存在或已被删除'
+      ctx.body = 'not found'
       return
     }
     // 当user 为管理员的时候有权修改
@@ -68,7 +66,6 @@ class TopicController extends Controller {
       }
 
       if (editError) {
-        console.log('edit_error:' + editError)
         await ctx.redirect('/topic/note/'+id, {
           action: 'edit',
           edit_error: editError,
@@ -78,19 +75,23 @@ class TopicController extends Controller {
         })
         return
       }
-
       // 保存话题
-      await service.topic.save(
+      const result = await service.topic.save(
         id,
         title,
         content,
+        summary,
         tab
       )
-
-      ctx.redirect('/topic/' + topic.id)
+      console.log('result', result)
+      if (result.protocol41) {
+        ctx.redirect('/topic/' + topic.id)
+      } 
     } else {
       ctx.status = 403
       ctx.message = '对不起，你不能编辑此话题'
+      ctx.body = 'forbidden'
+      return
     }
   }
 
@@ -102,7 +103,6 @@ class TopicController extends Controller {
     const { body } = ctx.request
     const allTabs = tabs.map( item => item[0])
     // 内容验证
-    console.log(allTabs)
     const RULE_CREATE = {
       title: {
         type: 'string',
@@ -122,11 +122,9 @@ class TopicController extends Controller {
       ctx.redirect('/topic/create')
       return
     }
-    console.log(body.summary)
     if (!body.summary) {
       body.summary = body.content.substr(0, 100)
     }
-    console.log(body.summary)
     // 数据库保存
     const topic = await service.topic.newAndSave(
       body.title,
