@@ -6,28 +6,7 @@
 	<link rel="stylesheet" type="text/css" href="/public/static/css/index.css">
 </head>
 <body>
-  <div class="header">
-    <div class="headerwrap">
-      <div class="logo">
-        <a href="/">READY READ</a>
-      </div>
-      <div class="navbar">
-        <ul>
-          <li class="active"><a href="/">首页</a></li>
-          <li><a href="/read">阅读</a></li>
-          <li><a href="/read">客户端</a></li>
-        </ul>
-      </div>
-      <div class="userbox">
-        {% if current_user %}
-          {{current_user.username}}
-          <a href='/signout' data-method="post" rel="nofollow">退出</a>
-        {% else %}
-          <a href='/signin' data-method="post" rel="nofollow">登录</a>
-        {% endif %}
-     </div>
-   </div>
-  </div>
+  {% include "include/head.tpl" %}
   <div class="indexWrap">
     <div class="indexList">
     {% for item in data %}

@@ -7,31 +7,7 @@
   <link rel="stylesheet" type="text/css" href="/public/static/js/plugin/wangeditor.css">
 </head>
 <body>
-  <div class="header">
-    <div class="headerwrap">
-      <div class="logo">
-        <a href="#">READY READ</a>
-      </div>
-      <div class="navbar">
-        <ul>
-          <li><a href="/">首页</a></li>
-          <li><a href="/read">阅读</a></li>
-          <li><a href="/read">客户端</a></li>
-        </ul>
-      </div>
-      <div class="userbox">
-        {% if current_user %}
-          {{current_user.username}}
-          <a href='/signout' data-method="post" rel="nofollow">退出</a>
-          {% if current_user.id == data.authorId %}
-          <a href="/topic/note/{{data.id}}">编辑</a>
-          {% endif %}
-        {% else %}
-          <a href='/signin' data-method="post" rel="nofollow">登录</a>
-        {% endif %}
-     </div>
-   </div>
-  </div>
+  {% include "include/head.tpl" %}
   <div class="indexWrap">
     <div class="indexList">
 	    <div class="articl-cpt detail">
@@ -62,5 +38,7 @@
       </div>
     </div>
   </div>
+  <script type="text/javascript" src="/public/static/js/plugin/sea.js"></script>
+  <script type="text/javascript" src="/public/static/js/editor.js"></script>
 </body>
 </html>

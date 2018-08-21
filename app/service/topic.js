@@ -58,6 +58,9 @@ class TopicService extends Service {
     return await this.app.mysql.query('update article set view = (view + ?) where id = ?', [1, id])
   }
 
+  async topArticle (day) {
+    return await this.app.mysql.query('select * from article where to_days(now()) - to_days(createtime) < ?', [day])
+  }
 }
 
 module.exports = TopicService

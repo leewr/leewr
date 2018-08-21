@@ -31,6 +31,16 @@ class Topic extends Controller {
       data: topis
     }
   }
+
+  async topArticle() {
+  	const { ctx, service } = this
+  	const day = ctx.params.day
+  	const topics = await service.topic.topArticle(day)
+  	ctx.body = {
+  		success: true,
+  		data: topics
+  	}
+  }
 }
 
 module.exports = Topic

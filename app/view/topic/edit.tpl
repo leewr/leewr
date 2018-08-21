@@ -31,7 +31,6 @@
             </div>
             <div class="editor">
               <div id="editor">
-                {{data.content | safe}}
               </div>
             </div>
         </div>
