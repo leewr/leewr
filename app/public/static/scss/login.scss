@@ -1,0 +1,100 @@
+@import 'one/common.scss';
+body{
+    height: calc(100vh);
+    background: #f1f1f1
+}
+.main{
+    text-align: center;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    .sign{
+        font-size: 14px;
+        width: 300px;
+        margin: 60px auto 0;
+        padding: 50px 50px 30px 50px;
+        background-color: #fff;
+        border-radius: 4px;
+        box-shadow: 0 0 8px rgba(0,0,0,.1);
+        .loginHead{
+            margin-bottom: 40px;
+            span,
+            a{
+                display: inline-block;
+                line-height: 60px;
+                font-size: 24px;
+                font-weight: 700;
+                color: #969696;
+                border-bottom: 3px solid transparent;
+            }
+            span{
+                padding: 0 12px;
+            }
+            a{
+                &.active{
+                    color: $blue;
+                    border-bottom-color: $blue;
+                }
+            }
+        }
+        .errorMsg{
+            color: $red;
+            font-size: 12px;
+        }
+        .inputBox{
+            border: 1px solid #c8c8c8;
+            border-radius: 4px;
+            margin-bottom: 50px;
+            input{
+                height: 50px;
+                padding: 4px 12px 4px 35px;
+                width: 100%;
+                box-sizing: border-box;
+                outline: none;
+                border: none;
+                background-color: rgba(181, 181, 181, 0.1);
+                &.username{
+                    border-bottom: 1px solid #c8c8c8
+                }
+                &.reppassword{
+                    border-top: 1px solid #c8c8c8
+                }
+            }
+        }
+        .btn{
+            margin-top: 20px;
+            width: 100%;
+            padding: 9px 18px;
+            font-size: 18px;
+            border: none;
+            border-radius: 25px;
+            color: #fff;
+            cursor: pointer;
+            outline: none;
+            display: block;
+            clear: both;
+            &.sign-in-btn{
+                background: $blue
+            }
+            &.sign-up-button {
+                background: #42c02e
+            }
+        }
+        .socialLogin{
+            margin: 20px 0 0 0;
+            
+            .typeList{
+                margin: 10px;
+                text-align: center;
+                display: none;
+            }
+            a{
+                display: inline-block;
+                margin: 0 15px;
+                width: 40px;
+                height: 40px;
+                background: $blue
+            }
+        }
+    }
+}

@@ -521,104 +521,82 @@ a:hover {
   -ms-pointer-events: none;
   pointer-events: none; }
 
-.header {
-  position: relative;
-  z-index: 110;
-  height: 50px;
-  background: #fff;
-  box-shadow: 0 2px 3px 0 rgba(99, 99, 99, 0.15); }
+body {
+  height: calc(100vh);
+  background: #f1f1f1; }
 
-.header a.logo {
-  font-size: 24px;
-  color: #333;
-  text-decoration: none;
-  padding-left: 20px;
-  line-height: 50px; }
-
-.header .fr {
-  float: right;
-  display: flex;
-  height: 50px;
-  align-items: center;
-  margin-right: 20px; }
-
-.header button.btn,
-.header a.btn {
-  display: inline-block;
-  height: 24px;
-  background: #fff;
-  border-radius: 3px;
-  border: 1px solid #e5e5e5;
-  line-height: 24px;
-  padding: 0 12px;
-  font-size: 12px;
-  color: #333;
-  margin-right: 12px;
-  width: 76px;
+.main {
   text-align: center;
-  box-sizing: content-box; }
-
-.header a.btn.add {
-  background-color: #0d88fb;
-  color: #fff;
-  border: 1px solid #0d88fb; }
-
-.header button.btn.save:hover {
-  box-shadow: 0 0 3px #efefef; }
-
-.user-avatar {
-  border-radius: 50%;
-  cursor: pointer; }
-
-.user-avatar:hover {
-  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1); }
-
-.edittoolbar {
-  height: 40px;
-  justify-content: center;
+  height: 100%;
+  display: flex;
   align-items: center; }
-
-.docwrap {
-  background-color: #f5f6f7; }
-
-.editor-box {
-  width: 794px;
-  overflow: hidden;
-  box-shadow: 0 1px 6px #ccc;
-  width: 794px;
-  min-height: 995px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 25px;
-  margin-bottom: 25px;
-  background: #fff; }
-
-.editor {
-  counter-reset: chapter section subsec;
-  outline: none;
-  display: block;
-  width: 100%;
-  box-sizing: border-box;
-  border: none;
-  padding: 10px 100px 0 100px; }
-
-.editor-title {
-  margin: 0 100px;
-  width: auto;
-  height: 60px;
-  padding-top: 90px;
-  border-bottom: 1px solid #e8ecf1;
-  font-family: -apple-system,BlinkMacSystemFont,PingFang SC,Helvetica,Tahoma,Arial,Hiragino Sans GB,Microsoft YaHei,\\5FAE\8F6F\96C5\9ED1,sans-serif; }
-
-.editor-title input {
-  font-size: 22.5pt;
-  outline: none;
-  border: none;
-  -webkit-box-shadow: none;
-  box-shadow: none;
-  display: block;
-  width: 100%;
-  height: 50px;
-  line-height: 50px;
-  color: #333;
-  font-weight: 700; }
+  .main .sign {
+    font-size: 14px;
+    width: 300px;
+    margin: 60px auto 0;
+    padding: 50px 50px 30px 50px;
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1); }
+    .main .sign .loginHead {
+      margin-bottom: 40px; }
+      .main .sign .loginHead span,
+      .main .sign .loginHead a {
+        display: inline-block;
+        line-height: 60px;
+        font-size: 24px;
+        font-weight: 700;
+        color: #969696;
+        border-bottom: 3px solid transparent; }
+      .main .sign .loginHead span {
+        padding: 0 12px; }
+      .main .sign .loginHead a.active {
+        color: #78bc85;
+        border-bottom-color: #78bc85; }
+    .main .sign .errorMsg {
+      color: #f4615c;
+      font-size: 12px; }
+    .main .sign .inputBox {
+      border: 1px solid #c8c8c8;
+      border-radius: 4px;
+      margin-bottom: 50px; }
+      .main .sign .inputBox input {
+        height: 50px;
+        padding: 4px 12px 4px 35px;
+        width: 100%;
+        box-sizing: border-box;
+        outline: none;
+        border: none;
+        background-color: rgba(181, 181, 181, 0.1); }
+        .main .sign .inputBox input.username {
+          border-bottom: 1px solid #c8c8c8; }
+        .main .sign .inputBox input.reppassword {
+          border-top: 1px solid #c8c8c8; }
+    .main .sign .btn {
+      margin-top: 20px;
+      width: 100%;
+      padding: 9px 18px;
+      font-size: 18px;
+      border: none;
+      border-radius: 25px;
+      color: #fff;
+      cursor: pointer;
+      outline: none;
+      display: block;
+      clear: both; }
+      .main .sign .btn.sign-in-btn {
+        background: #78bc85; }
+      .main .sign .btn.sign-up-button {
+        background: #42c02e; }
+    .main .sign .socialLogin {
+      margin: 20px 0 0 0; }
+      .main .sign .socialLogin .typeList {
+        margin: 10px;
+        text-align: center;
+        display: none; }
+      .main .sign .socialLogin a {
+        display: inline-block;
+        margin: 0 15px;
+        width: 40px;
+        height: 40px;
+        background: #78bc85; }

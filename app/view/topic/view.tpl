@@ -23,7 +23,9 @@
         {% if current_user %}
           {{current_user.username}}
           <a href='/signout' data-method="post" rel="nofollow">退出</a>
+          {% if current_user.id == data.authorId %}
           <a href="/topic/note/{{data.id}}">编辑</a>
+          {% endif %}
         {% else %}
           <a href='/signin' data-method="post" rel="nofollow">登录</a>
         {% endif %}

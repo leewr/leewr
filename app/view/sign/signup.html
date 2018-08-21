@@ -1,27 +1,63 @@
-<div>
-  <h1>register</h1>
-  <div class="error">
-    {{error}}
-  </div>
-  <form action="/signup" method="post">
-      <div>
-        <lebel>
-          <span>用户名注册</span>
-          <input name="loginname" placeholder="请输入用户名">
-        </lebel>
-      </div>
-      <div>
-        <lebel>
-          <span>密码</span>
-          <input name="password" type="password" placeholder="请输入密码">
-        </lebel>
-      </div>
-      <div>
-          <lebel>
-            <span>重复密码</span>
-            <input name="repassword" type="password" placeholder="请输入密码">
-          </lebel>
+<!DOCTYPE html>
+<!--[if IE 6]><html class="ie lt-ie8"><![endif]-->
+<!--[if IE 7]><html class="ie lt-ie8"><![endif]-->
+<!--[if IE 8]><html class="ie ie8"><![endif]-->
+<!--[if IE 9]><html class="ie ie9"><![endif]-->
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+    <title>注册-READY READ -- 锐读</title>
+    <link rel="stylesheet" href="/public/static/css/login.css" />
+</head>
+<body>
+  <div class="main">
+      <div class="sign">
+        <div class="loginHead">
+          <a href="/signin">
+            登录
+          </a>
+          <span>·</span>
+          <a href="/signup" class="active">
+            注册
+          </a>
         </div>
-      <div><button type="submit">提交</button></div>
-  </form>
-  </div>
+          <h1 class="errorMsg">{{error}}</h1>
+          
+          <form action="/signup" method="post">
+            <div class="inputBox">
+              <div>
+                <lebel>
+                  <input name="loginname" class="username" placeholder="请输入用户名">
+                </lebel>
+              </div>
+              <div>
+                <lebel>
+                  <input name="password" type="password" placeholder="请输入密码">
+                </lebel>
+              </div>
+              <div>
+                <lebel>
+                  <input name="repassword" type="password" class="reppassword" placeholder="请重复密码">
+                </lebel>
+              </div>
+            </div>
+            <div><button type="submit" class="btn sign-up-button">登录</button></div>
+          </form>
+          <div class="socialLogin">
+            <div>点击 “注册” 即表示您同意并愿意遵守简书用户协议 和 隐私政策 。</div>
+            <div class="typeList">
+              <a href="" class="weibo">
+              </a>
+              <a href="" class="weixin"></a>
+              <a href="" class="qq"></a>
+            </div>
+            
+          </div>
+      </div>
+    </div>
+    <script type="text/javascript" src="/public/static/js/plugin/sea.js"></script>
+    <script type="text/javascript" src="/public/static/js/reg.js"></script>
+</body>
+</html>

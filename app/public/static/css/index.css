@@ -1,5 +1,6 @@
 @charset "UTF-8";
 body {
+  font-family: -apple-system,SF UI Display,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,WenQuanYi Micro Hei,sans-serif;
   font: status-bar;
   font-size: 14px;
   line-height: 1.42858; }
