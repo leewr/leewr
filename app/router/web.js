@@ -6,7 +6,7 @@
 module.exports = app => {
 
   const { router, controller, middleware, config } = app;
-  const { sign, topic, api } = controller
+  const { sign, topic, api, user } = controller
   const { createUserLimit } = middleware.createUserLimit(config.create_user_per_ip)
 
   const userRequired = middleware.userRequired()
@@ -30,6 +30,8 @@ module.exports = app => {
   router.get('/signup', sign.showSignup)
   // todo createUserLimit
   router.post('/signup', sign.signup)
+  // 用户主页
+  router.get('/u/:id', user.index)
 
 
   // 新建文章界面

@@ -12,7 +12,7 @@
       </div>
      <div class="userbox">
         {% if current_user %}
-    	<a class="userInfo" href="/user/{{current_user.id}}">
+    	<a class="userInfo" href="/u/{{current_user.id}}">
             <img src="https://unsplash.it/900/380/?random" width="40px" height="40px" class="user-avatar" />
         </a>
          <!--  {{current_user.username}}

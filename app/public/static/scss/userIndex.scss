@@ -1,0 +1,51 @@
+@import 'one/common.scss';
+.userIndexBox{
+	display: flex;
+	padding-top: 30px;
+	.mainLeft{
+		flex-basis: 680px;
+		.infoBox{
+			height: 80px;
+			display: flex;
+			.imgHolder {
+				flex-basis: 80px;
+				img{
+					border-radius: 50%;
+				}
+			}
+			.userInfo{
+				flex: 1;
+				padding-left: 20px;
+				.userName{
+					padding-bottom: 10px;
+					a{
+						color: $dark;
+						font-size: 21px;
+					}
+				}
+				ul{
+					li{
+						display: inline-block;
+						border-right: 1px solid #f0f0f0;
+						padding-right: 10px;
+						margin-left: 10px;
+						a{
+							color: $dark;
+						}
+						&:first-child{
+							margin-left: 0
+						}
+					}
+				}
+			}
+		}
+		.articleBox{
+			margin-top: 30px;
+			padding-bottom: 30px;
+		}
+	}
+	.mainRight{
+		flex: 1;
+		padding-left: 30px;
+	}
+}

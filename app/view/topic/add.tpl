@@ -10,11 +10,10 @@
     <input type="hidden" name="content" value="">
     <input type="hidden" name="summary" value="">
    <div class="header">
-        <a href="#" class="logo">
+        <a href="/" class="logo">
             MONO 文档
         </a>
         <div class="fr">
-            <a href="#" class="btn add">新建</a>
             <button type="submit" class="btn save">保存</button>
             <div class="userInfo">
                 <img src="https://unsplash.it/900/380/?random" width="28px" height="28px" class="user-avatar" />

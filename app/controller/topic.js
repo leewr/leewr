@@ -134,7 +134,7 @@ class TopicController extends Controller {
       ctx.user.id
     )
     // 增加用户帖子发表数量 increaseArticleCount
-    await service.user.increaseArticleCount(ctx.user.id, 5, 1)
+    await service.user.increaseArticleCount(ctx.user.id, 1, 1)
     ctx.redirect('/topic/' + topic.insertId)
     // await ctx.render('/topic/'+ topic.insertId)
   }

@@ -92,6 +92,39 @@ body{
 	padding-top: 20px;
 	min-height: calc(100vh - 90px - 118px - 30px)
 }
+.topwrap{
+	width: 960px;
+	margin: 0 auto;
+	display: flex;
+	.slider{
+		padding-top: 30px;
+		flex-basis: 625px;
+		
+		overflow: hidden;
+		img{
+			width: 625px;
+			vertical-align: middle;
+			border-radius: 6px;
+		}
+	}
+	.toplist{
+		flex: 1;
+		padding-top: 25px;
+		ul{
+			margin-left: 30px;
+			li{
+				margin-bottom: 19px;
+			}
+			a{
+				display: block;
+			}
+			img{
+				width: 100%;
+				vertical-align: middle
+			}
+		}
+	}
+}
 .indexList{
 	width: 960px;
     margin: 0 auto;
@@ -242,6 +275,9 @@ body{
 		color: #333;
 	}
 }
+
+// 用户主页样式
+@import 'userIndex.scss';
 
 
 .footer{

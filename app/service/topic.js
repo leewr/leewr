@@ -2,19 +2,23 @@ const Service = require('egg').Service
 
 class TopicService extends Service {
   /**
-   * 获取文章列表
+   * 获取用户、所有用户文章列表
    */
-  async getArticleList() {
-    const result = await this.app.mysql.select('article', {
+  async getArticleList(authorId) {
+    let params = {
       orders:[['createTime','desc'], ['id', 'desc']],
       limit: 10,
       offset: 0
-    })
+    }
+    if (authorId) {
+      params = Object.assign(params, {authorId: authorId})
+    }
+    const result = await this.app.mysql.select('article', params)
     return result
   }
 
   /**
-   * 获取文章
+   * 获取固定id文章
    */
   async getArticleById(id) {
     const result = await this.app.mysql.get('article', {id: id})
@@ -57,7 +61,11 @@ class TopicService extends Service {
   async addView (id) {
     return await this.app.mysql.query('update article set view = (view + ?) where id = ?', [1, id])
   }
-
+  /**
+   * [topArticle description]
+   * @param  {[type]} day [description]
+   * @return {[type]}     [description]
+   */
   async topArticle (day) {
     return await this.app.mysql.query('select * from article where to_days(now()) - to_days(createtime) < ?', [day])
   }
