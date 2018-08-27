@@ -32,7 +32,7 @@ module.exports = app => {
   router.post('/signup', sign.signup)
   // 用户主页
   router.get('/u/:id', user.index)
-
+  router.post('/u/:id/toggleLike', user.toggleLike)
 
   // 新建文章界面
   router.get('/topic/create', userRequired, topic.create)

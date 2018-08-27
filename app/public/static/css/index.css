@@ -900,7 +900,8 @@ body {
           font-weight: bold; }
   .header .userbox {
     flex-grow: 1;
-    text-align: right; }
+    text-align: right;
+    height: 90px; }
     .header .userbox .login-link {
       color: #4c5161;
       margin-right: 15px; }
@@ -913,9 +914,27 @@ body {
       padding: 9px 20px; }
       .header .userbox .ui-button:hover {
         opacity: 0.8; }
-    .header .userbox .userInfo {
+    .header .userbox .userInfobox {
       display: inline-block;
       margin-right: 15px;
+      position: relative;
+      padding-top: 20px;
+      height: 70px; }
+      .header .userbox .userInfobox .subMenu {
+        position: absolute;
+        top: 90px;
+        left: 0;
+        width: 120px;
+        padding: 10px 15px;
+        display: none;
+        background: #fff;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); }
+        .header .userbox .userInfobox .subMenu li {
+          text-align: left;
+          padding: 6px 0; }
+      .header .userbox .userInfobox:hover .subMenu {
+        display: block; }
+    .header .userbox .userInfo {
       border: 2px solid #efefef;
       border-radius: 50%; }
       .header .userbox .userInfo img {
@@ -1859,6 +1878,19 @@ input.ui-button-warning.loading {
           .userIndexBox .mainLeft .infoBox .userInfo .userName a {
             color: #4c5161;
             font-size: 21px; }
+          .userIndexBox .mainLeft .infoBox .userInfo .userName .follow {
+            margin-left: 20px;
+            background: #42c02e;
+            color: #fff;
+            font-size: 12px;
+            border-radius: 12px;
+            padding: 0 12px;
+            line-height: 26px;
+            display: inline-block;
+            vertical-align: top;
+            cursor: pointer; }
+            .userIndexBox .mainLeft .infoBox .userInfo .userName .follow.followed {
+              background: #ccd0d7; }
         .userIndexBox .mainLeft .infoBox .userInfo ul li {
           display: inline-block;
           border-right: 1px solid #f0f0f0;

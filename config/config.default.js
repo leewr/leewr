@@ -8,7 +8,7 @@ module.exports = appInfo => {
 
   config.tabs = [['article', '随想'], ['found', '发现'], ['top', '精华']]
   // add your config here
-  config.middleware = ['authUser', 'errorHandler'];
+  config.middleware = ['authUser', 'errorHandler', 'notfoundHandler'];
   config.errorHandler = {
     match: '/api'
   }
@@ -45,6 +45,8 @@ module.exports = appInfo => {
       enable: false
     }
   }
+
+
   config.default_page = 1
   config.default_limit = 20
 

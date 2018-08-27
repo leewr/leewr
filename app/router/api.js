@@ -11,4 +11,5 @@ module.exports = app => {
 	// 内容
 	apiV1Router.get('/topics', pagination, topic.index)
 	apiV1Router.get('/topics/:day', pagination, topic.topArticle)
+
 }

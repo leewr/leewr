@@ -53,9 +53,61 @@ class userService extends Service {
       id: authorId
     },
     {
-      columns: ['id', 'username', 'avatar_url', 'articleNum']
+      columns: ['id', 'username', 'avatar_url', 'articleNum', 'followNum', 'fansNum']
     })
     return result
+  }
+
+  /**
+   * 关注状态
+   */
+  async toggleLike(authorId, current_user) {
+    // 关注表添加一条记录
+    let followStatus = await this.app.mysql.query('update follow set status = !status, modifyTime = now() where userId = ? and followedUser = ?', [authorId, current_user.id])
+    if (!followStatus.changedRows) {
+      followStatus = await this.app.mysql.query('insert into follow values(0, ?, ?, 1, now(), now())', [authorId, current_user.id])
+    }
+
+    // 粉丝表添加一条记录
+    let fanStatus = await this.app.mysql.query('update fans set status = !status, modifyTime = now() where userId = ? and follower = ?', [authorId, current_user.id])
+    if (!fanStatus.changedRows) {
+      fanStatus = await this.app.mysql.query('insert into fans values(0, ?, ?, 1, now(), now())', [authorId, current_user.id])
+    }
+
+    // 更新用户信息表添加一个粉丝/关注数量
+    const status = await this.app.mysql.get('follow', {
+      userId: authorId,
+      followedUser: current_user.id
+    })
+
+    await this.app.mysql.query('update user set fansNum = (fansNum + ?) where id = ?', [status.status ? 1 : -1, authorId])
+    await this.app.mysql.query('update user set followNum = (followNum + ?) where id = ?', [status.status ? 1 : -1, current_user.id])
+
+    return followStatus && fanStatus
+  }
+  
+  /**
+   * 是否关注
+   * getFollowStatus
+   */
+  async getFollowStatus (authorId, current_user) {
+    const status = await this.app.mysql.get('follow', {
+      userId: authorId,
+      followedUser: current_user.id
+    })
+    return status
+  }
+  /**
+   * 关注数量
+   */
+  async followNun (current_user) {
+  }
+
+  /**
+   * 更新作者喜欢数
+   */
+  async like (status, authorId) {
+    await this.app.mysql.query('update user set likeNum = (likeNum + ?) where id = ?', [status ? 1 : -1, authorId])
   }
 }
 

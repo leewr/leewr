@@ -12,9 +12,20 @@
       </div>
      <div class="userbox">
         {% if current_user %}
-    	<a class="userInfo" href="/u/{{current_user.id}}">
+        <div class="userInfobox">
+          <a class="userInfo" href="/u/{{current_user.id}}">
             <img src="https://unsplash.it/900/380/?random" width="40px" height="40px" class="user-avatar" />
-        </a>
+          </a>
+          <div class="subMenu">
+            <ul>
+              <li><a href="/u/{{current_user.id}}">我的主页</a></li>
+              <li><a href="/u/{{current_user.id}}">我的收藏</a></li>
+              <li><a href="/u/{{current_user.id}}">喜欢的文章</a></li>
+              <li><a href="/signout">退出</a></li>
+            </ul>
+          </div>
+        </div>
+    	  
          <!--  {{current_user.username}}
           <a href='/signout' data-method="post" rel="nofollow">退出</a> -->
           <a href="/topic/create" class="ui-button btn-sign-in">写文章</a>
@@ -22,8 +33,10 @@
           <a href="/topic/note/{{data.id}}">编辑</a>
           {% endif %}
         {% else %}
+          <div class="userInfobox">
          <a href='/signin' class="login-link" data-method="post" rel="nofollow">登录</a>
          <a href="/signup" rel="nofollow" class="ui-button btn-sign-in">注册</a>
+         </div>
         {% endif %}
      </div>
    </div>

@@ -16,23 +16,37 @@
               <img src="https://unsplash.it/900/380/?random" width="80px" height="80px" alt="">
             </a>
             <div class="userInfo">
-              <p class="userName"><a class="name" href="/u/{{authorId}}">{{userData.username}}</a></p>
+              <p class="userName">
+                <a class="name" href="/u/{{authorId}}">{{authorData.username}}</a>
+                {% if current_user.id != authorId %}
+                  
+                  {% if isFollowed.status %} 
+                    <a class="follow followed">
+                      已关注
+                    </a>
+                  {% else %}
+                    <a class="follow ">
+                      关注
+                    </a>
+                  {% endif %}
+                {% endif %}
+              </p>
               <ul>
                 <li>
                   <a href="/u/5/following">
-                    <p>5</p>
+                    <p>{{authorData.followNum}}</p>
                     <p>关注<i class="iconfont ic-arrow"></i></p>
                   </a>
                 </li>
                 <li>
                   <a href="/u/5/followers">
-                    <p>5</p>
+                    <p>{{authorData.fansNum}}</p>
                     <p>粉丝<i class="iconfont ic-arrow"></i></p>
                   </a>
                 </li>
                 <li>
                   <a href="/u/5">
-                    <p>{{userData.articleNum}}</p>
+                    <p>{{authorData.articleNum}}</p>
                     <p>文章<i class="iconfont ic-arrow"></i></p>
                   </a>
                 </li>
@@ -45,12 +59,6 @@
                     <p>收获喜欢<i class="iconfont ic-arrow"></i></p>
                 </li>
               </ul>
-              {% if current_user.id != authorId %}
-              <a href="#" class="follow">
-                关注
-              </a>
-              {% endif %}
-              
             </div>
           </div>
           <div class="articleBox">
@@ -90,7 +98,8 @@
     </div>
   </div>
   {% include "include/footer.tpl" %}
-  <script type="text/javascript" src="/public/static/js/plugin/sea.js"></script>
+  <script type="text/javascript" src="/public/static/js/plugin/jquery.js"></script>
+  <script type="text/javascript" src="/public/static/js/plugin/cookie/jquery.cookie.js"></script>
   <script type="text/javascript" src="/public/static/js/userIndex.js"></script>
 </body>
 </html>

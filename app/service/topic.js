@@ -61,8 +61,16 @@ class TopicService extends Service {
   async addView (id) {
     return await this.app.mysql.query('update article set view = (view + ?) where id = ?', [1, id])
   }
+
   /**
-   * [topArticle description]
+   * 增加文章点赞数 
+   */
+  async addLike(id) {
+    
+  }
+
+  /**
+   * 热门文章
    * @param  {[type]} day [description]
    * @return {[type]}     [description]
    */

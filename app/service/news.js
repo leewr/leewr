@@ -11,7 +11,6 @@ class NewService extends Service {
       },
       dataType: 'json'
     })
-
     return idList;
   }
 

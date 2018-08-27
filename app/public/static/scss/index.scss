@@ -61,6 +61,7 @@ body{
     .userbox{
     	flex-grow: 1;
     	text-align: right;
+    	height: 90px;
     	.login-link{
     		color: $dark;
 			margin-right: 15px;
@@ -76,9 +77,33 @@ body{
     			opacity: 0.8
     		}
     	}
-		.userInfo{
-			display: inline-block;
+    	.userInfobox{
+    		display: inline-block;
 			margin-right: 15px;
+			position: relative;
+			padding-top: 20px;
+			height: 70px;
+			.subMenu{
+				position: absolute;
+				top: 90px;
+				left: 0;
+				width: 120px;
+				padding: 10px 15px;
+				display: none;
+				background: #fff;
+				box-shadow: 0 2px 8px rgba(0,0,0,.1);
+				li{
+					text-align: left;
+					padding: 6px 0;
+				}
+			}
+			&:hover{
+				.subMenu{
+					display: block
+				}
+			}
+    	}
+		.userInfo{
 			border: 2px solid #efefef;
 			border-radius: 50%;
 			img{
