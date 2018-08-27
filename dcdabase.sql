@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50553
 File Encoding         : 65001
 
-Date: 2018-08-24 18:47:57
+Date: 2018-08-27 19:08:15
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -76,9 +76,9 @@ INSERT INTO `article` VALUES (null, '0', '阿斯顿发哎哎', '<p>阿斯顿发<
 INSERT INTO `article` VALUES (null, '3', 'summary', '<p>添加summary文章测试</p>', 'article', '1', '2018-08-19 22:57:56', '36', null, null, '0', '0');
 INSERT INTO `article` VALUES ('2018-08-24 17:13:11', '68', '无标题读取内容AA1111啊   阿什顿发', '<p>需要注意的是：<strong>从编辑器中获取的 html 代码是不包含任何样式的纯 html</strong>，如果显示的时候需要对其中的<code>&lt;table&gt;</code><code>&lt;code&gt;</code><code>&lt;blockquote&gt;</code>等标签进行自定义样式（这样既可实现多皮肤功能），下面提供了编辑器中使用的样式供参考\r\n\r\n</p><p><br></p><p>asdfasdf</p>', 'article', '1', '2018-08-19 22:59:08', '37', null, '需要注意的是：从编辑器中获取的 html', '0', '0');
 INSERT INTO `article` VALUES ('2018-08-24 11:51:07', '6', 'Promise', '<h4>promise 对象 是一个构造函数，用来生成promise实例</h4><pre><code class=\"hljs javascript\"><span class=\"hljs-keyword\">const</span> promise = <span class=\"hljs-keyword\">new</span> <span class=\"hljs-built_in\">Promise</span>(<span class=\"hljs-function\"><span class=\"hljs-keyword\">function</span> (<span class=\"hljs-params\">resolve, reject</span>) </span>{<br>	<span class=\"hljs-keyword\">if</span> (<span class=\"hljs-comment\">/* success */</span>) {<br>		resolve(value)<br>	} <span class=\"hljs-keyword\">else</span> {<br>		reject(error)<br>	}<br>})</code></pre><p><h4>Promise 构造函数接受一个函数作为参数，函数的参数为resolve，和reject两个函数。</h4>resolve函数将状态从未完成变为成功<br>reject 将函数从未完成变为失败<br>resolve、reject传递回调函数的参数</p><h4>Promise 实例生成以后，可以用then方法分别指定resolve状态和rejected状态的回调函数<br>Promise.all 方法用于将多个Promise实例，包装成一个新的Promise实例</h4><pre><code class=\"hljs javascript\"><span class=\"hljs-keyword\">const</span> p = <span class=\"hljs-built_in\">Promise</span>.all([p1, p2, p3])</code></pre><p>当p1、p2、p3都fulfilled时，此时将p1/p2/p3返回值组成一个数组返回<br>当有一个被rejected时，p的状态就为rejected，将第一个被reject的实例的返回值，传递给p的回调函数<br>Promise.race 当 p1p2p3中有一个状态变成fulfilled的时候，将resolve返回值返回<br>reject同all<br>Promise.resolve 将现有对象转为Promise对象</p><pre><code class=\"hljs javascript\"><span class=\"hljs-keyword\">const</span> jsPromise = <span class=\"hljs-built_in\">Promise</span>.resolve($.ajax(<span class=\"hljs-string\">\'/whatever.json\'</span>))</code></pre><p><br></p>', 'article', '5', '2018-08-24 11:36:44', '38', null, 'promise 对象 是一个构造函数，用', '0', '0');
-INSERT INTO `article` VALUES (null, '0', '无标题asdf', '<p>asdf</p>', 'article', '1', '2018-08-24 17:24:08', '39', null, 'asdf', '0', '0');
+INSERT INTO `article` VALUES (null, '1', '无标题asdf', '<p>asdf</p>', 'article', '1', '2018-08-24 17:24:08', '39', null, 'asdf', '0', '0');
 INSERT INTO `article` VALUES (null, '0', '无标题asdf', '<p>asdfasdf</p>', 'article', '1', '2018-08-24 17:25:40', '40', null, 'asdfasdf', '0', '0');
-INSERT INTO `article` VALUES (null, '1', '无标题', '<p>asdfasdf</p>', 'article', '1', '2018-08-24 17:26:10', '41', null, 'asdfasdf', '0', '0');
+INSERT INTO `article` VALUES (null, '2', '无标题', '<p>asdfasdf</p>', 'article', '1', '2018-08-24 17:26:10', '41', null, 'asdfasdf', '0', '0');
 
 -- ----------------------------
 -- Table structure for fans
@@ -93,11 +93,17 @@ CREATE TABLE `fans` (
   `modifyTime` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `id` (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of fans
 -- ----------------------------
+INSERT INTO `fans` VALUES ('1', '5', '1', '1', '2018', '2018');
+INSERT INTO `fans` VALUES ('2', '4', '1', '0', '2018', '2018');
+INSERT INTO `fans` VALUES ('3', '3', '1', '1', '2018', '2018');
+INSERT INTO `fans` VALUES ('4', '1', '4', '0', '2018', '2018');
+INSERT INTO `fans` VALUES ('5', '2', '4', '1', '2018', '2018');
+INSERT INTO `fans` VALUES ('6', '3', '4', '1', '2018', '2018');
 
 -- ----------------------------
 -- Table structure for follow
@@ -108,13 +114,40 @@ CREATE TABLE `follow` (
   `userId` int(10) unsigned NOT NULL COMMENT '关注关系表',
   `followedUser` int(10) unsigned NOT NULL,
   `status` smallint(6) NOT NULL,
-  `createTime` int(10) unsigned NOT NULL,
-  `modifyTime` int(10) unsigned NOT NULL,
+  `createTime` datetime NOT NULL,
+  `modifyTime` datetime NOT NULL,
   KEY `id` (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of follow
+-- ----------------------------
+INSERT INTO `follow` VALUES ('1', '5', '1', '1', '2018-08-27 14:23:51', '2018-08-27 15:35:54');
+INSERT INTO `follow` VALUES ('2', '5', '2', '1', '2018-08-27 14:23:51', '2018-08-27 14:23:51');
+INSERT INTO `follow` VALUES ('3', '5', '3', '1', '2018-08-27 14:27:21', '2018-08-27 14:27:21');
+INSERT INTO `follow` VALUES ('4', '5', '4', '1', '2018-08-27 14:32:39', '2018-08-27 14:32:39');
+INSERT INTO `follow` VALUES ('5', '5', '6', '1', '2018-08-27 14:35:59', '2018-08-27 14:35:59');
+INSERT INTO `follow` VALUES ('6', '4', '1', '0', '2018-08-27 14:38:29', '2018-08-27 15:45:02');
+INSERT INTO `follow` VALUES ('7', '3', '1', '1', '2018-08-27 15:45:53', '2018-08-27 16:11:15');
+INSERT INTO `follow` VALUES ('8', '1', '4', '0', '2018-08-27 16:44:47', '2018-08-27 17:14:59');
+INSERT INTO `follow` VALUES ('9', '2', '4', '1', '2018-08-27 17:16:40', '2018-08-27 17:33:27');
+INSERT INTO `follow` VALUES ('10', '3', '4', '1', '2018-08-27 17:46:02', '2018-08-27 17:46:02');
+
+-- ----------------------------
+-- Table structure for thumbs
+-- ----------------------------
+DROP TABLE IF EXISTS `thumbs`;
+CREATE TABLE `thumbs` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `articleId` int(10) NOT NULL,
+  `userId` int(10) NOT NULL,
+  `createTime` datetime NOT NULL,
+  `modifyTime` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of thumbs
 -- ----------------------------
 
 -- ----------------------------
@@ -129,13 +162,16 @@ CREATE TABLE `user` (
   `password` varchar(255) DEFAULT NULL,
   `active` tinyint(4) DEFAULT NULL,
   `avatar_url` varchar(255) DEFAULT NULL,
+  `followNum` int(10) unsigned NOT NULL DEFAULT '0',
+  `fansNum` int(10) unsigned NOT NULL DEFAULT '0',
+  `likeNum` int(10) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('6', 'leewr', '1', 'leewr', '$2a$10$TfBbLxUZf4brbZNmBFrZv.vhf0PmcnXKlUkNbAWREtacV1EEYmZp6', '1', '1111');
-INSERT INTO `user` VALUES ('32', 'admin1', '4', 'admin1', '$2a$10$TfBbLxUZf4brbZNmBFrZv.vhf0PmcnXKlUkNbAWREtacV1EEYmZp6', '1', '');
-INSERT INTO `user` VALUES ('0', 'admin', '3', 'admin', '123456', '1', '');
-INSERT INTO `user` VALUES ('1', 'leewr1', '5', 'leewr1', '$2a$10$PKD/rRiOvEOV6QXLnXV3S.17YgALFLw.Z23KVz3Vul.xNWjFQECCK', '1', '');
+INSERT INTO `user` VALUES ('6', 'leewr', '1', 'leewr', '$2a$10$TfBbLxUZf4brbZNmBFrZv.vhf0PmcnXKlUkNbAWREtacV1EEYmZp6', '1', '1111', '0', '0', '0');
+INSERT INTO `user` VALUES ('32', 'admin1', '4', 'admin1', '$2a$10$TfBbLxUZf4brbZNmBFrZv.vhf0PmcnXKlUkNbAWREtacV1EEYmZp6', '1', '', '2', '0', '0');
+INSERT INTO `user` VALUES ('0', 'admin', '3', 'admin', '123456', '1', '', '0', '1', '0');
+INSERT INTO `user` VALUES ('1', 'leewr1', '5', 'leewr1', '$2a$10$PKD/rRiOvEOV6QXLnXV3S.17YgALFLw.Z23KVz3Vul.xNWjFQECCK', '1', '', '0', '0', '0');
