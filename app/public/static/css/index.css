@@ -916,7 +916,7 @@ body {
         opacity: 0.8; }
     .header .userbox .userInfobox {
       display: inline-block;
-      margin-right: 15px;
+      padding-right: 15px;
       position: relative;
       padding-top: 20px;
       height: 70px; }

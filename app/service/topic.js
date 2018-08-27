@@ -65,8 +65,8 @@ class TopicService extends Service {
   /**
    * 增加文章点赞数 
    */
-  async addLike(id) {
-    
+  async addLike(articleId, ) {
+
   }
 
   /**
