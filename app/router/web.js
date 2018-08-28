@@ -32,7 +32,10 @@ module.exports = app => {
   router.post('/signup', sign.signup)
   // 用户主页
   router.get('/u/:id', user.index)
-  router.post('/u/:id/toggleLike', user.toggleLike)
+  // 关注用户
+  router.post('/u/:id/toggleFollow', user.toggleFollow)
+  
+
 
   // 新建文章界面
   router.get('/topic/create', userRequired, topic.create)
@@ -42,6 +45,9 @@ module.exports = app => {
   router.post('/topic/update', userRequired, topic.update)
   // 文章展示
   router.get('/topic/:id', topic.view)
+  // 喜欢文章
+  router.post('/topic/:id/like', topic.toggleLike)
+
   // 修改文章展示
   router.get('/topic/note/:id', userRequired, topic.edit)
 

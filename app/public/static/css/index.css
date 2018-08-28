@@ -852,8 +852,21 @@ XCode style (c) Angel Garcia <angelgarcia.mail@gmail.com>
 .hljs-emphasis {
   font-style: italic; }
 
+.follow {
+  margin-left: 20px;
+  background: #42c02e;
+  color: #fff;
+  font-size: 12px;
+  border-radius: 12px;
+  padding: 0 12px;
+  line-height: 24px;
+  display: inline-block;
+  vertical-align: top;
+  cursor: pointer; }
+  .follow.followed {
+    background: #ccd0d7; }
+
 body {
-  background-image: url(../images/bgImg.png);
   background-repeat: repeat-x; }
 
 .headerwrap {
@@ -978,9 +991,6 @@ body {
     height: 216px;
     background-color: #fff;
     border: 1px solid #e8e8e8;
-    -ms-box-sizing: content-box;
-    -webkit-box-sizing: content-box;
-    -moz-box-sizing: content-box;
     box-sizing: content-box;
     margin-bottom: 10px; }
   .indexList .article-cpt .article-img {
@@ -1062,18 +1072,27 @@ body {
 
 .detail {
   background: #fff;
-  border: 1px solid #e8e8e8;
   padding: 46px 100px 124px;
   margin-top: 10px;
   margin-bottom: 125px;
   background-color: #fff;
   color: #333;
   font-size: 16px; }
+  .detail .author-box {
+    height: 48px;
+    margin: 20px 0 30px; }
+    .detail .author-box img {
+      border-radius: 50%;
+      width: 48px;
+      height: 48px;
+      float: left; }
+    .detail .author-box .authot-box-info {
+      margin-left: 60px; }
+    .detail .author-box .infobox {
+      margin-top: 3px; }
   .detail code {
     font-size: 14px;
     white-space: pre-wrap; }
-  .detail .title-box {
-    border-bottom: 1px solid #ececec; }
   .detail .title {
     font-size: 36px;
     padding-top: 12px;
@@ -1858,6 +1877,20 @@ input.ui-button-warning.loading {
 .ui-tab-content.checked {
   display: block; }
 
+.follow {
+  margin-left: 20px;
+  background: #42c02e;
+  color: #fff;
+  font-size: 12px;
+  border-radius: 12px;
+  padding: 0 12px;
+  line-height: 24px;
+  display: inline-block;
+  vertical-align: top;
+  cursor: pointer; }
+  .follow.followed {
+    background: #ccd0d7; }
+
 .userIndexBox {
   display: flex;
   padding-top: 30px; }
@@ -1878,19 +1911,9 @@ input.ui-button-warning.loading {
           .userIndexBox .mainLeft .infoBox .userInfo .userName a {
             color: #4c5161;
             font-size: 21px; }
-          .userIndexBox .mainLeft .infoBox .userInfo .userName .follow {
-            margin-left: 20px;
-            background: #42c02e;
-            color: #fff;
-            font-size: 12px;
-            border-radius: 12px;
-            padding: 0 12px;
-            line-height: 26px;
-            display: inline-block;
-            vertical-align: top;
-            cursor: pointer; }
-            .userIndexBox .mainLeft .infoBox .userInfo .userName .follow.followed {
-              background: #ccd0d7; }
+            .userIndexBox .mainLeft .infoBox .userInfo .userName a.follow {
+              color: #fff;
+              font-size: 12px; }
         .userIndexBox .mainLeft .infoBox .userInfo ul li {
           display: inline-block;
           border-right: 1px solid #f0f0f0;

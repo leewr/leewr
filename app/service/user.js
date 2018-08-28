@@ -22,12 +22,12 @@ class userService extends Service {
   /**
    * 保存新增用户
    */
-  addAndSave(name, username, password, avatar_url, active) {
+  addAndSave(name, username, password, avatarUrl, active) {
     const row = {
       name,
       username,
       password,
-      avatar_url,
+      avatarUrl,
       active
     }
     const result = this.app.mysql.insert('user', row)
@@ -48,12 +48,12 @@ class userService extends Service {
    * 获取用户信息
    */
   async getUserInfo(authorId) {
-    //const result = await this.app.mysql.query('select username, avatar_url, articleNum from user where id = ?', [authorId])
+    console.log(authorId)
     const result = await this.app.mysql.get('user', { 
       id: authorId
     },
     {
-      columns: ['id', 'username', 'avatar_url', 'articleNum', 'followNum', 'fansNum']
+      columns: ['id', 'username', 'avatarUrl', 'articleNum', 'followNum', 'fansNum', 'likeNum']
     })
     return result
   }
@@ -61,7 +61,7 @@ class userService extends Service {
   /**
    * 关注状态
    */
-  async toggleLike(authorId, current_user) {
+  async toggleFollow(authorId, current_user) {
     // 关注表添加一条记录
     let followStatus = await this.app.mysql.query('update follow set status = !status, modifyTime = now() where userId = ? and followedUser = ?', [authorId, current_user.id])
     if (!followStatus.changedRows) {

@@ -19,7 +19,6 @@
               <p class="userName">
                 <a class="name" href="/u/{{authorId}}">{{authorData.username}}</a>
                 {% if current_user.id != authorId %}
-                  
                   {% if isFollowed.status %} 
                     <a class="follow followed">
                       已关注
@@ -51,11 +50,11 @@
                   </a>
                 </li>
                 <li>
-                    <p>65413</p>
+                    <p>{{authorData.worldNum}}</p>
                     <p>字数<i class="iconfont ic-arrow"></i></p>
                 </li>
                 <li>
-                    <p>65413</p>
+                    <p>{{authorData.likeNum}}</p>
                     <p>收获喜欢<i class="iconfont ic-arrow"></i></p>
                 </li>
               </ul>
@@ -100,6 +99,7 @@
   {% include "include/footer.tpl" %}
   <script type="text/javascript" src="/public/static/js/plugin/jquery.js"></script>
   <script type="text/javascript" src="/public/static/js/plugin/cookie/jquery.cookie.js"></script>
+  <script type="text/javascript" src="/public/static/js/one/common/Tab.js"></script>
   <script type="text/javascript" src="/public/static/js/userIndex.js"></script>
 </body>
 </html>

@@ -1,0 +1,16 @@
+@import 'one/variable';
+.follow{
+	margin-left: 20px;
+	background: #42c02e;
+	color: #fff;
+	font-size: 12px;
+	border-radius: 12px;
+	padding: 0 12px;
+	line-height: 24px;
+	display: inline-block;
+	vertical-align: top;
+	cursor: pointer;
+	&.followed{
+		background: $grayDisabled;
+	}	
+}

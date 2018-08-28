@@ -1,3 +1,4 @@
+'use strict'
 const Controller = require('egg').Controller
 
 class TopicController extends Controller {
@@ -25,9 +26,20 @@ class TopicController extends Controller {
   async view() {
     const { ctx, service } = this
     const id = ctx.params.id
+    const current_user = ctx.locals.current_user
     const topic = await service.topic.getArticleById(id)
+    const author = await service.user.getUserInfo(topic.authorId)
+    console.log(author)
     const addView = await service.topic.addView(id)
-    await ctx.render('/topic/view.tpl', { data: topic})
+    let isFollowed
+    if (current_user) {
+      isFollowed = await service.user.getFollowStatus(topic.authorId, current_user)
+    }
+    if (topic) {
+      await ctx.render('/topic/view.tpl', { data: topic, author: author, isFollowed: isFollowed})
+    } else {
+      ctx.status = 404
+    }
   }
 
   // 文章修改展示
@@ -95,7 +107,6 @@ class TopicController extends Controller {
     }
   }
 
-  
   // 发表主题帖
   async put() {
     const { ctx, service } = this
@@ -137,6 +148,35 @@ class TopicController extends Controller {
     await service.user.increaseArticleCount(ctx.user.id, 1, 1)
     ctx.redirect('/topic/' + topic.insertId)
     // await ctx.render('/topic/'+ topic.insertId)
+  }
+
+  // 喜欢 // 关注
+  async toggleLike() {
+    const { ctx, service } = this
+    const id = ctx.params.id
+    const { body } = ctx.request
+    const current_user = ctx.locals.current_user
+    let data = null
+    if (current_user) {
+      data = await service.topic.toggleLike(id, current_user)
+      if (data) {
+        ctx.body = {
+          success: true
+        } 
+      } else {
+        ctx.body = {
+          success: false
+        }
+      }
+    } else {
+      // ctx.redirect('/signin')
+      // ctx.status = 401
+      ctx.body = {
+        success: true,
+        status: 401,
+        data: '没有登录'
+      }
+    }
   }
 }
 

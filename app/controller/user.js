@@ -12,7 +12,7 @@ class userController extends Controller {
 		const authorData = await service.user.getUserInfo(authorId)
 		let isFollowed
 		
-		// 用户已登录获取用户专注状态
+		// 用户已登录获取用户关注状态
 		if (current_user) {
 			isFollowed = await service.user.getFollowStatus(authorId, current_user)
 		}
@@ -25,15 +25,14 @@ class userController extends Controller {
 	}
 
 	// 关注用户
-	async toggleLike() {
+	async toggleFollow() {
 		const {ctx, service } = this
 		const authorId = ctx.params.id
 		const { body } = ctx.request
 		const current_user = ctx.locals.current_user
 		let status = body.status ? body.status : 'ok'
-		console.log('toggleLike')
 		if (ctx.locals.current_user) {
-			const retrunData = await service.user.toggleLike(authorId, current_user)
+			const retrunData = await service.user.toggleFollow(authorId, current_user)
 			if (retrunData) {
 				ctx.body = {
 					success: true

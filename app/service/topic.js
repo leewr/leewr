@@ -63,10 +63,33 @@ class TopicService extends Service {
   }
 
   /**
-   * 增加文章点赞数 
+   * 文章喜欢
    */
-  async addLike(articleId, ) {
+  async toggleLike(articleId, current_user) {
+    // 获取文章作者id
+    let article = await this.app.mysql.get('article', {
+      id: articleId
+    })
+    // 文章喜欢表中查询 不存在 新增一条记录
+    let status = await this.app.mysql.query('update thumbs set status = !status, modifyTime = now() where articleId = ? and userId = ?', [articleId, current_user.id])
+    if (!status.changedRows) {
+      status = await this.app.mysql.query('insert into thumbs values(0, ?, ?, now(), now(), 1)', [articleId, current_user.id])
+    }
 
+    // 更新文章表中文章喜欢数量
+
+    // 更新文章表中文章喜欢数量
+    const data = await this.app.mysql.get('thumbs', {
+      articleId: articleId,
+      userId: current_user.id
+    })
+    await this.app.mysql.query('update article set likeNum = (likeNum + ?) where id = ?', [data.status ? 1 : -1, articleId])
+
+    // 更新用户表中喜欢数量
+    
+    await this.app.mysql.query('update user set likeNum = (likeNum + ?) where id = ?', [data.status ? 1 : -1, article.authorId])
+
+    return status && data
   }
 
   /**
@@ -77,6 +100,7 @@ class TopicService extends Service {
   async topArticle (day) {
     return await this.app.mysql.query('select * from article where to_days(now()) - to_days(createtime) < ?', [day])
   }
+
 }
 
 module.exports = TopicService

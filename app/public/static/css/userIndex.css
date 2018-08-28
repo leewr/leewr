@@ -775,6 +775,20 @@ input.ui-button-warning.loading {
 .ui-tab-content.checked {
   display: block; }
 
+.follow {
+  margin-left: 20px;
+  background: #42c02e;
+  color: #fff;
+  font-size: 12px;
+  border-radius: 12px;
+  padding: 0 12px;
+  line-height: 24px;
+  display: inline-block;
+  vertical-align: top;
+  cursor: pointer; }
+  .follow.followed {
+    background: #ccd0d7; }
+
 .userIndexBox {
   display: flex;
   padding-top: 30px; }
@@ -795,19 +809,9 @@ input.ui-button-warning.loading {
           .userIndexBox .mainLeft .infoBox .userInfo .userName a {
             color: #4c5161;
             font-size: 21px; }
-          .userIndexBox .mainLeft .infoBox .userInfo .userName .follow {
-            margin-left: 20px;
-            background: #42c02e;
-            color: #fff;
-            font-size: 12px;
-            border-radius: 12px;
-            padding: 0 12px;
-            line-height: 26px;
-            display: inline-block;
-            vertical-align: top;
-            cursor: pointer; }
-            .userIndexBox .mainLeft .infoBox .userInfo .userName .follow.followed {
-              background: #ccd0d7; }
+            .userIndexBox .mainLeft .infoBox .userInfo .userName a.follow {
+              color: #fff;
+              font-size: 12px; }
         .userIndexBox .mainLeft .infoBox .userInfo ul li {
           display: inline-block;
           border-right: 1px solid #f0f0f0;
