@@ -29,9 +29,7 @@
          <!--  {{current_user.username}}
           <a href='/signout' data-method="post" rel="nofollow">退出</a> -->
           <a href="/topic/create" class="ui-button btn-sign-in">写文章</a>
-          {% if current_user.id == data.authorId %}
-          <a href="/topic/note/{{data.id}}">编辑</a>
-          {% endif %}
+          
         {% else %}
           <div class="userInfobox">
          <a href='/signin' class="login-link" data-method="post" rel="nofollow">登录</a>

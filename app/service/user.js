@@ -97,6 +97,18 @@ class userService extends Service {
     })
     return status
   }
+
+  /**
+   * 是否喜欢
+   */
+  async getLikeStatus (articleId, current_user) {
+    const status = await this.app.mysql.get('thumbs', {
+      articleId: articleId,
+      userId: current_user.id
+    })
+    return status
+  }
+
   /**
    * 关注数量
    */

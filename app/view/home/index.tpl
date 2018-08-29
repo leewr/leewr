@@ -27,26 +27,27 @@
   <div class="indexWrap">
     <div class="indexList">
     {% for item in data %}
-      <div class="article-cpt">
-        <div class="article-info">
-          <div class="article-info-box">
-            <div class="article-title">
-              <a href="/topic/{{item.id}}" target="_blank">{{item.title}}</a>
-            </div> 
-            <div class="article-author">
-              <a href="/" target="_blank">{{item.authorId}}</a>
-            </div>
-            <div class="article-content"> 
-              {{item.summary}} 
-              <span class="view-all">
-                <a href="/topic/{{item.id}}" target="_blank">VIEW ALL...</a>
-              </span>
-            </div>
-          </div> 
-          <div class="article-others">{{item.view}}次阅读&nbsp;&nbsp;|&nbsp;&nbsp;评论:{{item.commentNum}}&nbsp;&nbsp;|&nbsp;&nbsp;喜欢:{{item.thumbs}}
-          </div>
-        </div> 
-        <div class="article-img" style="background-image: url({{item.imgUurl}});"><a href="/topic/{{item.id}}" target="_blank"></a>
+      <div class="article-item">
+        <h3><a href="/topic/{{item.id}}" class="title">{{item.title}}</a></h3>
+        <div class="summary">
+          {{item.summary}}
+        </div>
+        <div class="info">
+          <span class="view">
+            <i class="icon iconfont icon-xiaoxi"></i>
+            {{item.view}}
+          </span>
+          <span class="commont">
+            <i class="icon iconfont icon-pinglun"></i>
+            {{item.commontNum}}
+          </span>
+           <span class="like">
+            <i class="icon iconfont icon-xihuan"></i>
+           {{item.likeNum}}
+          </span>
+          <span class="time">
+            {{item.modifyTime | dayFormate}}
+          </span>
         </div>
       </div>
     {% endfor %}

@@ -2,13 +2,15 @@ const Service = require('egg').Service
 
 class TopicService extends Service {
   /**
-   * 获取用户、所有用户文章列表
+   * 获取用户limit 文章列表
    */
-  async getArticleList(authorId) {
+  async getArticleList(authorId, pagination) {
+    const { ctx } = this
+    pagination = pagination || {limit: 10, skip: 0}
     let params = {
       orders:[['createTime','desc'], ['id', 'desc']],
-      limit: 10,
-      offset: 0
+      limit: pagination.limit,
+      offset: pagination.skip
     }
     if (authorId) {
       params = Object.assign(params, {authorId: authorId})
@@ -97,8 +99,8 @@ class TopicService extends Service {
    * @param  {[type]} day [description]
    * @return {[type]}     [description]
    */
-  async topArticle (day) {
-    return await this.app.mysql.query('select * from article where to_days(now()) - to_days(createtime) < ?', [day])
+  async topArticle (day = 7) {
+    return await this.app.mysql.query('select * from article where to_days(now()) - to_days(createtime) < ? order by view desc', [day])
   }
 
 }

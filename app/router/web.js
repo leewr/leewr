@@ -14,7 +14,7 @@ module.exports = app => {
   router.get('/', controller.home.index);
   router.get('/news', controller.news.list);
   router.get('/news/:id', controller.news.detail);
-  router.resources('topics', '/api/v1/topics', app.controller.topics)
+  // router.resources('topics', '/api/v1/topics', app.controller.topics)
 
   // 登录
   router.get('/signin', sign.showLogin)

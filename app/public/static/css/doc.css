@@ -535,7 +535,7 @@ a:hover {
   font-size: 14px;
   text-align: center;
   color: #4c5161;
-  border: 1px solid #d0d0d5;
+  border: 1px solid #f0f0f0;
   border-radius: 4px;
   padding: 9px 15px;
   min-width: 50px;
@@ -590,7 +590,7 @@ button.ui-button {
 .ui-button.loading:hover {
   color: #4c5161;
   background-color: #fff;
-  border-color: #d0d0d5;
+  border-color: #f0f0f0;
   cursor: default; }
 
 .ui-button-primary,
@@ -718,7 +718,7 @@ input.ui-button-warning.loading {
 .ui-tab-tabs {
   height: 40px;
   line-height: 40px;
-  border-bottom: 1px solid #d0d0d5;
+  border-bottom: 1px solid #f0f0f0;
   position: relative; }
 
 .ui-tab-tab {

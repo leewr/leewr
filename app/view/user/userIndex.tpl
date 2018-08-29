@@ -62,34 +62,95 @@
           </div>
           <div class="articleBox">
             <div class="ui-tab-tabs">
-                <a href="javascript:" class="ui-tab-tab checked" data-rel="tabTarget1">文章</a>
-                <a href="javascript:" class="ui-tab-tab" data-rel="tabTarget2">动态</a>
-                <a href="javascript:" class="ui-tab-tab" data-rel="tabTarget3">最新评论</a>
-                <a href="javascript:" class="ui-tab-tab" data-rel="tabTarget4">热门</a>
+                <a href="javascript:" class="ui-tab-tab checked" data-rel="tabTarget1">
+                  <i class="icon iconfont icon-hangchengdanxiao"></i>
+                  文章
+                </a>
+                <a href="javascript:" class="ui-tab-tab" data-rel="tabTarget2">
+                  <i class="icon iconfont icon-xiaoxi"></i>
+                动态</a>
+                <a href="javascript:" class="ui-tab-tab" data-rel="tabTarget3">
+                  <i class="icon iconfont icon-pinglun"></i>
+                最新评论</a>
+                <a href="javascript:" class="ui-tab-tab" data-rel="tabTarget4">
+                  <i class="icon iconfont icon-remen"></i>
+                热门</a>
             </div>
             <div class="ui-tab-contents">
-                <div id="tabTarget1" class="ui-tab-content checked" role="tabpanel">asd</div>
+                <div id="tabTarget1" class="ui-tab-content checked" role="tabpanel">
+                  {% for item in data %}
+                    <div class="article-item">
+                      <h3><a href="/topic/{{item.id}}" class="title">{{item.title}}</a></h3>
+                      <div class="summary">
+                        {{item.summary}}
+                      </div>
+                      <div class="info">
+                        <span class="view">
+                          <i class="icon iconfont icon-xiaoxi"></i>
+                          {{item.view}}
+                        </span>
+                        <span class="commont">
+                          <i class="icon iconfont icon-xiaoxi"></i>
+                          {{item.commontNum}}
+                        </span>
+                         <span class="like">
+                          <i class="icon iconfont icon-xiaoxi"></i>
+                         {{item.likeNum}}
+                        </span>
+                        <span class="time">
+                          {{item.modifyTime | dayFormate}}
+                        </span>
+                      </div>
+                    </div>
+                  {% endfor %}
+                </div>
                 <div id="tabTarget2" class="ui-tab-content" role="tabpane2">ssss</div>
                 <div id="tabTarget3" class="ui-tab-content" role="tabpane3">ss2222ss</div>
-                <div id="tabTarget4" class="ui-tab-content" role="tabpane4">sss223112s</div>
+                <div id="tabTarget4" class="ui-tab-content" role="tabpane4">
+                  {% for item in hotTop %}
+                    <div class="article-item">
+                      <h3><a href="/topic/{{item.id}}" class="title">{{item.title}}</a></h3>
+                      <div class="summary">
+                        {{item.summary}}
+                      </div>
+                      <div class="info">
+                        <span class="view">
+                          <i class="icon iconfont icon-xiaoxi"></i>
+                          {{item.view}}
+                        </span>
+                        <span class="commont">
+                          <i class="icon iconfont icon-xiaoxi"></i>
+                          {{item.commontNum}}
+                        </span>
+                         <span class="like">
+                          <i class="icon iconfont icon-xiaoxi"></i>
+                         {{item.likeNum}}
+                        </span>
+                        <span class="time">
+                          {{item.modifyTime | dayFormate}}
+                        </span>
+                      </div>
+                    </div>
+                  {% endfor %}
+                </div>
             </div>
           </div>
         </div>
         <div class="mainRight">
-          <div class="">
+          <div class="rightBox">
             <h3>个人介绍</h3>
-            <div>
-              个人介绍信息
+            <div class="introduce">
+              前端工程师一枚
             </div>
           </div>
-          <div class="">
-            <h3>我关注的文档</h3>
-            <h3>我喜欢的文章</h3>
+          <div class="rightBox">
+            <h3><a href="#">我关注的文档</a></h3>
+            <h3><i class="icon iconfont icon-xihuan1"></i><a href="#">我喜欢的文章</a></h3>
           </div>
-          <div class="">
-            <h3>我创建的文档</h3>
-            <ul>
-              <li>前端</li>
+          <div class="rightBox">
+            <h3>我创建的知识库</h3>
+            <ul class="ritemList">
+              <li><a href="" class="dark">前端</a></li>
             </ul>
           </div>
         </div>

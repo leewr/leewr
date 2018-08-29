@@ -26,6 +26,7 @@ class Topic extends Controller {
   async index() {
     const { ctx, service } = this
     const topis = await service.topic.getArticleList()
+    console.log('api')
     ctx.body = {
       success: true,
       data: topis

@@ -38,14 +38,26 @@
               喜欢： {{data.likeNum}}
             </div>
           </div>
+          {% if current_user.id == data.authorId %}
+            <div class="editBtn">
+              <a href="/topic/note/{{data.id}}">编辑</a>
+            </div>
+            {% endif %}
         </div>
 	    	<div class="article w-e-text">
 				{{ data.content | safe}}
 	    	</div>
         <div class="articel-bot">
-          <a class="like">
-            喜欢
+          <a class="like {% if isLiked.status %} liked {% endif %}">
+            <i class="icon iconfont icon-xihuan"></i>
+            <span class="text">喜欢</span>
+            <span class="num">{{data.likeNum}}</span>
           </a>
+          <div class="share">
+            <span>微信</span>
+            <span>微博</span>
+            <span>图片</span>
+          </div>
         </div>
 	    </div>
     </div>

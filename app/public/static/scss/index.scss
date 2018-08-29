@@ -274,7 +274,7 @@ body{
 }
 .detail{
 	background: #fff;
-    padding: 46px 100px 124px;
+    padding: 46px 0px 124px;
     margin-top: 10px;
     margin-bottom: 125px;
     background-color: #fff;
@@ -292,10 +292,26 @@ body{
 			float: left;
 		}
 		.authot-box-info{
-			margin-left: 60px
+			margin-left: 60px;
+			float: left;
 		}
 		.infobox{
+			
 			margin-top: 3px;
+		}
+		.editBtn{
+			float: right;
+			a{
+				height: 30px;
+				display: inline-block;
+				padding: 0 12px;
+				line-height: 28px;
+				font-size: 14px;
+				border-radius: 30px;
+				color: $dark;
+				border: 1px solid $borderNormal;
+			}
+			
 		}
     }
 	
@@ -312,6 +328,74 @@ body{
 	.article{
 		padding-top: 15px;
 		color: #333;
+	}
+	.articel-bot{
+		margin: 60px 0 0 0;
+		.like{
+			cursor: pointer;
+			display: inline-block;
+			padding: 18px 30px 18px 30px;
+    		color: #EA6F5A;
+    		border: 1px solid #EA6F5A;
+    		background-color: rgba(236, 97, 73, 0.05);
+    		border-radius: 50px;
+    		&.liked{
+    			background-color: #EA6F5A;
+    			color: #fff;
+    			&:hover{
+    				background-color: #EA6F5A;
+    				opacity: 0.8;
+    				.num{
+    					border-color-left: #fff
+    				}
+    			}
+    		}
+    		&:hover{
+    			background-color: rgba(236, 97, 73, 0.1);
+    			.num{
+    				// border-left-color: rgba(236, 97, 73, 0.1);
+    			}
+    		}
+    		span,i{
+				display: inline-block;
+				height: 30px;
+				line-height: 30px;
+				vertical-align: top;
+    		}
+    		span{
+    			padding: 0 12px;
+    		}
+    		.text{
+
+    		}
+    		.num{
+				border-left: 1px solid #fff;
+    		}
+    		.icon-xihuan{
+    			font-size: 30px;
+    			font-weight: bold;
+    		}
+		}
+		.share{
+			font-size: 0;
+			float: right;
+			text-align: center;
+			span{
+				cursor: pointer;
+				margin-left: 15px;
+				font-size: 18px;
+				line-height: 58px;
+				width: 58px;
+				height: 58px;
+				display: inline-block;
+				border:  1px solid $borderHover;
+				color: $borderHover;
+				border-radius: 50%;
+				&:hover{
+					background-color: rgba(236, 97, 73, 0.05);
+				}
+			}
+		}
 	}
 }
 

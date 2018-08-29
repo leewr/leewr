@@ -35,8 +35,10 @@ class TopicController extends Controller {
     if (current_user) {
       isFollowed = await service.user.getFollowStatus(topic.authorId, current_user)
     }
+    let isLiked = await service.user.getLikeStatus(id, current_user)
+
     if (topic) {
-      await ctx.render('/topic/view.tpl', { data: topic, author: author, isFollowed: isFollowed})
+      await ctx.render('/topic/view.tpl', { data: topic, author: author, isFollowed: isFollowed, isLiked: isLiked})
     } else {
       ctx.status = 404
     }

@@ -47,10 +47,44 @@
 		.articleBox{
 			margin-top: 30px;
 			padding-bottom: 30px;
+			.ui-tab-tab{
+				padding: 0 10px 0px 20px;
+				.iconfont{
+					font-size: 18px;
+					font-weight: bold;
+				}
+			}
 		}
 	}
 	.mainRight{
 		flex: 1;
 		padding-left: 30px;
+		.rightBox{
+			& + .rightBox{
+				margin-top: 20px;
+			}
+			padding-bottom: 20px;
+			border-bottom: 1px solid $borderNormal;
+
+			h3{
+				color: #666;
+				padding: 6px 0;
+				font-weight: normal;
+				a{
+					color: $dark
+				}
+				.iconfont{
+					margin-right: 10px;
+				}
+			}
+			.introduce{
+				font-size: 14px;
+			}
+			.ritemList{
+				padding: 10px 0;
+			}
+		}
 	}
 }
+
+

@@ -10,6 +10,7 @@ class userController extends Controller {
 		const current_user = ctx.locals.current_user
 		const topic = await service.topic.getArticleList(authorId)
 		const authorData = await service.user.getUserInfo(authorId)
+		const hotTop = await service.topic.topArticle()
 		let isFollowed
 		
 		// 用户已登录获取用户关注状态
@@ -17,7 +18,7 @@ class userController extends Controller {
 			isFollowed = await service.user.getFollowStatus(authorId, current_user)
 		}
 		if (authorData) {
-			await ctx.render('/user/userIndex.tpl', {authorId: authorId, data: topic, authorData: authorData, isFollowed: isFollowed})
+			await ctx.render('/user/userIndex.tpl', {authorId: authorId, data: topic, hotTop: hotTop, authorData: authorData, isFollowed: isFollowed})
 		} else {
 			ctx.status = 404
 		}
