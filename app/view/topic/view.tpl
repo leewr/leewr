@@ -25,7 +25,7 @@
                     已关注
                   </a>
                 {% else %}
-                  <a class="follow btn">
+                  <a class="follow btn" data-id="{{data.authorId}}">
                     关注
                   </a>
                 {% endif %}
@@ -80,9 +80,8 @@
       </div>
     </div>
   </div>
-  <script type="text/javascript" src="/public/static/js/plugin/sea.js"></script>
   <script type="text/javascript" src="/public/static/js/plugin/jquery.js"></script>
   <script type="text/javascript" src="/public/static/js/plugin/cookie/jquery.cookie.js"></script>
-  <script type="text/javascript" src="/public/static/js/editor.js"></script>
+  <script type="text/javascript" src="/public/static/js/detail.js"></script>
 </body>
 </html>

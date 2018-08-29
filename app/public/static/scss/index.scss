@@ -79,9 +79,10 @@ body{
     	}
     	.userInfobox{
     		display: inline-block;
-			padding-right: 15px;
+			padding:0 15px;
 			position: relative;
 			padding-top: 20px;
+			margin-right: 20px;
 			height: 70px;
 			.subMenu{
 				position: absolute;
@@ -95,9 +96,12 @@ body{
 				li{
 					text-align: left;
 					padding: 6px 0;
+					font-size: 14px;
 				}
 			}
 			&:hover{
+				background: #fbfbfb;
+				cursor: pointer;
 				.subMenu{
 					display: block
 				}

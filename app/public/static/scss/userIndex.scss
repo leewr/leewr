@@ -60,18 +60,21 @@
 		flex: 1;
 		padding-left: 30px;
 		.rightBox{
+			padding-bottom: 20px;
+			border-bottom: 1px solid $borderNormal;
 			& + .rightBox{
 				margin-top: 20px;
 			}
-			padding-bottom: 20px;
-			border-bottom: 1px solid $borderNormal;
-
+			
+			&:last-child{
+				border-bottom: none;
+			}
 			h3{
 				color: #666;
 				padding: 6px 0;
 				font-weight: normal;
 				a{
-					color: $dark
+					/*//color: $dark*/
 				}
 				.iconfont{
 					margin-right: 10px;
@@ -82,7 +85,14 @@
 			}
 			.ritemList{
 				padding: 10px 0;
+				li{
+					padding: 6px 0;
+				}
+				.iconfont{
+					margin-right: 10px;
+				}
 			}
+
 		}
 	}
 }

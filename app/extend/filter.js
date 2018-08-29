@@ -4,5 +4,5 @@ exports.timeFormate = (val) => {
 }
 
 exports.dayFormate = (val) => {
-  return moment(new Date(val)).format('MM.DD HH:mm')
+  return moment(new Date(val)).format('M.D HH:mm')
 }

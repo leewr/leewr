@@ -63,7 +63,7 @@
           <div class="articleBox">
             <div class="ui-tab-tabs">
                 <a href="javascript:" class="ui-tab-tab checked" data-rel="tabTarget1">
-                  <i class="icon iconfont icon-hangchengdanxiao"></i>
+                  <i class="icon iconfont icon-text"></i>
                   文章
                 </a>
                 <a href="javascript:" class="ui-tab-tab" data-rel="tabTarget2">
@@ -86,15 +86,15 @@
                       </div>
                       <div class="info">
                         <span class="view">
-                          <i class="icon iconfont icon-xiaoxi"></i>
+                          <i class="icon iconfont icon-view2"></i>
                           {{item.view}}
                         </span>
                         <span class="commont">
                           <i class="icon iconfont icon-xiaoxi"></i>
-                          {{item.commontNum}}
+                          {{item.commentNum}}
                         </span>
                          <span class="like">
-                          <i class="icon iconfont icon-xiaoxi"></i>
+                          <i class="icon iconfont icon-xihuan"></i>
                          {{item.likeNum}}
                         </span>
                         <span class="time">
@@ -115,19 +115,19 @@
                       </div>
                       <div class="info">
                         <span class="view">
-                          <i class="icon iconfont icon-xiaoxi"></i>
-                          {{item.view}}
+                          <i class="icon iconfont icon-view2"></i>
+                          {{item.view}} 评论
                         </span>
-                        <span class="commont">
+                        <span class="comment">
                           <i class="icon iconfont icon-xiaoxi"></i>
-                          {{item.commontNum}}
+                          {{item.commentNum}}
                         </span>
                          <span class="like">
                           <i class="icon iconfont icon-xiaoxi"></i>
                          {{item.likeNum}}
                         </span>
                         <span class="time">
-                          {{item.modifyTime | dayFormate}}
+                          {{item.modifyTime | timeFormate}}
                         </span>
                       </div>
                     </div>
@@ -144,13 +144,14 @@
             </div>
           </div>
           <div class="rightBox">
-            <h3><a href="#">我关注的文档</a></h3>
-            <h3><i class="icon iconfont icon-xihuan1"></i><a href="#">我喜欢的文章</a></h3>
+            <h3><i class="icon iconfont icon-newshot"></i><a href="#" class="dark">我关注的文档</a></h3>
+            <h3><i class="icon iconfont icon-xihuan"></i><a href="#" class="dark">我喜欢的文章</a></h3>
           </div>
           <div class="rightBox">
             <h3>我创建的知识库</h3>
             <ul class="ritemList">
-              <li><a href="" class="dark">前端</a></li>
+              <li><i class="icon iconfont icon-newshot"></i><a href="" class="dark">前端</a></li>
+              <li><i class="icon iconfont icon-newshot"></i><a href="" class="dark">安卓开发</a></li>
             </ul>
           </div>
         </div>

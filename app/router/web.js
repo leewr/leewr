@@ -6,7 +6,7 @@
 module.exports = app => {
 
   const { router, controller, middleware, config } = app;
-  const { sign, topic, api, user } = controller
+  const { sign, topic, api, user, setting } = controller
   const { createUserLimit } = middleware.createUserLimit(config.create_user_per_ip)
 
   const userRequired = middleware.userRequired()
@@ -35,7 +35,8 @@ module.exports = app => {
   // 关注用户
   router.post('/u/:id/toggleFollow', user.toggleFollow)
   
-
+  // 设置页面
+  router.get('/setting/index', userRequired, setting.index)
 
   // 新建文章界面
   router.get('/topic/create', userRequired, topic.create)

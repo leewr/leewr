@@ -18,7 +18,7 @@
 
 // 文章item
 .article-item{
-	padding-bottom: 20px;
+	padding-bottom: 10px;
 	margin-top: 20px;
 	border-bottom: 1px solid #f0f0f0;
 	h3{
@@ -32,7 +32,11 @@
 		color: #999
 	}
 	.info{
-		padding: 6px 0;
-		color: #999
+		padding: 6px 0 0 0;
+		color: #999;
+		span{
+			margin-right: 10px;
+			font-size: 12px;
+		}
 	}
 }

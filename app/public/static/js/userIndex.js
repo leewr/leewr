@@ -9,6 +9,7 @@
 
 
 $('.ui-tab-tabs > .ui-tab-tab').tab();
+
 $('.follow').hover(function () {
 	if ($(this).hasClass('followed')) {
 		$(this).html('取消关注')

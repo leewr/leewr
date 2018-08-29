@@ -69,10 +69,10 @@ class userService extends Service {
     }
 
     // 粉丝表添加一条记录
-    let fanStatus = await this.app.mysql.query('update fans set status = !status, modifyTime = now() where userId = ? and follower = ?', [authorId, current_user.id])
-    if (!fanStatus.changedRows) {
-      fanStatus = await this.app.mysql.query('insert into fans values(0, ?, ?, 1, now(), now())', [authorId, current_user.id])
-    }
+    // let fanStatus = await this.app.mysql.query('update fans set status = !status, modifyTime = now() where userId = ? and follower = ?', [authorId, current_user.id])
+    // if (!fanStatus.changedRows) {
+    //   fanStatus = await this.app.mysql.query('insert into fans values(0, ?, ?, 1, now(), now())', [authorId, current_user.id])
+    // }
 
     // 更新用户信息表添加一个粉丝/关注数量
     const status = await this.app.mysql.get('follow', {
@@ -83,7 +83,7 @@ class userService extends Service {
     await this.app.mysql.query('update user set fansNum = (fansNum + ?) where id = ?', [status.status ? 1 : -1, authorId])
     await this.app.mysql.query('update user set followNum = (followNum + ?) where id = ?', [status.status ? 1 : -1, current_user.id])
 
-    return followStatus && fanStatus
+    return followStatus
   }
   
   /**
