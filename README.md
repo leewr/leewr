@@ -1,5 +1,6 @@
 # node-blog
 
+egg.js sideProject
 
 
 ## QuickStart
