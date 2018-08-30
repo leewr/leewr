@@ -1,6 +1,6 @@
-@import 'one/common.scss';
 @import "../js/plugin/highlight/styles/xcode.scss";
 @import 'uicommon.scss';
+
 body{
 	background-repeat: repeat-x;
 }
@@ -406,6 +406,7 @@ body{
 // 用户主页样式
 @import 'userIndex.scss';
 
+@import "setting.scss";
 
 .footer{
     clear: both;
