@@ -34,6 +34,8 @@ module.exports = app => {
   router.get('/u/:id', user.index)
   // 关注用户
   router.post('/u/:id/toggleFollow', user.toggleFollow)
+  // 喜欢的文章
+  router.get('/u/:id/thumbs', user.showThumbs)
   
   // 设置页面
   router.get('/setting/index', userRequired, setting.index)

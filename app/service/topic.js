@@ -13,12 +13,9 @@ class TopicService extends Service {
       offset: pagination.skip
     }
     if (authorId) {
-      console.log('authorId', authorId)
       params = Object.assign(params, { where: {authorId: parseInt(authorId)}})
-      console.log(params)
     }
     const result = await this.app.mysql.select('article', params)
-    console.log(result)
     return result
   }
 
@@ -104,6 +101,13 @@ class TopicService extends Service {
    */
   async topArticle (day = 7, authorId) {
     return await this.app.mysql.query('select * from article where to_days(now()) - to_days(createtime) < ? and authorId = ? order by view desc', [day, authorId])
+  }
+
+  /**
+   * 喜欢文章列表
+   */
+  async likedAeticle(userId) {
+    return await this.app.mysql.query('select * from article where id in (select articleId from thumbs where userId = ? and status = 1)', userId)
   }
 
 }

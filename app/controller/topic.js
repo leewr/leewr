@@ -13,7 +13,6 @@ class TopicController extends Controller {
     }
   }
 
-
   // 创建文章
   async create() {
     const { ctx, config } = this
@@ -98,7 +97,6 @@ class TopicController extends Controller {
         summary,
         tab
       )
-      console.log('result', result)
       if (result.protocol41) {
         ctx.redirect('/topic/' + topic.id)
       } 
@@ -180,6 +178,13 @@ class TopicController extends Controller {
         data: '没有登录'
       }
     }
+  }
+
+  // 我喜欢的文章
+  async likedAeticle() {
+    const { ctx , service } = this
+    const userId = ctx.locals.current_user.id
+    return await service.topic.likedAeticle(userId)
   }
 }
 

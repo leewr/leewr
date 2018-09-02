@@ -64,17 +64,12 @@
             <div class="ui-tab-tabs">
                 <a href="javascript:" class="ui-tab-tab checked" data-rel="tabTarget1">
                   <i class="icon iconfont icon-text"></i>
-                  文章
+                  喜欢的文章
                 </a>
-                <a href="javascript:" class="ui-tab-tab" data-rel="tabTarget2">
+                <a href="javascript:" class="ui-tab-tab " data-rel="tabTarget2">
                   <i class="icon iconfont icon-xiaoxi"></i>
-                动态</a>
-                <a href="javascript:" class="ui-tab-tab" data-rel="tabTarget3">
-                  <i class="icon iconfont icon-pinglun"></i>
-                最新评论</a>
-                <a href="javascript:" class="ui-tab-tab" data-rel="tabTarget4">
-                  <i class="icon iconfont icon-remen"></i>
-                热门</a>
+                  关注的文档
+                </a>
             </div>
             <div class="ui-tab-contents">
                 <div id="tabTarget1" class="ui-tab-content checked" role="tabpanel">
@@ -105,34 +100,6 @@
                   {% endfor %}
                 </div>
                 <div id="tabTarget2" class="ui-tab-content" role="tabpane2">ssss</div>
-                <div id="tabTarget3" class="ui-tab-content" role="tabpane3">ss2222ss</div>
-                <div id="tabTarget4" class="ui-tab-content" role="tabpane4">
-                  {% for item in hotTop %}
-                    <div class="article-item">
-                      <h3><a href="/topic/{{item.id}}" class="title">{{item.title}}</a></h3>
-                      <div class="summary">
-                        {{item.summary}}
-                      </div>
-                      <div class="info">
-                        <span class="view">
-                          <i class="icon iconfont icon-view2"></i>
-                          {{item.view}} 评论
-                        </span>
-                        <span class="comment">
-                          <i class="icon iconfont icon-xiaoxi"></i>
-                          {{item.commentNum}}
-                        </span>
-                         <span class="like">
-                          <i class="icon iconfont icon-xiaoxi"></i>
-                         {{item.likeNum}}
-                        </span>
-                        <span class="time">
-                          {{item.modifyTime | timeFormate}}
-                        </span>
-                      </div>
-                    </div>
-                  {% endfor %}
-                </div>
             </div>
           </div>
         </div>
@@ -144,8 +111,8 @@
             </div>
           </div>
           <div class="rightBox">
-            <h3><i class="icon iconfont icon-newshot"></i><a href="{{authorId}}/thumbs" class="dark">我关注的文档</a></h3>
-            <h3><i class="icon iconfont icon-xihuan"></i><a href="#" class="dark">我喜欢的文章</a></h3>
+            <h3><i class="icon iconfont icon-newshot"></i><a href="thumbs" class="dark">我关注的文档</a></h3>
+            <h3><i class="icon iconfont icon-xihuan"></i><a href="thumbs" class="dark">我喜欢的文章</a></h3>
           </div>
           <div class="rightBox">
             <h3>我创建的知识库</h3>

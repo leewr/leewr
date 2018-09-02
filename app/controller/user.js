@@ -22,7 +22,26 @@ class userController extends Controller {
 		} else {
 			ctx.status = 404
 		}
+	}
+
+	// 喜欢的文章
+	async showThumbs() {
+		const { ctx, service } = this
+		const authorId = ctx.params.id
+		const current_user = ctx.locals.current_user
+		const topic = await service.topic.likedAeticle(authorId)
+		const authorData = await service.user.getUserInfo(authorId)
+		let isFollowed
 		
+		// 用户已登录获取用户关注状态
+		if (current_user) {
+			isFollowed = await service.user.getFollowStatus(authorId, current_user)
+		}
+		if (authorData) {
+			await ctx.render('/user/userThumbs.tpl', {authorId: authorId, data: topic, authorData: authorData, isFollowed: isFollowed})
+		} else {
+			ctx.status = 404
+		}
 	}
 
 	// 关注用户

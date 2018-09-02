@@ -81,7 +81,11 @@
     </div>
   </div>
   <script type="text/javascript" src="/public/static/js/plugin/jquery.js"></script>
-  <script type="text/javascript" src="/public/static/js/plugin/cookie/jquery.cookie.js"></script>
+  <script type="text/javascript" src="/public/static/js/plugin/cookie/jquery.cookie.js">
+  </script>
+  <script type="text/javascript" src="/public/static/js/plugin/highlight/highlight.pack.js">
+  </script>
+  
   <script type="text/javascript" src="/public/static/js/detail.js"></script>
 </body>
 </html>

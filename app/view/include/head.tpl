@@ -14,7 +14,7 @@
         {% if current_user %}
         <div class="userInfobox">
           <a class="userInfo" href="/u/{{current_user.id}}">
-            <img src="https://unsplash.it/900/380/?random" width="40px" height="40px" class="user-avatar" />
+            <img src="{{current_user.avatarUrl}}" width="40px" height="40px" class="user-avatar" />
           </a>
           <div class="subMenu">
             <ul>
