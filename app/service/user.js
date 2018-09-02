@@ -57,7 +57,31 @@ class userService extends Service {
     })
     return result
   }
-
+  /**
+   * 获取用户设置信息 
+   */
+  async getUserSettingInfo (authorId) {
+    const result = await this.app.mysql.get('user', {
+        id: authorId
+      },
+      {
+        columns: ['avatarUrl', 'username', 'email', 'sex', 'homePage', 'intro']
+      }
+    )
+    return result
+  }
+  async saveUserSettingInfo (id, avatarUrl, username, email, sex, homePage, intro) {
+    const result = await this.app.mysql.update('user', {
+      id,
+      avatarUrl,
+      username,
+      email,
+      sex,
+      homePage,
+      intro
+    })
+    return result
+  }
   /**
    * 关注状态
    */

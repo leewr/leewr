@@ -13,9 +13,12 @@ class TopicService extends Service {
       offset: pagination.skip
     }
     if (authorId) {
-      params = Object.assign(params, {authorId: authorId})
+      console.log('authorId', authorId)
+      params = Object.assign(params, { where: {authorId: parseInt(authorId)}})
+      console.log(params)
     }
     const result = await this.app.mysql.select('article', params)
+    console.log(result)
     return result
   }
 
@@ -99,8 +102,8 @@ class TopicService extends Service {
    * @param  {[type]} day [description]
    * @return {[type]}     [description]
    */
-  async topArticle (day = 7) {
-    return await this.app.mysql.query('select * from article where to_days(now()) - to_days(createtime) < ? order by view desc', [day])
+  async topArticle (day = 7, authorId) {
+    return await this.app.mysql.query('select * from article where to_days(now()) - to_days(createtime) < ? and authorId = ? order by view desc', [day, authorId])
   }
 
 }

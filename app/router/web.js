@@ -6,7 +6,7 @@
 module.exports = app => {
 
   const { router, controller, middleware, config } = app;
-  const { sign, topic, api, user, setting } = controller
+  const { sign, topic, api, user, setting, images } = controller
   const { createUserLimit } = middleware.createUserLimit(config.create_user_per_ip)
 
   const userRequired = middleware.userRequired()
@@ -37,6 +37,7 @@ module.exports = app => {
   
   // 设置页面
   router.get('/setting/index', userRequired, setting.index)
+  router.post('/setting/update', userRequired, setting.update)
 
   // 新建文章界面
   router.get('/topic/create', userRequired, topic.create)
@@ -51,5 +52,8 @@ module.exports = app => {
 
   // 修改文章展示
   router.get('/topic/note/:id', userRequired, topic.edit)
+
+  // form图片上传
+  router.post('/upload', userRequired, images.upload)
 
 };

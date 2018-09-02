@@ -10,7 +10,7 @@ class userController extends Controller {
 		const current_user = ctx.locals.current_user
 		const topic = await service.topic.getArticleList(authorId)
 		const authorData = await service.user.getUserInfo(authorId)
-		const hotTop = await service.topic.topArticle()
+		const hotTop = await service.topic.topArticle(30, authorId)
 		let isFollowed
 		
 		// 用户已登录获取用户关注状态
