@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<title>READY READ -- 锐读</title>
 	<link rel="stylesheet" type="text/css" href="/public/static/css/index.css">
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 </head>
 <body>
   {% include "include/head.tpl" %}

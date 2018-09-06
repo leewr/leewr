@@ -1,0 +1,51 @@
+@import 'one/variable';
+.setting{
+	display: flex;
+	.aside{
+		flex-basis: 280px;
+		li{
+			height: 40px;
+			padding: 6px 0;
+			&.active{
+				a{
+					background: #f0f0f0;
+					color: $blue;
+				}
+			}
+			a{
+				display: block;
+				line-height: 40px;
+				padding-left: 15px;
+				border-radius: 3px;
+				&:hover{
+					
+					background: #f0f0f0
+				}
+			}
+			
+		}
+	}
+	.settingMain{
+		flex: 1;
+		padding-left: 50px;
+		label.left,
+		span.left{
+			width: 100px;
+			float: left;
+		}
+		label.left{
+			padding-top: 10px;
+		}
+		.uploadImage{
+			display: inline-block;
+			height: 100px;
+			width: 100px;
+			cursor: pointer;
+		}
+		.avatar{
+			width: 100px;
+			height: 100px;
+			border-radius: 50%;
+		}
+	}
+}

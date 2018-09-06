@@ -1,0 +1,35 @@
+.setting {
+  display: flex; }
+  .setting .aside {
+    flex-basis: 280px; }
+    .setting .aside li {
+      height: 40px;
+      padding: 6px 0; }
+      .setting .aside li.active a {
+        background: #f0f0f0;
+        color: #78bc85; }
+      .setting .aside li a {
+        display: block;
+        line-height: 40px;
+        padding-left: 15px;
+        border-radius: 3px; }
+        .setting .aside li a:hover {
+          background: #f0f0f0; }
+  .setting .settingMain {
+    flex: 1;
+    padding-left: 50px; }
+    .setting .settingMain label.left,
+    .setting .settingMain span.left {
+      width: 100px;
+      float: left; }
+    .setting .settingMain label.left {
+      padding-top: 10px; }
+    .setting .settingMain .uploadImage {
+      display: inline-block;
+      height: 100px;
+      width: 100px;
+      cursor: pointer; }
+    .setting .settingMain .avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%; }
