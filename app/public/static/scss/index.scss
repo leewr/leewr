@@ -14,7 +14,18 @@ body{
     min-width: 1200px;
     background-color: rgba(255,255,255,0.95);
     height: 90px;
-    box-shadow: 0 1px 4px 0 #ececec;
+    .topfix{
+    	position: fixed;
+    	top:0;
+    	left: 0;
+    	right: 0;
+    	background: #fff;
+    	box-shadow: 0 1px 4px 0 #ececec;
+    }
+    .topholder{
+    	height: 90px;
+    	background: #fff;	
+    }
     .headerwrap{
     	display: flex;
     	align-items: center;

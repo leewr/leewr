@@ -6,7 +6,7 @@
 module.exports = app => {
 
   const { router, controller, middleware, config } = app;
-  const { sign, topic, api, user, setting, images } = controller
+  const { sign, topic, api, user, setting, images, singlePages } = controller
   const { createUserLimit } = middleware.createUserLimit(config.create_user_per_ip)
 
   const userRequired = middleware.userRequired()
@@ -58,4 +58,10 @@ module.exports = app => {
   // form图片上传
   router.post('/upload', userRequired, images.upload)
 
+  // 固定页面
+  // 友情链接
+  router.get('/links', singlePages.links)
+  router.get('/help', singlePages.help)
+  router.get('/about', singlePages.about)
+  router.get('/timeline', singlePages.timeline)
 };

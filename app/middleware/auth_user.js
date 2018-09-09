@@ -8,7 +8,6 @@ module.exports = () => {
     if (!user) {
       return await next()
     }
-    console.log('user', user)
     ctx.locals.current_user = user
     await next()
   }

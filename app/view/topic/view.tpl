@@ -62,24 +62,7 @@
 	    </div>
     </div>
   </div>
-  <div class="footer">
-    <div class="foot">
-      <div class="foot-logo"></div> 
-      <div class="foot-link">
-        <p>
-        <a href="#" target="_blank">关于我们</a> 
-        <a href="#" target="_blank">友情链接</a> 
-        <a href="#" target="_blank">片刻帮助</a>
-        <a href="#" target="_blank">意见反馈</a>
-        <a href="#" target="_blank">成长记忆</a>
-        </p> 
-        <p>All rights reserved © 2016 pianke.me /黔ICP备17008875号-1</p>
-      </div> 
-      <div class="foot-icon">
-        
-      </div>
-    </div>
-  </div>
+  {% include "include/footer.tpl" %}
   <script type="text/javascript" src="/public/static/js/plugin/jquery.js"></script>
   <script type="text/javascript" src="/public/static/js/plugin/cookie/jquery.cookie.js">
   </script>

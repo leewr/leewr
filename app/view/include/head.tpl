@@ -1,4 +1,5 @@
 <div class="header">
+  <div class="topfix">
     <div class="headerwrap">
       <div class="logo">
         <a href="/">READY READ</a>
@@ -39,4 +40,6 @@
         {% endif %}
      </div>
    </div>
+  </div>
+  <div class="topholder"></div>
 </div>
