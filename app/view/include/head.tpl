@@ -20,8 +20,8 @@
           <div class="subMenu">
             <ul>
               <li><a href="/u/{{current_user.id}}">我的主页</a></li>
-              <li><a href="/u/{{current_user.id}}">我的收藏</a></li>
-              <li><a href="/u/{{current_user.id}}">喜欢的文章</a></li>
+              <li><a href="/u/{{current_user.id}}/thumbs">我的关注</a></li>
+              <li><a href="/u/{{current_user.id}}/thumbs">我的喜欢</a></li>
               <li><a href="/setting/index">设置</a></li>
               <li><a href="/signout">退出</a></li>
             </ul>

@@ -21,7 +21,7 @@
               <a href="/u/{{data.authorId}}">{{author.username}}</a>
               {% if current_user.id != data.authorId %}
                 {% if isFollowed.status %} 
-                  <a class="follow followed btn">
+                  <a class="follow followed btn" data-id="{{data.authorId}}">
                     已关注
                   </a>
                 {% else %}
@@ -48,6 +48,26 @@
 				{{ data.content | safe}}
 	    	</div>
         <div class="articel-bot">
+          <div class="followAuthor">
+            <div class="avatar">
+              <img src="{{author.avatarUrl}}" alt="">
+            </div>
+            <div class="authorInfo">
+              <div class="authorInfo-l">
+                <h4><span>{{author.username}}</span></h4>
+                <p>写了 <span>{{author.worldNum}}</span> 字，被 <span>{{author.fansNum}}</span> 人关注，获得了 <span>{{author.likeNum}} </span>个喜欢</p>
+              </div>
+              {% if current_user.id != data.authorId %}
+                {% if isFollowed.status %} 
+                  <a class="authorInfo-r ui-button follow followed" data-id="{{data.authorId}}">已关注</a>
+                {% else %}
+                  <a class="follow btn authorInfo-r ui-button" data-id="{{data.authorId}}">
+                    关注
+                  </a>
+                {% endif %}
+              {% endif %}
+            </div>
+          </div>
           <a class="like {% if isLiked.status %} liked {% endif %}">
             <i class="icon iconfont icon-xihuan"></i>
             <span class="text">喜欢</span>
@@ -59,6 +79,64 @@
             <span>图片</span>
           </div>
         </div>
+        <div class="comment">
+          <div class="commentBox">
+            <div class="avatar">
+              <img src="{{current_user.avatarUrl}}" />
+            </div>
+            <div class="commentArea">
+              <textarea class="textarea" id="commentArea" placeholder="写下评论"></textarea>
+              <div class="postBtn">
+                <button class="submitBtn">
+                  发布
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="commentList">
+            <h3>共<span>1</span>条评论</h3>
+            <div class="commentItem">
+                <div class="avatar">
+                  <img src="//upload.jianshu.io/users/upload_avatars/3334769/95a8e26b-bb13-4d93-92b3-2e504cf66237.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/96/h/96">
+                </div>
+                <div class="commentCont">
+                  <h4><span class="comUser">何沧</span><span class="time">2018.09.09 12:09</span></h4>
+                  <div class="commentInfo">
+                    你指的是电商运营吧？我好久没碰了，不过PM系列后面会单独讲产品运营，可以参考一下。
+                  </div>
+                  <div class="commBot">
+                    <a href="">
+                      <i class="icon iconfont icon-zan"></i>
+                      <span class="num">2</span>
+                    </a>
+                    <a href="">
+                      <i class="icon iconfont icon-xiaoxi"></i>
+                    </a>
+                  </div>
+                </div>
+            </div>
+            <div class="commentItem">
+                <div class="avatar">
+                  <img src="//upload.jianshu.io/users/upload_avatars/3334769/95a8e26b-bb13-4d93-92b3-2e504cf66237.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/96/h/96">
+                </div>
+                <div class="commentCont">
+                  <h4><span class="comUser">何沧</span><span class="time">2018.09.09 12:09</span></h4>
+                  <div class="commentInfo">
+                    你指的是电商运营吧？我好久没碰了，不过PM系列后面会单独讲产品运营，可以参考一下。
+                  </div>
+                  <div class="commBot">
+                    <a href="">
+                      <i class="icon iconfont icon-zan"></i>
+                      <span class="num">2</span>
+                    </a>
+                    <a href="">
+                      <i class="icon iconfont icon-xiaoxi"></i>
+                    </a>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>
 	    </div>
     </div>
   </div>
@@ -68,7 +146,6 @@
   </script>
   <script type="text/javascript" src="/public/static/js/plugin/highlight/highlight.pack.js">
   </script>
-  
   <script type="text/javascript" src="/public/static/js/detail.js"></script>
 </body>
 </html>

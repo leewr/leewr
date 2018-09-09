@@ -43,7 +43,7 @@ $('.follow').hover(function () {
         $(this).html('已关注')
     }
 }).on('click', function () {
-    var that = $(this)
+    var that = $('.follow')
     $.ajax({
         headers: {
             'x-csrf-token': $.cookie('csrfToken')

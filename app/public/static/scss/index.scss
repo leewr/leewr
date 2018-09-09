@@ -21,6 +21,7 @@ body{
     	right: 0;
     	background: #fff;
     	box-shadow: 0 1px 4px 0 #ececec;
+    	z-index: 10;
     }
     .topholder{
     	height: 90px;
@@ -289,7 +290,7 @@ body{
 }
 .detail{
 	background: #fff;
-    padding: 46px 0px 124px;
+    padding: 46px 0px 0 0;
     margin-top: 10px;
     margin-bottom: 125px;
     background-color: #fff;
@@ -346,6 +347,50 @@ body{
 	}
 	.articel-bot{
 		margin: 60px 0 0 0;
+		.followAuthor{
+			margin-bottom: 50px;
+			border: 1px solid $borderNormal;
+			background: rgba(181, 181, 181, 0.1);
+			border-radius: 10px;
+			display: flex;
+			padding: 20px;
+			.avatar{
+				flex-basis: 80px;
+				img{
+					width: 48px;
+					height: 48px;
+					border-radius: 50%;
+				}
+			}
+			.authorInfo{
+				flex: 1;
+				display: flex;
+				align-items: center;
+				.authorInfo-l{
+					flex: 1
+				}
+				.authorInfo-r{
+					height: 20px;
+					line-height: 20px;
+					border-radius: 25px;
+				    background: #42c02e;
+				    border-color: #42c02e;
+				    color: #fff;
+				    font-size: 18px;
+				    padding: 9px 20px;
+				    &.followed{
+				    	background-color: #ccd0d7;
+				    	border-color: #ccd0d7;
+				    	color: #aaa
+				    }
+				}
+				p{
+					font-size: 12px;
+					padding: 10px 0;
+					color: #aaa;
+				}
+			}
+		}
 		.like{
 			cursor: pointer;
 			display: inline-block;

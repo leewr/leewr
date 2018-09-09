@@ -145,7 +145,7 @@
           </div>
           <div class="rightBox">
             <h3><i class="icon iconfont icon-newshot"></i><a href="{{authorId}}/thumbs" class="dark">我关注的文档</a></h3>
-            <h3><i class="icon iconfont icon-xihuan"></i><a href="#" class="dark">我喜欢的文章</a></h3>
+            <h3><i class="icon iconfont icon-xihuan"></i><a href="{{authorId}}/thumbs" class="dark">我喜欢的文章</a></h3>
           </div>
           <div class="rightBox">
             <h3>我创建的知识库</h3>

@@ -53,7 +53,7 @@ class userService extends Service {
       id: authorId
     },
     {
-      columns: ['id', 'username', 'avatarUrl', 'articleNum', 'followNum', 'fansNum', 'likeNum', 'intro']
+      columns: ['id', 'username', 'avatarUrl', 'articleNum', 'followNum', 'fansNum', 'likeNum', 'intro', 'worldNum']
     })
     return result
   }

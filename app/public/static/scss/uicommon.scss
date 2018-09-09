@@ -1,5 +1,6 @@
 @import 'one/variable';
 @import "iconfont/iconfont.scss";
+
 .follow{
 	margin-left: 20px;
 	background: #42c02e;
@@ -41,3 +42,104 @@
 	}
 }
 
+// 评论模块
+.comment{
+	margin: 120px 0 0 0;
+	.avatar{
+		flex-basis: 80px;
+		img{
+			width: 48px;
+			height: 48px;
+			border-radius: 50%;
+		}
+	}
+	.commentBox{
+		display: flex;
+		.commentArea{
+			flex: 1;
+			padding: 20px;
+		    border-radius: 6px;
+	    	background: #efefeb;
+    		box-shadow: inset 2px 2px 6px rgba(0,0,0,.08);
+			textarea{
+				border: none;
+			    background: none;
+			    outline: none;
+			    width: 100%;
+			    display: block;
+			    height: 80px;
+			    line-height: 22px;
+			    font-size: 14px;
+			    background-attachment: scroll;
+			    resize: none;
+			    padding: 0;
+			}
+			.postBtn{
+				
+				.submitBtn{
+					width: 120px;
+					float: right;
+					border: 0;
+				    background: #555;
+				    background: -webkit-linear-gradient(left,#888 0,#555 100%);
+				    background: linear-gradient(to right,#888 0,#555 100%);
+				    height: 40px;
+				    outline: none;
+				    color: #fff;
+				    border-radius: 20px;
+				    font-size: 14px;
+				    font-weight: normal;
+				    cursor: pointer;
+				    padding: 0;
+				}
+			}
+			
+		}
+	}
+	.commentList{
+		margin-top: 30px;
+		h3{
+			font-size: 16px;
+			font-weight: bold;
+			span{
+				color: #f90;
+			}
+		}
+			
+			.commentItem{
+				margin-top: 30px;
+
+				display: flex;
+				padding-bottom: 20px;
+				margin-bottom: 30px;
+				border-bottom: 1px solid $borderNormal;
+			}
+			.commentCont{
+				flex: 1;
+				h4{
+					margin-bottom: 10px;
+					.comUser{
+						font-size: 14px;
+						font-weight: bold;
+						margin-right: 30px;
+					}
+					.time{
+						color: #aaa;
+						font-weight: normal;
+						font-size: 12px;
+					}
+				}
+				.commentInfo{
+					font-size: 14px;
+				}
+				.commBot{
+					text-align: right;
+					a{
+						color: #aaa;
+						margin-left: 20px;
+					}
+				}
+			}
+
+	}
+}
