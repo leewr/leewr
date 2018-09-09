@@ -43,7 +43,8 @@ module.exports = appInfo => {
   config.security = {
     xframe: {
       enable: false
-    }
+    },
+    domainWhiteList: ['.baidu.com']
   }
 
 
