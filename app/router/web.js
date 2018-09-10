@@ -6,7 +6,7 @@
 module.exports = app => {
 
   const { router, controller, middleware, config } = app;
-  const { sign, topic, api, user, setting, images, singlePages } = controller
+  const { sign, topic, api, user, setting, images, singlePages, comment } = controller
   const { createUserLimit } = middleware.createUserLimit(config.create_user_per_ip)
 
   const userRequired = middleware.userRequired()
@@ -64,4 +64,7 @@ module.exports = app => {
   router.get('/help', singlePages.help)
   router.get('/about', singlePages.about)
   router.get('/timeline', singlePages.timeline)
+
+  // 评论
+  router.post('/topic/:id/comment', userRequired, comment.add)
 };

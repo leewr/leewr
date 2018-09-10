@@ -16,7 +16,6 @@ class signController extends Controller {
   // 用户注册
   async signup() {
     const { ctx, service } = this
-    console.log(ctx.request.body)
     const loginname = ctx.request.body.loginname
     const password = ctx.request.body.password
     const repassword = ctx.request.body.repassword

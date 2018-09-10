@@ -87,27 +87,28 @@
             <div class="commentArea">
               <textarea class="textarea" id="commentArea" placeholder="写下评论"></textarea>
               <div class="postBtn">
-                <button class="submitBtn">
+                <button class="submitBtn" id="submitBtn">
                   发布
                 </button>
               </div>
             </div>
           </div>
           <div class="commentList">
-            <h3>共<span>1</span>条评论</h3>
-            <div class="commentItem">
+            <h3>共<span>{{comment.total}}</span>条评论</h3>
+            {% for item in comment.data %}
+            <div class="commentItem" data-id="{{item.cid}}">
                 <div class="avatar">
                   <img src="//upload.jianshu.io/users/upload_avatars/3334769/95a8e26b-bb13-4d93-92b3-2e504cf66237.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/96/h/96">
                 </div>
                 <div class="commentCont">
-                  <h4><span class="comUser">何沧</span><span class="time">2018.09.09 12:09</span></h4>
+                  <h4><span class="comUser">{{item.authorName}}</span><span class="time">{{item.createTime | timeFormate}}</span></h4>
                   <div class="commentInfo">
-                    你指的是电商运营吧？我好久没碰了，不过PM系列后面会单独讲产品运营，可以参考一下。
+                    {{item.content}}
                   </div>
                   <div class="commBot">
                     <a href="">
                       <i class="icon iconfont icon-zan"></i>
-                      <span class="num">2</span>
+                      <span class="num">{{item.thumbs}}</span>
                     </a>
                     <a href="">
                       <i class="icon iconfont icon-xiaoxi"></i>
@@ -115,31 +116,14 @@
                   </div>
                 </div>
             </div>
-            <div class="commentItem">
-                <div class="avatar">
-                  <img src="//upload.jianshu.io/users/upload_avatars/3334769/95a8e26b-bb13-4d93-92b3-2e504cf66237.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/96/h/96">
-                </div>
-                <div class="commentCont">
-                  <h4><span class="comUser">何沧</span><span class="time">2018.09.09 12:09</span></h4>
-                  <div class="commentInfo">
-                    你指的是电商运营吧？我好久没碰了，不过PM系列后面会单独讲产品运营，可以参考一下。
-                  </div>
-                  <div class="commBot">
-                    <a href="">
-                      <i class="icon iconfont icon-zan"></i>
-                      <span class="num">2</span>
-                    </a>
-                    <a href="">
-                      <i class="icon iconfont icon-xiaoxi"></i>
-                    </a>
-                  </div>
-                </div>
-            </div>
+            {% endfor %}
           </div>
         </div>
 	    </div>
     </div>
   </div>
+  <input type="hidden" name="authorId" value="{{current_user.id}}"></input>
+  <input type="hidden" name="articleId" value="{{data.id}}"></input>
   {% include "include/footer.tpl" %}
   <script type="text/javascript" src="/public/static/js/plugin/jquery.js"></script>
   <script type="text/javascript" src="/public/static/js/plugin/cookie/jquery.cookie.js">

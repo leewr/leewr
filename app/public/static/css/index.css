@@ -210,7 +210,8 @@ XCode style (c) Angel Garcia <angelgarcia.mail@gmail.com>
       font-size: 16px;
       font-weight: bold; }
       .comment .commentList h3 span {
-        color: #f90; }
+        color: #f90;
+        padding: 0 3px; }
     .comment .commentList .commentItem {
       margin-top: 30px;
       display: flex;
@@ -4023,7 +4024,8 @@ span.ui-date-item {
       font-size: 16px;
       font-weight: bold; }
       .comment .commentList h3 span {
-        color: #f90; }
+        color: #f90;
+        padding: 0 3px; }
     .comment .commentList .commentItem {
       margin-top: 30px;
       display: flex;
