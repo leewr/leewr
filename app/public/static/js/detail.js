@@ -109,5 +109,40 @@ $('.submitBtn').click(function () {
             console.log(err)
         }
     })
+})
 
+// 评论点赞
+$('.comThumbs').click(function () {
+    var that = $(this)
+    var commentId = $(this).parents('.commentItem').attr('data-id')
+    console.log(commentId)
+    $.ajax({
+        headers: {
+            'x-csrf-token': $.cookie('csrfToken')
+        },
+        type: 'post',
+        url: window.location.href + '/comment/thumbs', // href 提取优化
+        data: {
+            commentId: commentId
+        },
+        success: function (data) {
+            if(data.success && data.status == 200) {
+                if (data.data.status) {
+                    that.find('.num').html(parseInt(that.find('.num').text()) + 1)
+                } else {
+                    that.find('.num').html(parseInt(that.find('.num').text()) - 1)
+                }
+                
+            } else {
+                if (data.status == 403) {
+                    window.location.href = '/signin'
+                } else {
+                   alert(data.message)  
+                }
+            }
+        },
+        error: function (err) {
+            console.log(err)
+        }
+    })
 })

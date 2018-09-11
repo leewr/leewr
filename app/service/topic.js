@@ -65,7 +65,7 @@ class TopicService extends Service {
   }
 
   /**
-   * 文章喜欢
+   * 文章/点赞 喜欢
    */
   async toggleLike(articleId, current_user) {
     // 获取文章作者id

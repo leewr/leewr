@@ -106,7 +106,7 @@
                     {{item.content}}
                   </div>
                   <div class="commBot">
-                    <a href="">
+                    <a class="comThumbs">
                       <i class="icon iconfont icon-zan"></i>
                       <span class="num">{{item.thumbs}}</span>
                     </a>

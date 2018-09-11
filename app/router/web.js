@@ -67,4 +67,5 @@ module.exports = app => {
 
   // 评论
   router.post('/topic/:id/comment', userRequired, comment.add)
+  router.post('/topic/:id/comment/thumbs', userRequired, comment.thumbs)
 };
