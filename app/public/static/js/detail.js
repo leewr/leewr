@@ -1,7 +1,6 @@
 $('pre code').each(function(i, block) {
     hljs.highlightBlock(block);
 })
-
 // 喜欢
 $('.like').on('click', function () {
     var that = $(this)
