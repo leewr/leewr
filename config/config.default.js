@@ -19,6 +19,22 @@ module.exports = appInfo => {
     }
   }
 
+  config.assets = {
+    publicPath: '/public/',
+    devServer: {
+      debug: false,
+      command: 'umi dev',
+      port: 8000,
+      env: {
+        APP_ROOT: process.cwd() + '/app/assets',
+        BROWSER: 'none',
+        ESLINT: 'none',
+        SOCKET_SERVER: 'http://127.0.0.1:8000',
+        PUBLIC_PATH: 'http://127.0.0.1:8000',
+      },
+    },
+  };
+
   config.News = {
     pageSize: 20,
     serverUrl: 'https://cnodejs.org/api/v1'
@@ -29,7 +45,7 @@ module.exports = appInfo => {
       host: 'localhost',
       port: '3306',
       user: 'root',
-      password: 'liwenrun',
+      password: 'root',
       database: 'dcdabase'
     },
     app: true,
