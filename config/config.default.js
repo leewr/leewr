@@ -18,6 +18,7 @@ module.exports = appInfo => {
       '.tpl': 'nunjucks'
     }
   }
+
   config.News = {
     pageSize: 20,
     serverUrl: 'https://cnodejs.org/api/v1'

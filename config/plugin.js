@@ -8,6 +8,12 @@ exports.security = {
     enable: false
   }
 }
+  
+exports.assets = {
+  enable: true,
+  package: 'egg-view-assets',
+}
+
 exports.nunjucks = {
   enabled: true,
   package: 'egg-view-nunjucks'

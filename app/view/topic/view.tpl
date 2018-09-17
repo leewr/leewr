@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<title>{{data.title}} -- READY READ -- 锐读</title>
 	<link rel="stylesheet" type="text/css" href="/public/static/css/index.css">
-  <link rel="stylesheet" type="text/css" href="/public/static/js/plugin/wangeditor.css">
+  <link rel="stylesheet" type="text/css" href="/public/static/css/wangeditor.css">
 </head>
 <body>
   {% include "include/head.tpl" %}
