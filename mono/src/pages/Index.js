@@ -7,7 +7,7 @@ import './index/index.scss'
 class Index extends Component {
 	constructor(props) {
 		super(props)
-		const navData = ["早午茶", "我的关注", "猜你喜欢", "视频", "音乐"]
+		const navData = ["连载", "热门", "关注"]
 		this.state = {
 			navData: navData,
 			itemData: []

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './Item.scss'
+import defaultImg from '../../static/images/defaultUrl.jpg'
+const ImageHost = 'http://localhost:7001'
 class Item extends Component {
 	constructor(props) {
 		super(props)
@@ -16,23 +18,23 @@ class Item extends Component {
 			<div className="item">
 				<div className="itemHead">
 					<div>
-						<img src={this.props.itemVal.author.avatar_url} />
-						<span>{this.props.itemVal.author.loginname}</span>
+						<img src={this.props.itemVal.avatarUrl ? ImageHost + this.props.itemVal.avatarUrl : defaultImg} />
+						<span>{this.props.itemVal.name}</span>
 					</div>
 					<span className="f12">
 						{this.typeFilter(this.props.itemVal.tab)}
 					</span>
 				</div>
 				<div className="itemBody">
-					<img src="http://d303.paixin.com/thumbs/7782150/196592460/staff_1024.jpg?imageView2/2/w/400/h/400" className="itemImg" />
+					{this.props.itemVal.imgUrl ? <img src={this.props.itemVal.imgUrl ? this.props.itemVal.imgUrl : defaultImg}/>: ''}
 					<div className="title">
 						MONO电台 | {this.props.itemVal.title}
 					</div>
 					<div className="tags">
-						<span>录制：海岸线、野菜</span>
+						<span>{this.props.itemVal.summary}</span>
 					</div>
 					<div className="summary">
-						scss样式预编译的工具就不多解释,网上的介绍非常多。 留一个牛逼的地址:大漠讲解scss只说在react项目中的配置。
+						{this.props.itemVal.summary}
 					</div>
 				</div>
 				<div className="itemBot">

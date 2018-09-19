@@ -18,5 +18,5 @@
     "react-router-dom": "^4.3.1",
     "sass-loader": "^7.1.0"
   },
-  "proxy": "http://localhost:7002/"
+  "proxy": "http://localhost:7001/"
 }
