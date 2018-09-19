@@ -4,7 +4,7 @@ class TopicService extends Service {
   /**
    * 获取用户limit 文章列表
    */
-  async getArticleList(authorId, pagination) {
+  async getArticleList(pagination, authorId) {
     const { ctx } = this
     pagination = pagination || {limit: 10, skip: 0}
     let params = {
@@ -14,9 +14,11 @@ class TopicService extends Service {
     }
     if (authorId) {
       params = Object.assign(params, { where: {authorId: parseInt(authorId)}})
+      const result = await this.app.mysql.select('article', params)
+      return result
+    } else {
+      return this.app.mysql.query('select article.*, user.name, user.avatarUrl from article left join user on article.authorId = user.id order by createtime desc, id desc limit ? offset ?', [pagination.limit, pagination.skip])
     }
-    const result = await this.app.mysql.select('article', params)
-    return result
   }
 
   /**

@@ -25,7 +25,9 @@ class Topic extends Controller {
   	// 文章列表
   async index() {
     const { ctx, service } = this
-    const topis = await service.topic.getArticleList()
+    const pagination = ctx.pagination
+    console.log(pagination)
+    const topis = await service.topic.getArticleList(pagination)
     console.log('api')
     ctx.body = {
       success: true,
