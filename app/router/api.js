@@ -10,5 +10,8 @@ module.exports = app => {
 	const pagination = middleware.pagination()
 	// 内容
 	apiV1Router.get('/topics', pagination, topic.index)
+	apiV1Router.get('/topic/:id', topic.view)
 	apiV1Router.get('/topics/:day', pagination, topic.topArticle)
+	// 评论
+	apiV1Router.get('/topic/:id/comment', pagination, topic.commentList)
 }

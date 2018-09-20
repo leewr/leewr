@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { 
   BrowserRouter as Router,
-  Route 
+  Route
 } from 'react-router-dom'
 
 import Index from './pages/Index.js'
+import Topic from './pages/Topic.js'
 
 class App extends Component {
   render() {
@@ -12,7 +13,8 @@ class App extends Component {
       <div className="App">
         <Router>
           <div>
-          <Route exact path="/" component={Index}/>
+            <Route exact path="/" component={Index} />
+            <Route path="/topics/:id" component={Topic}/>
           </div>
         </Router>
       </div>

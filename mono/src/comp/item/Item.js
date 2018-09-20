@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
 import './Item.scss'
 import defaultImg from '../../static/images/defaultUrl.jpg'
-const ImageHost = 'http://localhost:7001'
+const ImageHost = 'http://10.1.5.110:7001'
 class Item extends Component {
-	constructor(props) {
-		super(props)
-	}
 	typeFilter (val) {
 		let obj = {
 			'share': '分享',
@@ -25,18 +23,18 @@ class Item extends Component {
 						{this.typeFilter(this.props.itemVal.tab)}
 					</span>
 				</div>
-				<div className="itemBody">
+				<Link to={`/topics/${this.props.itemVal.id}`} className="itemBody">
 					{this.props.itemVal.imgUrl ? <img src={this.props.itemVal.imgUrl ? this.props.itemVal.imgUrl : defaultImg}/>: ''}
 					<div className="title">
 						MONO电台 | {this.props.itemVal.title}
 					</div>
-					<div className="tags">
-						<span>{this.props.itemVal.summary}</span>
-					</div>
+					{this.props.itemVal.tags ? <div className="tags">
+						<span>{this.props.itemVal.tags}</span>
+					</div> : ''}
 					<div className="summary">
 						{this.props.itemVal.summary}
 					</div>
-				</div>
+				</Link>
 				<div className="itemBot">
 					<span className="share icon iconfont icon-fenxiang"></span>
 					<span className="favorite icon iconfont icon-shoucang"></span>

@@ -26,12 +26,21 @@ class Topic extends Controller {
   async index() {
     const { ctx, service } = this
     const pagination = ctx.pagination
-    console.log(pagination)
     const topis = await service.topic.getArticleList(pagination)
-    console.log('api')
     ctx.body = {
       success: true,
       data: topis
+    }
+  }
+  // 单篇文章
+  async view () {
+    const { ctx, service } = this
+    const id = ctx.params.id
+    const topic = await service.topic.getArticleById(id)
+    ctx.body = {
+      success: true,
+      status: 200,
+      data: topic
     }
   }
 
@@ -43,6 +52,18 @@ class Topic extends Controller {
   		success: true,
   		data: topics
   	}
+  }
+  // 文章评论列表
+  async commentList() {
+    const { ctx, service } = this
+    const id = ctx.params.id
+    const pagination = ctx.pagination
+    const data = await service.comment.list(id, pagination)
+    ctx.body = {
+      success: true,
+      status: 200,
+      data: data
+    }
   }
 }
 
