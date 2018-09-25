@@ -37,10 +37,12 @@ class Topic extends Controller {
     const { ctx, service } = this
     const id = ctx.params.id
     const topic = await service.topic.getArticleById(id)
+    const userInfo = await service.user.getUserInfo(topic.authorId)
+    let data = Object.assign(topic, { userInfo: userInfo})
     ctx.body = {
       success: true,
       status: 200,
-      data: topic
+      data: data
     }
   }
 

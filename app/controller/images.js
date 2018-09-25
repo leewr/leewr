@@ -14,7 +14,7 @@ class UploadFormController extends Controller {
     const writeStream = fs.createWriteStream(target)
     await pump(stream, writeStream)
 
-    this.ctx.body = {
+    ctx.body = {
       success: true,
       status: 200,
       data: '/public/temp/' + filename
