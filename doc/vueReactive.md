@@ -34,7 +34,7 @@ defineProperty如何实现数据的拦截。
 data中的数据是观察目标，视图、计算属性、监听器（watch）这些是观察者。
 
 #### 一个例子
-```
+```js
 var vm = new Vue({
 	el: '#app',
 	data: {
@@ -52,7 +52,7 @@ var vm = new Vue({
 
 ```
 查阅源码，数据初始化过程在<code>core/instance/state.js</code>中<code>initData</code>函数。
-```
+```js
 function initData (vm: Component) {
   let data = vm.$options.data
 	...
@@ -73,9 +73,9 @@ function initData (vm: Component) {
 ```
 我们看到最核心的地方observe(data, true /* asRootData */),observe又是定义在<code>observer/index</code>中,observe返回了一个实例化Observe的ob对象。Observer类区别传入的数据类型分别采用不同的方式创建响应式数据。看到Observe类中调用的defineReactive(obj, keys[i])。这里就是创建响应式的数据的核心函数了。
 defineReactive 定义在当前js文件中。defineReactive核心代码如下，注意其中的new Dep() 实例化了dep对象，在get中形成闭包。下面看Dep类中都做了哪些事情。
-```
+```js
 const dep = new Dep() //实例Dep对象
-...
+
 Object.defineProperty(obj, key, {
     enumerable: true,
     configurable: true,
@@ -99,12 +99,11 @@ Object.defineProperty(obj, key, {
       dep.notify() // 响应依赖通知
     }
   })
-
 ```
 
 查看Dep类
 Dep类定义在，dep.js中。Dep代码非常简单。构造函数，id、subs、addSub、removeSub、depend、notify等熟悉和方法。dep.depend()在执行依赖收集的时候将dep实例保存在subs数组中。前面有提到，data初始化后生成了__ob__ 属性，__ob__属性中保存的 dep对象、value，vmCount。__ob__ 属性是在Observe 构造函数是def(value, '__ob__', this) 添加的。
-```
+```js
 export default class Dep {
   static target: ?Watcher;
   id: number;
@@ -142,7 +141,7 @@ export default class Dep {
 下面我们来看观察者
 #### new Watcher创建观察者
 new Watcher实例化对象创建观察者对象。观察者在get组件中的data的时候响应defineReactive中get方法，依赖被收集。我们看源码中initLifecycle函数，定义在<code>instance/init</code> 然后根据引入打开 lifecycle.js,这个vue处理组件生命周期的文件，看到mountComponent函数，在mountComponent中 实例 Watcher 对象。
-```
+```js
 new Watcher(vm, updateComponent, noop, {
     before () {
       if (vm._isMounted) {
@@ -152,7 +151,4 @@ new Watcher(vm, updateComponent, noop, {
   }, true /* isRenderWatcher */)
 ```
 
-查看Watcher
-
-#### initData开始
-#### observe函数、Observer类
+查看Watcher的构造函数
