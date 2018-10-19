@@ -151,4 +151,5 @@ new Watcher(vm, updateComponent, noop, {
   }, true /* isRenderWatcher */)
 ```
 
-查看Watcher的构造函数
+查看Watcher的构造函数,Wachter接收vm实例、wxpOrFn要观察的表达式、cb当被观察值变化时的回调函数，以及传递给当前观察者对象的选项options，以及一个布尔值，是否是渲染函数的观察者。
+看到上述创建渲染渲染函数观察者实例对象时传递了全部得五个参数，vm当前组件的实例对象，第二个参数<code>updateComponent</code>就是被观察者的目标，他是一个函数、第三个是noop空函数，第四个是一个对象，包含了before函数。
