@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+let data = {price: 5, quanity: 2}
+let target = null
+class Dep{
+    constructor () {
+        this.subs = [] //代替storage
+    }
+    depend () {
+        if (target && !this.subs.includes(target)) {
+            this.subs.push(target)
+        }
+    }
+    notify () {
+        this.subs.forEach(sub => sub()) // 运行观察者
+    }
+}
+Object.keys(data).forEach(key => {
+    let internalValue = data[key]
+    const dep = new Dep()
+    Object.defineProperty(data, key, {
+        get() {
+            dep.depend()
+            return internalValue
+        },
+        set(newVal) {
+            internalValue = newVal
+            dep.notify()
+        }
+    })
+})
+
+function watcher (myfn) {
+    target = myfn
+    target()
+    target = null
+}
+
+watcher( () => {
+    data.total = data.price * data.quanity
+})
+</script>
+</body>
+</html>
