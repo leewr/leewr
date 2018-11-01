@@ -2,6 +2,7 @@
   "name": "mono",
   "version": "0.1.0",
   "private": true,
+  "homepage": "",
   "dependencies": {
     "dayjs": "^1.7.5",
     "react": "^16.4.2",
@@ -15,7 +16,7 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
-    "node-sass": "^4.9.3",
+    "node-sass": "^4.9.4",
     "react-router-dom": "^4.3.1",
     "sass-loader": "^7.1.0"
   },

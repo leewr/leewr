@@ -8,7 +8,7 @@ class userController extends Controller {
 		const { ctx, service } = this
 		const authorId = ctx.params.id
 		const current_user = ctx.locals.current_user
-		const topic = await service.topic.getArticleList(authorId)
+		const topic = await service.topic.getArticleList(null, authorId)
 		const authorData = await service.user.getUserInfo(authorId)
 		const hotTop = await service.topic.topArticle(30, authorId)
 		let isFollowed
