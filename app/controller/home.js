@@ -9,8 +9,12 @@ class HomeController extends Controller {
 	console.log(app.config.env)
   	if (agent.match(/iphone|ipod|ipad|android/)) {
 		console.log('跳转到移动站')
+		if (app.config.env == 'local') {
+			await ctx.redirect('http://localhost:3000')
+		} else {
+			await ctx.redirect('http://m.leewr.com')
+		}
 		
-		await ctx.redirect('http://m.leewr.com')
 		
 		return
   	} else {

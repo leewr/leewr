@@ -26,7 +26,7 @@ class Topic extends Component {
 	}
 	getTopicById(id) {
 		let that = this
-		Axios.get(`/api/v1/topic/${id}`)
+		Axios.get(`/api/v1/topic/${id}`, {page: 2})
 			.then(res => {
 				if (res.success) {
 					that.setState({
