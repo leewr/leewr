@@ -8,9 +8,10 @@ let Router = DefaultRouter;
 
 let routes = [
   {
-    "component": () => React.createElement(require('G:/lwr/wx/node_modules/_umi-build-dev@1.0.3@umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'pages', hasRoutesInConfig: false })
+    "component": () => React.createElement(require('E:/lwr/wx/node_modules/_umi-build-dev@1.2.2@umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'pages', hasRoutesInConfig: false })
   }
 ];
+window.g_plugins.applyForEach('patchRoutes', { initialValue: routes });
 
 export default function() {
   return (

@@ -130,6 +130,6 @@
   </script>
   <script type="text/javascript" src="/public/static/js/plugin/highlight/highlight.pack.js">
   </script>
-  {{ helper.assets.getScript('static/js/detail.js') | safe }}
+  <script type="text/javascript" src="/public/static/js/detail.js"></script>
 </body>
 </html>

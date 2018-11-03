@@ -12,12 +12,21 @@ class TopicService extends Service {
       limit: pagination.limit,
       offset: pagination.skip
     }
+    let result, totalCount
     if (authorId) {
       params = Object.assign(params, { where: {authorId: parseInt(authorId)}})
-      const result = await this.app.mysql.select('article', params)
-      return result
+      result = await this.app.mysql.select('article', params)
+      totalCount = await this.app.mysql.count('article', {authorId: parseInt(authorId)})
+      
     } else {
-      return this.app.mysql.query('select article.*, user.name, user.avatarUrl from article left join user on article.authorId = user.id order by createtime desc, id desc limit ? offset ?', [pagination.limit, pagination.skip])
+      result = await this.app.mysql.query('select article.*, user.name, user.avatarUrl from article left join user on article.authorId = user.id order by createtime desc, id desc limit ? offset ?', [pagination.limit, pagination.skip])
+      totalCount = await this.app.mysql.count('article')
+    }
+    return {
+        list: result,
+        currentPage: Number(pagination.skip),
+        pages: Math.ceil(totalCount/pagination.limit),
+        total: totalCount
     }
   }
 

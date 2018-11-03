@@ -48,7 +48,7 @@ class userService extends Service {
    * 获取用户信息
    */
   async getUserInfo(authorId) {
-    console.log(authorId)
+    console.log('用户id', authorId)
     const result = await this.app.mysql.get('user', { 
       id: authorId
     },

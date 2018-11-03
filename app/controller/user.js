@@ -8,7 +8,8 @@ class userController extends Controller {
 		const { ctx, service } = this
 		const authorId = ctx.params.id
 		const current_user = ctx.locals.current_user
-		const topic = await service.topic.getArticleList(authorId)
+		const topic = await service.topic.getArticleList(null, authorId)
+		console.log('topic', topic)
 		const authorData = await service.user.getUserInfo(authorId)
 		const hotTop = await service.topic.topArticle(30, authorId)
 		let isFollowed
@@ -18,7 +19,7 @@ class userController extends Controller {
 			isFollowed = await service.user.getFollowStatus(authorId, current_user)
 		}
 		if (authorData) {
-			await ctx.render('/user/userIndex.tpl', {authorId: authorId, data: topic, hotTop: hotTop, authorData: authorData, isFollowed: isFollowed})
+			await ctx.render('/user/userIndex.tpl', {authorId: authorId, data: topic.data.list, hotTop: hotTop, authorData: authorData, isFollowed: isFollowed})
 		} else {
 			ctx.status = 404
 		}

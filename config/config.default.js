@@ -9,6 +9,7 @@ module.exports = appInfo => {
   config.tabs = [['article', '随想'], ['found', '发现'], ['top', '精华']]
   // add your config here
   config.middleware = ['authUser', 'errorHandler', 'notfoundHandler'];
+  config.HOSTS = 'http://www.leewr.com'
   config.errorHandler = {
     match: '/api'
   }
@@ -30,7 +31,7 @@ module.exports = appInfo => {
         BROWSER: 'none',
         ESLINT: 'none',
         SOCKET_SERVER: 'http://127.0.0.1:8000',
-        PUBLIC_PATH: 'http://127.0.0.1:8000',
+        PUBLIC_PATH: 'http://www.leewr.com',
       },
     },
   };
@@ -61,7 +62,7 @@ module.exports = appInfo => {
     xframe: {
       enable: false
     },
-    domainWhiteList: ['.baidu.com']
+    domainWhiteList: ['m.leewr.com','localhost']
   }
 
 
