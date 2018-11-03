@@ -8,7 +8,7 @@ class HomeController extends Controller {
   	const agent = ctx.request['headers']['user-agent'].toLowerCase()
   	if (agent.match(/iphone|ipod|ipad|android/)) {
   		console.log('跳转到移动站')
-		await ctx.redirect('http://m.baidu.com')
+		await ctx.redirect('http://m.leewr.com')
 		return
   	} else {
   		const topis = await service.topic.getArticleList()
