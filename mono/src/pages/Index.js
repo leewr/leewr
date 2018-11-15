@@ -7,6 +7,11 @@ import { ListView } from 'antd-mobile';
 
 import './index/index.scss'
 
+
+const NUM_ROWS = 20;
+let pageIndex = 1;
+const navData = [{name:"连载",'router': '/'}, {name:"热门", 'router': '/hot'}, {name: "关注", 'router': 'focus'}]
+
 function getData(pIndex = 1, callBack) {
 	console.log('pIndex', pIndex)
 	Axios.get('/api/v1/topics', {page: pIndex})
@@ -18,22 +23,20 @@ function getData(pIndex = 1, callBack) {
 			console.log(err)
 		})
 }
-  const NUM_ROWS = 20;
-  let pageIndex = 1;
-  
-  function genData(pIndex = 0) {
+
+function genData(pIndex = 0) {
 	const dataBlob = {};
 	for (let i = 0; i < NUM_ROWS; i++) {
 	  const ii = (pIndex * NUM_ROWS) + i;
 	  dataBlob[`${ii}`] = `row - ${ii}`;
 	}
 	return dataBlob;
-  }
+}
 
 class Index extends Component {
 	constructor(props) {
 		super(props)
-		const navData = ["连载", "热门", "关注"]
+		
 		const dataSource = new ListView.DataSource({
 			rowHasChanged: (row1, row2) => row1 !== row2,
 		})
