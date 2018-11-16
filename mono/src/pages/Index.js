@@ -10,7 +10,7 @@ import './index/index.scss'
 
 const NUM_ROWS = 20;
 let pageIndex = 1;
-const navData = [{name:"连载",'router': '/'}, {name:"热门", 'router': '/hot'}, {name: "关注", 'router': 'focus'}]
+const navData = [{name:"连载",'router': '/'}, {name:"热门", 'router': '/hot'}, {name: "关注", 'router': 'login'}]
 
 function getData(pIndex = 1, callBack) {
 	console.log('pIndex', pIndex)
