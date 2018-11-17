@@ -19,7 +19,7 @@ class userController extends Controller {
 			isFollowed = await service.user.getFollowStatus(authorId, current_user)
 		}
 		if (authorData) {
-			await ctx.render('/user/userIndex.tpl', {authorId: authorId, data: topic.data.list, hotTop: hotTop, authorData: authorData, isFollowed: isFollowed})
+			await ctx.render('/user/userIndex.tpl', {authorId: authorId, data: topic.list, hotTop: hotTop, authorData: authorData, isFollowed: isFollowed})
 		} else {
 			ctx.status = 404
 		}
