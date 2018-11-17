@@ -6,6 +6,8 @@ import {
 
 import Index from './pages/Index.js'
 import Topic from './pages/Topic.js'
+import Hot from './pages/Hot.js'
+import Login from './pages/Login.js'
 
 class App extends Component {
   render() {
@@ -14,7 +16,10 @@ class App extends Component {
         <div className="App">
             <div>
               <Route exact path="/" component={Index} />
-              <Route path="/topics/:id" component={Topic}/>
+              <Route path="/topics/:id" component={Index}/>
+              <Route path="/focus" component={Topic} />
+              <Route path="/hot" component={Hot} />
+              <Route path="/login" component={Login} />
             </div>
         </div>
       </Router>

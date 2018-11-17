@@ -1,19 +1,24 @@
 import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom'
 import './header.scss'
 
 class Header extends Component {
+	constructor (props) {
+		super()
+		console.log(props)
+	}
 	render() {
 		return (
 			<div className="headerWrap">
 				<div className="header">
-					<h1>锐度</h1>
+					<h1>锐读</h1>
 					<div className="headTab">
 						{
-							this.props.navData && this.props.navData.map((name, key) => (
-								<a key={key} className={key === 0 ? 'active': ''}>
-									{name}
+							this.props.navData && this.props.navData.map((item, key) => (
+								<NavLink to={`${item.router}`} key={key} activeClassName="active">
+								{item.name}
 									<span></span>
-								</a>
+								</NavLink>
 							))
 						}
 					</div>
@@ -25,3 +30,5 @@ class Header extends Component {
 }
 
 export default Header
+
+
