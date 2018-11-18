@@ -17,6 +17,10 @@ android: 安卓端项目
 ## 开发
 
 ### Development
+1、导入数据库 dadcbase
+
+2、安装依赖
+
 ```bash
 $ npm i
 $ npm run dev
