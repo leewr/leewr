@@ -4,14 +4,13 @@ import './header.scss'
 
 class Header extends Component {
 	constructor (props) {
-		super()
-		console.log(props)
+		super(props)
 	}
 	render() {
 		return (
 			<div className="headerWrap">
 				<div className="header">
-					<h1>锐读</h1>
+					<h1>{this.props.title ? this.props.title : '锐读'}</h1>
 					<div className="headTab">
 						{
 							this.props.navData && this.props.navData.map((item, key) => (

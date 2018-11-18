@@ -69,6 +69,17 @@ class userController extends Controller {
       		return
 		}
 	}
+
+	async login () {
+		const { ctx } = this
+		if (ctx.locals.current_user) {
+			let userInfo = ctx.locals.current_user
+			delete userInfo['password']
+			ctx.body = userInfo
+		} else {
+			ctx.body = null
+		}
+	}
 }
 
 module.exports = userController

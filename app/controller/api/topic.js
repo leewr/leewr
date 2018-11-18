@@ -27,10 +27,7 @@ class Topic extends Controller {
     const { ctx, service } = this
     const pagination = ctx.pagination
     const topis = await service.topic.getArticleList(pagination)
-    ctx.body = {
-      success: true,
-      data: topis
-    }
+    ctx.body = topis
   }
   // 单篇文章
   async view () {

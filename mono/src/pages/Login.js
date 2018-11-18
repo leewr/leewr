@@ -1,6 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import Axios from '../utils/request.js'
+import { connect } from 'react-redux'
+import { loginRequest } from '../actions'
+import store from '../store'
+// import Axios from '../utils/request.js'
+
 import './login/login.scss'
 
 class Login extends Component {
@@ -8,15 +12,45 @@ class Login extends Component {
 		super(props)
 		this.state = {
 			userName: '',
-			password: ''
+			password: '',
+			loginState: false
+		}
+		if (store.getState().userState) {
+			console.log(this.props.history)
+			// this.props.history.push('/focus')
 		}
 	}
 	onChange (type, event) {
-		this.setState({[type]: event.target.value}, () => {console.log(this.state.userName)});
+
+		this.setState({[type]: event.target.value}, () => {
+			let arr = [this.state.userName, this.state.password]
+			if (arr.every((val) => {return val})) {
+				this.setState({'loginState': true})
+			} else {
+				this.setState({'loginState': false})
+			}
+		})
+		
+		
 	}
 	login () {
-		let param = {...this.state}
-		Axios.post('/api/v1/login', param)
+		const { dispatch, userState } = this.props
+		const params = {'username': this.state.userName, 'password': this.state.password}
+
+		if (this.state.loginState) {
+			dispatch(loginRequest(params, () => {
+				console.log(store.getState())
+				this.props.history.push('/')
+			}))
+			// Axios.post('/api/v1/passport/local', params)
+			// 	.then((res) => {
+			// 		console.log(res)
+			// 		if (res.success) {
+			// 			console.log('aaa')
+						
+			// 		}
+			// 	})
+		}
 	}
 	render () {
 		return (
@@ -37,8 +71,7 @@ class Login extends Component {
 					<div className="forgetBox">
 						<Link className="forget" to={'/login/forget'}>忘记密码</Link>
 					</div>
-					
-					<div className="loginBtn" onClick={this.login.bind(this)}>登录</div>
+					<div className={`loginBtn ${this.state.loginState ? "active" : ""}`} onClick={this.login.bind(this)}>登录</div>
 					<p className="register">还没有账号？ <Link to={'/register'}>现在注册</Link></p>
 				</div>
 				<div className="footer">
@@ -48,5 +81,10 @@ class Login extends Component {
 		)
 	}
 }
-
-export default Login
+const mapStateToProps = state => {
+	const { userState } = state
+	return {
+		userState
+	}
+}
+export default connect(mapStateToProps)(Login)

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Header from '../comp/header.js'
 import Item from '../comp/item/Item.js'
 import Axios from '../utils/request.js'
+import { connect } from 'react-redux'
 /* eslint no-dupe-keys: 0 */
 import { ListView } from 'antd-mobile';
 
@@ -10,7 +11,7 @@ import './index/index.scss'
 
 const NUM_ROWS = 20;
 let pageIndex = 1;
-const navData = [{name:"连载",'router': '/'}, {name:"热门", 'router': '/hot'}, {name: "关注", 'router': 'login'}]
+const navData = [{name:"连载",'router': '/'}, {name:"热门", 'router': '/hot'}, {name: "关注", 'router': '/focus'}]
 
 function getData(pIndex = 1, callBack) {
 	console.log('pIndex', pIndex)
@@ -103,4 +104,4 @@ class Index extends Component {
 	}
 }
 
-export default Index
+export default connect()(Index)

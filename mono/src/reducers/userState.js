@@ -1,4 +1,5 @@
 import {
+	GETUSERSTATE,
 	SELECT_SUBREDDIT,
 	INVALIDATE_SUBREDDIT,
 	REQUEST_POSTS, RECEIVE_POSTS
@@ -8,8 +9,9 @@ import {
 
 export function userState(state = {}, action) {
 	switch (action.type) {
-		case 'getUserState':
-			return state
+		case GETUSERSTATE:
+			console.log(state)
+			return action.userState
 		default:
 			return state
 	}

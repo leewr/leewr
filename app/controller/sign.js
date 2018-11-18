@@ -87,7 +87,8 @@ class signController extends Controller {
     // egg-passport api 
     // Exit and clear user information from session
     ctx.logout()
-    ctx.redirect('/')
+    ctx.body = 'logined out'
+    // ctx.redirect('/')
   }
 }
 
