@@ -18,7 +18,7 @@ module.exports = app => {
 	// 评论
 	apiV1Router.get('/topic/:id/comment', pagination, topic.commentList)
 	// 关注用户
-	apiV1Router.post('/u/:id/toggleFollow', user.toggleFollow)
+	apiV1Router.post('/u/:id/toggleFollow', resetApiData, user.toggleFollow)
 
 	// 用户登录
 	apiV1Router.get('/passport/success', resetApiData, user.login)

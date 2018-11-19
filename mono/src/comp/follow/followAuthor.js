@@ -7,6 +7,15 @@ class FollowAuthor extends Component {
 	constructor (props) {
 		super()
 		console.log(props)
+		this.state = {
+			userId: ''
+		}
+	}
+	componentWillReceiveProps (nextProps) {
+		console.log('nextProps', nextProps)
+		this.setState({
+			userId: nextProps.followData.id
+		})
 	}
 	render () {
 		return (
@@ -17,7 +26,7 @@ class FollowAuthor extends Component {
 					<p className="con">{this.props.followData.intro}</p>
 				</div>
 				<div className="followBtn">
-					<FollowBtn></FollowBtn>
+					<FollowBtn userId={this.state.userId}></FollowBtn>
 				</div>
 			</div>
 		)

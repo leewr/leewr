@@ -25,11 +25,11 @@ class Topic extends Component {
 		this.getCommentList(id)
 	}
 	getTopicById(id) {
-		let that = this
 		Axios.get(`/api/v1/topic/${id}`, {page: 2})
 			.then(res => {
+				console.log(res.success)
 				if (res.success) {
-					that.setState({
+					this.setState({
 						data: res.data,
 						userInfo: res.data.userInfo
 					})

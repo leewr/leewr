@@ -53,19 +53,21 @@ class userController extends Controller {
 		const current_user = ctx.locals.current_user
 		let status = body.status ? body.status : 'ok'
 		if (ctx.locals.current_user) {
-			const retrunData = await service.user.toggleFollow(authorId, current_user)
-			if (retrunData) {
+			const returnData = await service.user.toggleFollow(authorId, current_user)
+			// console.log('returnData', returnData)
+			if (returnData.data) {
 				ctx.body = {
-					success: true
+					followed: returnData.followed
 				}	
 			} else {
+				// error
 				ctx.body = {
 					success: false
 				}
 			}
 				
 		} else {
-			ctx.redirect('/signin')
+			ctx.status = 401
       		return
 		}
 	}

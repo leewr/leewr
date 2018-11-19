@@ -46,7 +46,7 @@ module.exports = appInfo => {
       host: 'localhost',
       port: '3306',
       user: 'root',
-      password: 'liwenrun',
+      password: 'root',
       database: 'dcdabase'
     },
     app: true,

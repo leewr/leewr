@@ -44,14 +44,26 @@ export const loginRequest = (params, callback) => (dispatch) => {
 		.then(res => {
 			if (res.success) {
 				window.sessionStorage.userState = JSON.stringify(res.data)
-				dispatch(receiveLoginRequest(res.data))
+				dispatch(updateLoginRequest(res.data))
 				callback && typeof callback == 'function' && callback()
 			}
 		})
 }
 
-export const receiveLoginRequest = (json) => ({
+export const loginOutRquest = (params, callback) => (dispatch) => {
+	return Axios.post('/api/v1/signout')
+		.then((res) => {
+			if (res.success) {
+				window.sessionStorage.userState = ''
+				dispatch(updateLoginRequest(''))
+				callback && typeof callback == 'function' && callback()
+				// this.props.history.push('/')
+			}
+		})
+}
+
+export const updateLoginRequest = (data) => ({
 	type: GETUSERSTATE,
-	userState: json,
+	userState: data,
 	receivedAt: Date.now()
 })

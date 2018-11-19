@@ -39,17 +39,8 @@ class Login extends Component {
 
 		if (this.state.loginState) {
 			dispatch(loginRequest(params, () => {
-				console.log(store.getState())
 				this.props.history.push('/')
 			}))
-			// Axios.post('/api/v1/passport/local', params)
-			// 	.then((res) => {
-			// 		console.log(res)
-			// 		if (res.success) {
-			// 			console.log('aaa')
-						
-			// 		}
-			// 	})
 		}
 	}
 	render () {

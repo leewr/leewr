@@ -2,13 +2,26 @@ import React, { Component } from 'react'
 import Axios from '../../utils/request.js'
 class FollowBtn extends Component {
 	constructor (props) {
-		super()
+        super(props)
+        console.log('btnprops', props)
+        this.state = {
+            userId: '',
+            followed: 0
+        }
     }
+    componentWillReceiveProps (nextProps) {
+		console.log('nextProps', nextProps)
+		this.setState({
+            userId: nextProps.userId
+        })
+	}
     follow () {
-        Axios.post(`/api/v1/u/:id/toggleFollow`)
+        Axios.post(`/api/v1/u/${this.state.userId}/toggleFollow`)
             .then(res => {
                 if (res.success) {
-                    
+                    this.setState({
+                        followed: res.data.followed
+                    })
                 }
                 console.log(res)
             }).catch(err => {
@@ -17,7 +30,7 @@ class FollowBtn extends Component {
     }
 	render () {
 		return (
-            <a onClick={this.follow} className="{followed ? 'followed': 'follow'}">关注</a>
+            <a onClick={this.follow.bind(this)} className={this.state.followed ? 'followed': 'follow'}>{this.state.followed ? '已关注': '关注'}</a>
 		)
 	}
 }

@@ -103,11 +103,15 @@ class userService extends Service {
       userId: authorId,
       followedUser: current_user.id
     })
+    console.log('status', status)
 
     await this.app.mysql.query('update user set fansNum = (fansNum + ?) where id = ?', [status.status ? 1 : -1, authorId])
     await this.app.mysql.query('update user set followNum = (followNum + ?) where id = ?', [status.status ? 1 : -1, current_user.id])
-
-    return followStatus
+    console.log('followStatus', followStatus)
+    return {
+      data: followStatus,
+      followed: status.status
+    }
   }
   
   /**
