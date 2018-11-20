@@ -21,10 +21,13 @@ export default {
         return new Promise((resolve, reject) => {
             instance.post(url, params)
             .then(res => {
+                res = res.data
                 // 处理api接口权限
                 if (res.status === 200) {
+                    console.log(1)
                     if (res.success) {
-                        resolve(res.data)
+                        console.log(2)
+                        resolve(res)
                     }
                 } else if (res.status === 403) {
                     // 页面跳转

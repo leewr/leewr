@@ -39,6 +39,7 @@ class Login extends Component {
 
 		if (this.state.loginState) {
 			dispatch(loginRequest(params, () => {
+				console.log(1)
 				this.props.history.push('/')
 			}))
 		}
