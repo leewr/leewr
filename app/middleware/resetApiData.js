@@ -6,7 +6,8 @@ module.exports = () => {
         let body = ctx.body
         ctx.body = {
             success: true,
-            data: body
+            data: body,
+            status: ctx.status
         }
 	}
 }

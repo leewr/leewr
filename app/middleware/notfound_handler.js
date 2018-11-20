@@ -8,9 +8,9 @@ module.exports = () => {
         ctx.body = '<h1>Page Not Found</h1>';
       }
     }
-    if (ctx.status === 301 || ctx.status === 304 || ctx.status === 401) {
+    if (ctx.status === 301 || ctx.status === 304 || ctx.status === 401 || ctx.status == 403) {
       ctx.body = {
-        status: 200,
+        status: ctx.status,
         success: false,
         message: ctx.message
       }
