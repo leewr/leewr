@@ -5,7 +5,3 @@ export default function validate(params) {
         }
     }
 }
-
-export valiRed {
-    
-}

@@ -1,6 +1,7 @@
 .topic{
 	background: #fff;
-	min-height: calc(100vh);
+	min-height: calc(100vh - 50px);
+	padding-bottom: 50px;
 	.topicWrap{
 		padding-top: 10px;
 		margin: 0 12px;

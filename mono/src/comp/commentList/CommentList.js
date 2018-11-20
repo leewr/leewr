@@ -28,7 +28,7 @@ class CommentList extends Component {
 		return (
 			<div className="comment-panel">
 				<h3 className="topicNav"><span>评论列表</span></h3>
-				{ listItem }
+				{ this.props.commentData.length > 0 ? listItem :  <h3 className="noComment">你会是打破沉默的第一个人么？</h3>}
 			</div>
 		)
 	}

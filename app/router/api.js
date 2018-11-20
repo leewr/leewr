@@ -7,7 +7,7 @@ module.exports = app => {
 	const apiV1Router = app.router.namespace('/api/v1')
 	const { controller, middleware } = app;
 	const { topic } = controller.api
-	const { user, sign } = controller
+	const { user, sign, comment } = controller
 	const userRequired = middleware.userRequired()
 	const pagination = middleware.pagination()
 	const resetApiData = middleware.resetApiData()
@@ -17,6 +17,7 @@ module.exports = app => {
 	apiV1Router.get('/topics/:day', pagination, topic.topArticle)
 	// 评论
 	apiV1Router.get('/topic/:id/comment', pagination, topic.commentList)
+	apiV1Router.post('/topic/:id/comment', userRequired, comment.add)
 	// 关注用户
 	apiV1Router.post('/u/:id/toggleFollow', resetApiData, user.toggleFollow)
 

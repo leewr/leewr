@@ -4,7 +4,10 @@ import Header from '../comp/header.js'
 import store from '../store'
 import { loginOutRquest } from '../actions'
 import './user/user.scss'
-import Axios from '../utils/request'
+
+export function userAuthoried (user, props) {
+
+}
 
 class User extends Component {
     constructor (props) {

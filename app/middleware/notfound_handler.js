@@ -8,10 +8,14 @@ module.exports = () => {
         ctx.body = '<h1>Page Not Found</h1>';
       }
     }
-    // 没有登录
-    if (ctx.status === 401) {
-      // ctx.redirect('/signin')
-      
+    if (ctx.status === 301 || ctx.status === 304 || ctx.status === 401) {
+      ctx.body = {
+        status: 200,
+        success: false,
+        message: ctx.message
+      }
+      ctx.status = 200
     }
+    console.log(ctx.body)
   };
 };

@@ -10,7 +10,6 @@ class FollowBtn extends Component {
         }
     }
     componentWillReceiveProps (nextProps) {
-		console.log('nextProps', nextProps)
 		this.setState({
             userId: nextProps.userId
         })

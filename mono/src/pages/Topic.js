@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Header from '../comp/header.js'
+import Comment from '../comp/comment/Comment.js'
 import CommentList from '../comp/commentList/CommentList.js'
 import FollowAuthor from '../comp/follow/followAuthor.js'
 
@@ -70,6 +71,7 @@ class Topic extends Component {
 					<FollowAuthor followData={this.state.userInfo}></FollowAuthor>
 				</div>
 				<CommentList commentData={this.state.commentData} />
+				<Comment articleId={this.props.match.params.id}></Comment>
 			</div>
 		)
 	}

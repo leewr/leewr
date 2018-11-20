@@ -21,7 +21,15 @@ export default {
         return new Promise((resolve, reject) => {
             instance.post(url, params)
             .then(res => {
-                resolve(res.data);
+                // 处理api接口权限
+                if (res.status === 200) {
+                    if (res.success) {
+                        resolve(res.data)
+                    }
+                } else if (res.status === 403) {
+                    // 页面跳转
+                }
+               
             })
             .catch(err => {
                 reject(err);
