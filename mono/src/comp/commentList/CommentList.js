@@ -19,8 +19,8 @@ class CommentList extends Component {
 						{item.content}
 					</div>
 					<div className="cfoot">
-						<span>点赞{item.thumbs}</span>
-						<span>评论{item.thumbs}</span>
+						{/* <span>点赞{item.thumbs}</span> */}
+						<span><i className="icon iconfont icon-zan"></i><em>{item.thumbs}</em></span>
 					</div>
 				</div>
 			)

@@ -32,7 +32,14 @@
 		.cfoot{
 			text-align: right;
 			margin-bottom: 10px;
-			color: #666
+			color: #666;
+			em{
+				font-style: normal;
+				vertical-align: top;
+				margin-top: 3px;
+				margin-left:3px;
+				display: inline-block;
+			}
 		}
 	}
 	.noComment{
