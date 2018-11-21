@@ -1,5 +1,4 @@
 'use strict';
-
 const Controller = require('egg').Controller
 
 class Topic extends Controller {
@@ -22,7 +21,7 @@ class Topic extends Controller {
 	//     } 
  //  	}
 
-  	// 文章列表
+// 文章列表
   async index() {
     const { ctx, service } = this
     const pagination = ctx.pagination
@@ -30,22 +29,20 @@ class Topic extends Controller {
     ctx.body = topis
   }
   // 单篇文章
-  async view () {
+  async view() {
     const { ctx, service } = this
     const id = ctx.params.id
+    console.log(id)
     const topic = await service.topic.getArticleById(id)
     const userInfo = await service.user.getUserInfo(topic.authorId)
     const current_user = ctx.locals.current_user
-    
-  
-    let data = Object.assign(topic, { userInfo: userInfo})
+    const data = Object.assign(topic, { userInfo: userInfo})
     // 用户已经登录 查询关注信息
-    if (current_user.id) {
-      //const returnData = await service.user.toggleFollow(topic.authorId, current_user)
+    if (current_user) {
+      // const returnData = await service.user.toggleFollow(topic.authorId, current_user)
       const isFollowed = await service.user.getFollowStatus(topic.authorId, current_user)
-      data.userInfo = Object.assign(data.userInfo, {isFollowed: isFollowed.status})
+      data.userInfo = Object.assign(data.userInfo, { isFollowed: isFollowed.status })
     }
-    
     ctx.body = {
       success: true,
       status: 200,

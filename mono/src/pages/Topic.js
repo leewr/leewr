@@ -34,9 +34,7 @@ class Topic extends Component {
 						data: res.data,
 						userInfo: res.data.userInfo
 					})
-					console.log(res.data.userInfo)
 				}
-				console.log(res)
 			}).catch(err => {
 				console.log(err)
 			})

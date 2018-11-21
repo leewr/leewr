@@ -1,3 +1,4 @@
+'use strict'
 const Service = require('egg').Service
 
 class userService extends Service {
@@ -88,6 +89,7 @@ class userService extends Service {
   async toggleFollow(authorId, current_user) {
     // 关注表添加一条记录
     let followStatus = await this.app.mysql.query('update follow set status = !status, modifyTime = now() where userId = ? and followedUser = ?', [authorId, current_user.id])
+    console.log(followStatus)
     if (!followStatus.changedRows) {
       followStatus = await this.app.mysql.query('insert into follow values(0, ?, ?, 1, now(), now())', [authorId, current_user.id])
     }
@@ -119,10 +121,12 @@ class userService extends Service {
    * getFollowStatus
    */
   async getFollowStatus (authorId, current_user) {
+    console.log('authorId', authorId)
     const status = await this.app.mysql.get('follow', {
       userId: authorId,
       followedUser: current_user.id
     })
+    console.log(status)
     return status
   }
 

@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
-import Axios from '../../utils/request.js'
+import { withRouter } from "react-router"
+import Axios, {apiStatusCheck} from '../../utils/request.js'
+
 class FollowBtn extends Component {
 	constructor (props) {
         super(props)
@@ -17,20 +19,15 @@ class FollowBtn extends Component {
                 followed: nextProps.isFollowed
             }, () => {console.log(this.state)})
         }, 0)
-
-		
 	}
     follow () {
         Axios.post(`/api/v1/u/${this.state.userId}/toggleFollow`)
             .then(res => {
-                if (res.success) {
+                apiStatusCheck(this.props, res, () =>{
                     this.setState({
                         followed: res.data.followed
                     })
-                } else {
-
-                }
-                console.log(res)
+                })
             }).catch(err => {
 				console.log(err)
 			})
@@ -42,4 +39,4 @@ class FollowBtn extends Component {
 	}
 }
 
-export default FollowBtn
+export default withRouter(FollowBtn)

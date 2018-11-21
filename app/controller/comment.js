@@ -7,15 +7,14 @@ class commentController extends Controller {
     async add () {
 		const { ctx, service } = this
 		const content = ctx.request.body.content
-    	const articleId = ctx.request.body.articleId
-    	const authorId = ctx.request.body.authorId
+        const articleId = ctx.request.body.articleId
+        console.log('ctx.current_user', ctx.current_user)
+    	const authorId = ctx.locals.current_user.id
     	let msg
     	if (!content) {
     		msg = '评论内容不能为空！'
     	} else if (!articleId) {
     		msg = '文章id不能为空！'
-    	} else if (!authorId) {
-    		msg = '评论作者id不能为空！'
     	}
 
     	if (msg) {

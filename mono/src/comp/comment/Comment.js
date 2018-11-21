@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import Axios from '../../utils/request.js'
+import { connect } from 'react-redux'
+import { withRouter } from "react-router"
 import store from '../../store'
 import './comment.scss'
 
@@ -19,21 +21,27 @@ class Comment extends Component {
 		})
 	}
 	postComment () {
-		const params = {
-			content: this.state.value,
-			articleId: this.props.articleId,
-			authorId: store.getState().userState
+		console.log(store.getState().userState)
+		if (store.getState().userState.id) {
+			const params = {
+				content: this.state.value,
+				articleId: this.props.articleId,
+				authorId: store.getState().userState
+			}
+			Axios.post(`/api/v1/topic/${this.props.articleId}/comment`, params)
+				.then(res => {
+					if (res.success) {
+						this.setState({
+							commentData: res.data
+						})
+					}
+				}).catch(err => {
+					console.log(err)
+				})
+		} else {
+			this.props.history.push('/login')
 		}
-		Axios.post(`/api/v1/topic/${this.props.articleId}/comment`, params)
-			.then(res => {
-				if (res.success) {
-					this.setState({
-						commentData: res.data
-					})
-				}
-			}).catch(err => {
-				console.log(err)
-			})
+		
 	}
 	render() {
 		return (
@@ -47,4 +55,11 @@ class Comment extends Component {
 		)
 	}
 }
-export default Comment
+const mapStateToProps = state => {
+	const { userState } = state
+	return {
+		userState
+	}
+}
+const commentRouter = withRouter(Comment)
+export default connect(mapStateToProps)(commentRouter)
