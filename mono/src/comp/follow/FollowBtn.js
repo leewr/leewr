@@ -10,9 +10,15 @@ class FollowBtn extends Component {
         }
     }
     componentWillReceiveProps (nextProps) {
-		this.setState({
-            userId: nextProps.userId
-        })
+        console.log(nextProps)
+        setTimeout(() => {
+            this.setState({
+                userId: nextProps.userId,
+                followed: nextProps.isFollowed
+            }, () => {console.log(this.state)})
+        }, 0)
+
+		
 	}
     follow () {
         Axios.post(`/api/v1/u/${this.state.userId}/toggleFollow`)
@@ -21,6 +27,8 @@ class FollowBtn extends Component {
                     this.setState({
                         followed: res.data.followed
                     })
+                } else {
+
                 }
                 console.log(res)
             }).catch(err => {

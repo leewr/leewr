@@ -35,7 +35,17 @@ class Topic extends Controller {
     const id = ctx.params.id
     const topic = await service.topic.getArticleById(id)
     const userInfo = await service.user.getUserInfo(topic.authorId)
+    const current_user = ctx.locals.current_user
+    
+  
     let data = Object.assign(topic, { userInfo: userInfo})
+    // 用户已经登录 查询关注信息
+    if (current_user.id) {
+      //const returnData = await service.user.toggleFollow(topic.authorId, current_user)
+      const isFollowed = await service.user.getFollowStatus(topic.authorId, current_user)
+      data.userInfo = Object.assign(data.userInfo, {isFollowed: isFollowed.status})
+    }
+    
     ctx.body = {
       success: true,
       status: 200,

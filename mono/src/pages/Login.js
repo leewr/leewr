@@ -34,7 +34,7 @@ class Login extends Component {
 		
 	}
 	login () {
-		const { dispatch, userState } = this.props
+		const { dispatch } = this.props
 		const params = {'username': this.state.userName, 'password': this.state.password}
 
 		if (this.state.loginState) {

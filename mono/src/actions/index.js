@@ -42,7 +42,6 @@ export const loginRequest = (params, callback) => (dispatch) => {
 	// dispatch(requestPosts)
 	return  Axios.post(`/api/v1/passport/local`, params)
 		.then(res => {
-			console.log(res)
 			if (res.success) {
 				window.sessionStorage.userState = JSON.stringify(res.data)
 				dispatch(updateLoginRequest(res.data))
