@@ -22,8 +22,9 @@ class User extends Component {
                 userState: store.getState().userState
             }
         }
+        console.log(this.state.userState)
         if (!this.state.userState.id) {
-			this.props.history.push('/login')
+			this.props.history.replace('/login')
 		}
     }
     loginOut () {

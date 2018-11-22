@@ -10,6 +10,7 @@ export default {
         return new Promise((resolve, reject) => {
             instance.get(url, { params: params })
             .then(res => {
+
                 resolve(res.data);
             })
             .catch(err => {
