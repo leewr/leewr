@@ -131,13 +131,14 @@ class userService extends Service {
   }
 
   /**
-   * 是否喜欢
+   * 是否喜欢/赞
    */
   async getLikeStatus (articleId, current_user) {
     const status = await this.app.mysql.get('thumbs', {
       articleId: articleId,
       userId: current_user.id
     })
+    console.log('statusarticleId', current_user.id)
     return status
   }
 

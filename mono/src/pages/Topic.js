@@ -40,13 +40,23 @@ class Topic extends Component {
 			})
 	}
 	getCommentList(id) {
-		let that = this
 		Axios.get(`/api/v1/topic/${id}/comment`)
 			.then(res => {
 				if (res.success) {
-					that.setState({
+					this.setState({
 						commentData: res.data
 					})
+				}
+			}).catch(err => {
+				console.log(err)
+			})
+	}
+	toggleLike () {
+		let id = this.props.match.params.id
+		Axios.get(`/api/v1/topic/${id}/like`)
+			.then(res => {
+				if (res.success) {
+					
 				}
 			}).catch(err => {
 				console.log(err)
@@ -62,6 +72,10 @@ class Topic extends Component {
 						<span>文 / {this.state.userInfo.username}</span>
 					</div>
 					<div className="content" dangerouslySetInnerHTML={{__html: this.state.data.content}}>
+					</div>
+					<div className="readNum">
+						<span>阅读 {this.state.data.view}</span>
+						<span onClick={this.toggleLike.bind(this)} className={`thumbs icon iconfont ${this.state.data.isLiked ? 'icon-zan1 active' : ' icon-zan'}`}><i className="f12">{this.state.data.likeNum}</i></span>
 					</div>
 				</div>
 				<div className="wrap">

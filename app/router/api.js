@@ -18,8 +18,10 @@ module.exports = app => {
 	// 评论
 	apiV1Router.get('/topic/:id/comment', pagination, topic.commentList)
 	apiV1Router.post('/topic/:id/comment', userRequired, comment.add)
+	 // 喜欢文章
+	apiV1Router.post('/topic/:id/like', userRequired, resetApiData, topic.toggleLike)
 	// 关注用户
-	apiV1Router.post('/u/:id/toggleFollow', resetApiData, user.toggleFollow)
+	apiV1Router.post('/u/:id/toggleFollow', userRequired, resetApiData, user.toggleFollow)
 
 	// 用户登录
 	apiV1Router.get('/passport/success', resetApiData, user.login)

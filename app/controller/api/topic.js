@@ -35,13 +35,16 @@ class Topic extends Controller {
     console.log(id)
     const topic = await service.topic.getArticleById(id)
     const userInfo = await service.user.getUserInfo(topic.authorId)
+    await service.topic.addView(id)
     const current_user = ctx.locals.current_user
-    const data = Object.assign(topic, { userInfo: userInfo})
+    let data = Object.assign(topic, { userInfo: userInfo})
     // 用户已经登录 查询关注信息
     if (current_user) {
-      // const returnData = await service.user.toggleFollow(topic.authorId, current_user)
       const isFollowed = await service.user.getFollowStatus(topic.authorId, current_user)
-      data.userInfo = Object.assign(data.userInfo, { isFollowed: isFollowed.status })
+      const isLiked = await service.user.getLikeStatus(id, current_user)
+      console.log('isLiked', isLiked)
+      data = Object.assign(data, { isLiked: isLiked ? true : false})
+      data.userInfo = Object.assign(data.userInfo, { isFollowed: isFollowed.status})
     }
     ctx.body = {
       success: true,
@@ -69,6 +72,35 @@ class Topic extends Controller {
       success: true,
       status: 200,
       data: data
+    }
+  }
+
+  // 喜欢 // 关注
+  async toggleLike() {
+    const { ctx, service } = this
+    const id = ctx.params.id
+    const { body } = ctx.request
+    const current_user = ctx.locals.current_user
+    let data = null
+    if (current_user) {
+      data = await service.topic.toggleLike(id, current_user)
+      if (data) {
+        ctx.body = {
+          success: true
+        } 
+      } else {
+        ctx.body = {
+          success: false
+        }
+      }
+    } else {
+      // ctx.redirect('/signin')
+      // ctx.status = 401
+      ctx.body = {
+        success: true,
+        status: 401,
+        data: '没有登录'
+      }
     }
   }
 }

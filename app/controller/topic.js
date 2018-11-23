@@ -39,6 +39,7 @@ class TopicController extends Controller {
     if (current_user) {
       isFollowed = await service.user.getFollowStatus(topic.authorId, current_user)
       isLiked = await service.user.getLikeStatus(id, current_user)
+      console.log('isLiked', isLiked)
     }
 
     if (topic) {
