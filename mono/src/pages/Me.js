@@ -3,7 +3,7 @@ import './me/me.scss'
 class Me extends Component {
 	render () {
 		return (
-			<div class="me">
+			<div className="me">
 				<div className="head">
 					偷窥作者
 				</div>
@@ -11,6 +11,10 @@ class Me extends Component {
 					<div className="item">About Me</div>
 					<div className="item">Engineer</div>
 					<div className="item">charts</div>
+					<div></div>
+				</div>
+				<div className="footTxt">
+					内容都在建设中
 				</div>
 			</div>
 		)

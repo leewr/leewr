@@ -21,7 +21,15 @@
             background: #f9f9f9;
             margin-bottom: 20px;
             font-size: 18px;
+            color: #666;
         }
     }
-    
+    .footTxt{
+        position: fixed;
+        bottom: 80px;
+        width: 100%;
+        color: #eeeeee;
+        font-size: 9px;
+        text-align: center;
+    }
 }

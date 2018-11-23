@@ -16,7 +16,7 @@
     }
     .loginForm{
         margin: 0 40px;
-        padding: 20px 0;
+        padding: 20px 0 10px 0;
         .inputItem{
             display: flex;
             border-bottom: 1px solid #efefef;
@@ -57,11 +57,11 @@
         }
         .register{
             text-align: center;
-            color: #333;
+            color: #eee;
             font-size: 12px;
-            margin: 10px 0;
+            margin: 20px 0 10px 0;
             a{
-                color: #333;
+                color: #eee;
             }
         }
     }

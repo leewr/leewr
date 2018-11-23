@@ -62,7 +62,7 @@ class Login extends Component {
 						<Link className="forget" to={'/login/forget'}>忘记密码</Link>
 					</div>
 					<div className={`loginBtn ${this.state.loginState ? "active" : ""}`} onClick={this.login.bind(this)}>登录</div>
-					<p className="register">还没有账号？ <Link to={'/register'}>现在注册</Link></p>
+					<p className="register">还没有账号？ <Link to={'/register'}>暂时未开放注册</Link></p>
 				</div>
 				<div className="footer">
 					<p>登录即代表您同意<Link to="/user/agreement">用户协议</Link></p>
