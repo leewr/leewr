@@ -4,7 +4,7 @@ import Comment from '../comp/comment/Comment.js'
 import CommentList from '../comp/commentList/CommentList.js'
 import FollowAuthor from '../comp/follow/followAuthor.js'
 
-import Axios from '../utils/request.js'
+import Axios, { apiStatusCheck } from '../utils/request.js'
 
 import './topic/topic.scss'
 
@@ -53,11 +53,17 @@ class Topic extends Component {
 	}
 	toggleLike () {
 		let id = this.props.match.params.id
-		Axios.get(`/api/v1/topic/${id}/like`)
+		Axios.post(`/api/v1/topic/${id}/like`)
 			.then(res => {
-				if (res.success) {
-					
-				}
+				apiStatusCheck(this.props, res, () =>{
+					console.log(res)
+					let data = this.state.data
+						data.isLiked = res.data.status
+						res.data.status ? data.likeNum++ : data.likeNum--
+                    this.setState({
+                        data
+                    })
+                })
 			}).catch(err => {
 				console.log(err)
 			})

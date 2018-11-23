@@ -64,12 +64,8 @@ class commentController extends Controller {
             console.log('retrunData', retrunData)
             if (retrunData.success) {
                 ctx.body = {
-                    success: true,
-                    status: 200,
-                    data: {
-                        status: retrunData.data.data
-                    }
-                }   
+                    status: retrunData.status
+                }
             } else {
                 ctx.body = {
                     success: false

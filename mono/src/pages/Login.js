@@ -36,7 +36,6 @@ class Login extends Component {
 	login () {
 		const { dispatch } = this.props
 		const params = {'username': this.state.userName, 'password': this.state.password}
-		console.log(this.props)
 		if (this.state.loginState) {
 			dispatch(loginRequest(params, () => {
 				this.props.history.goBack()

@@ -2,26 +2,7 @@
 const Controller = require('egg').Controller
 
 class Topic extends Controller {
-	// async index () {
-	//     const { ctx } = this
-	//     ctx.validate({
-	//       page: {type: 'string', format: /\d+/, required: false},
-	//       tab: {type: 'enum', values: ['ask', 'share', 'job', 'good'], required: false},
-	//       limit: {type: 'string', format: /\d+/, required: false}
-	//     },ctx.query)
-	//     let topics = await ctx.service.topics.list({
-	//       page: ctx.query.page,
-	//       tab: ctx.params.id,
-	//       limit: ctx.query.limit,
-	//       mdrender: ctx.query.mdrender !== 'fase'
-	//     })
-	//     ctx.body = {
-	//     	success: false,
-	//     	data: topics
-	//     } 
- //  	}
-
-// 文章列表
+  // 文章列表
   async index() {
     const { ctx, service } = this
     const pagination = ctx.pagination
@@ -84,9 +65,10 @@ class Topic extends Controller {
     let data = null
     if (current_user) {
       data = await service.topic.toggleLike(id, current_user)
+      console.log('toggleLike', data)
       if (data) {
         ctx.body = {
-          success: true
+          status: data.status
         } 
       } else {
         ctx.body = {

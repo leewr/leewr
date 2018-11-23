@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { withRouter } from "react-router"
-import Axios, {apiStatusCheck} from '../../utils/request.js'
+import Axios, { apiStatusCheck } from '../../utils/request.js'
 
 class FollowBtn extends Component {
 	constructor (props) {
