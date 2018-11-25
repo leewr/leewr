@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+       var asyn = function(arr, cb) {
+            arr.reduce((p, func) => p.then(func), Promise.resolve())
+                .then(cb)
+        }
+
+var func1 = function() {
+    return new Promise(function(resolve) {
+        setTimeout(function() {
+            console.log('func1');
+            resolve();
+        }, 500);
+    });
+};
+var func2 = function() {
+    return new Promise(function(resolve) {
+        setTimeout(function() {
+            console.log('func2');
+            resolve();
+        }, 300);
+    });
+};
+var func3 = function() {
+    return new Promise(function(resolve) {
+        setTimeout(function() {
+            console.log('func3');
+            resolve();
+        }, 100);
+    });
+};
+
+asyn([func1, func2, func3], function() {
+    console.log('all things gets done');
+});
+    </script>
+</body>
+</html>
