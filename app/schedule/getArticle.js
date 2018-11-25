@@ -13,7 +13,7 @@ class getArticle extends Subscription {
     }
     static get schedule() {
         return {
-            interval: '200s',
+            cron: '0 30 12 * * *', // 每天 12：30执行定时任务
             type: 'all'
         }
     }
@@ -88,19 +88,6 @@ class getArticle extends Subscription {
         this.asyn(middle, function () {
             console.log('length', that.totalSize)
         })
-
-        // 抓取内容
-        // const res = await this.ctx.curl(`https://www.jianshu.com/asimov/notebooks/679554/public_notes?page=${this.page}&count=${this.count}`, {
-        //     dataType: 'json'
-        // })
-
-        // if (res.data.length > this.count) {
-        //     return
-        // }
-
-        // await this.getDetail(res)
-        // console.log('finished')
-        
     }
 
     asyn (arr, cb) {
