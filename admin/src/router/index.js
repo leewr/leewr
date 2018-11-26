@@ -13,12 +13,21 @@ let RouteList = [
     children: [
       {
         path: '/',
-        name: 'brokerManage',
+        name: 'crawler',
         meta: {
-          title: '经纪人管理          ',
+          title: '爬虫文章管理',
           keepAlive: false
         },
         component: resolve => require(['@/views/broker/Index.vue'], resolve),
+      },
+      {
+        path: 'crawler/:id',
+        name: 'crawlerarticle',
+        meta: {
+          title: '爬虫文章管理',
+          keepAlive: false
+        },
+        component: resolve => require(['@/views/broker/detail.vue'], resolve),
       }
     ]
   },
