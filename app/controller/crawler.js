@@ -30,18 +30,29 @@ class Crawler extends Controller {
   async save() {
     const { ctx, service } = this
     const id = ctx.params.id
-    const topic = await service.crawler.getArticleById(id)
+    const imgUrl = ctx.request.body.imgUrl
+    console.log(ctx.request.body)
+    if (!imgUrl)  {
+      ctx.body = '缺少必要参数'
+      ctx.status = 412
+      return
+    }
+    console.log('imgUrl', imgUrl)
+    let topic = await service.crawler.getArticleById(id)
+    
+    topic.imgUrl = imgUrl
+    console.log('imgUrl', topic.imgUrl)
+    let data
     // 数据库保存
-    const result = await service.crawler.newAndSave(
-      topic.title,
-      topic.content,
-      topic.summary,
-      topic.tab,
-      topic.authorId
-    )
-    // 增加用户帖子发表数量 increaseArticleCount
-    await service.user.increaseArticleCount( topic.authorId, 1, 1)
-    return result
+    if (!topic.isPost) {
+      data = await service.crawler.newAndSave(topic)
+      // 增加用户帖子发表数量 increaseArticleCount
+      await service.user.increaseArticleCount(topic.authorId, 1, 1)
+      ctx.body = data.message
+    } else {
+      ctx.body = '不能重新入库'
+      ctx.status = 412
+    }
   }
 }
 

@@ -15,6 +15,9 @@
 				align-items: center;
 				margin-bottom: 10px;
 				position: relative;
+				&.hide{
+					display: none;
+				}
 				.previewImage{
 					position: absolute;
 					left: 0;

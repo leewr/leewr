@@ -13,7 +13,9 @@ class Crawler extends Component {
 			navData: navData,
 			data: '',
 			userInfo: '',
-			imgFile: ''
+			imgFile: '',
+			imgUrl: '',
+			postBtn: false
 		}
 		console.log(this.props.match.params.id)
 	}
@@ -58,29 +60,66 @@ class Crawler extends Component {
 	uploadImage() {
 		let formFile = new FormData()
 		formFile.append("image", this.state.file)
-		Axios.post(`/upload`, formFile,  {headers: {'Content-Type': 'multipart/form-data'}})
+		Axios.post(`/api/v1/upload`, formFile,  {headers: {'Content-Type': 'multipart/form-data'}})
 			.then(res => {
-				apiStatusCheck(res, () => {
+				apiStatusCheck(this.props, res, () => {
 					Toast.info('图片上传成功')
+					this.setState({
+						imgUrl: res.data,
+						postBtn: true
+					})
 				})
 			}).catch(err => {
 				console.log(err)
 			})
 	}
+
+	postArticle() {
+		if (this.state.data.isPost) return
+		if (!this.state.imgUrl) {
+			Toast.info('请上传图片')
+		} else {
+			Axios.post(`/api/v1/crawlers/${this.props.match.params.id}`, {imgUrl: this.state.imgUrl})
+				.then(res => {
+					apiStatusCheck(this.props, res, () => {
+						this.setState({
+							imgUrl: res.data
+						})
+					})
+				}).catch(err => {
+					console.log(err)
+				})
+		}
+		
+	}
 	
 	render () {
+		const Message = (props) => {
+			return (
+				<div className={this.state.data.isPost ? 'uploadBox hide': 'uploadBox'}>
+				<label htmlFor="uploadImage" className="uploadImage">
+					<input type="file" hidden id="uploadImage" name="uploadImage" onChange={(e) => this.getLocalImage(e)} />
+					上传封面图片
+					<img className={this.state.imgFile ? 'previewImage' : 'hide'} src={this.state.imgFile} />
+				</label>
+				<div className={this.state.imgFile ? 'btn active show' : 'btn hide'} onClick={this.uploadImage.bind(this)}>上传图片</div>
+			</div>
+			)
+		}
 		return (
 			<div className="topic">
 				<Header navData={this.state.navData} />
 				<div className="topicWrap">
-					<div className="uploadBox">
+					{
+						!this.state.data.isPost ? <div className='uploadBox'>
 						<label htmlFor="uploadImage" className="uploadImage">
 							<input type="file" hidden id="uploadImage" name="uploadImage" onChange={(e) => this.getLocalImage(e)} />
 							上传封面图片
 							<img className={this.state.imgFile ? 'previewImage' : 'hide'} src={this.state.imgFile} />
 						</label>
 						<div className={this.state.imgFile ? 'btn active show' : 'btn hide'} onClick={this.uploadImage.bind(this)}>上传图片</div>
-					</div>
+					</div> : ''
+					}
 					<h1>{this.state.data.title}</h1>
 					<div className="author">
 						<span>文1 / {this.state.userInfo.username}</span>
@@ -90,7 +129,7 @@ class Crawler extends Component {
 					<div className="readNum">
 						<span>阅读 {this.state.data.view}</span>
 					</div>
-					<div className="btn">发布入库</div>
+					<div onClick={this.postArticle.bind(this)} className={this.state.postBtn && !this.state.data.isPost ? 'btn active' : 'btn'}>发布入库</div>
 				</div>
 			</div>
 		)

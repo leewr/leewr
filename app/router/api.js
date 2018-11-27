@@ -23,7 +23,6 @@ module.exports = app => {
 	// 上传图片
 	apiV1Router.post('/upload', userRequired, images.upload)
 
-
 	// 评论
 	apiV1Router.get('/topic/:id/comment', pagination, topic.commentList)
 	apiV1Router.post('/topic/:id/comment', userRequired, comment.add)

@@ -13,11 +13,10 @@ class UploadFormController extends Controller {
     const target = path.join(this.config.baseDir, 'app/public/temp', filename)
     const writeStream = fs.createWriteStream(target)
     await pump(stream, writeStream)
-    console.log(app.config.HOSTS)
     ctx.body = {
       success: true,
       status: 200,
-      data: app.config.HOSTS + '/public/temp/' + filename
+      data: '/public/temp/' + filename
     }
   }
 }

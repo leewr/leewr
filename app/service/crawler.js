@@ -52,10 +52,13 @@ class Crawler extends Service {
     }
 
     // 保存到文章库
-    async newAndSave(title, content, summary, tab, authorId) {
-        const result = await this.app.mysql.insert('article', { 
-            title, content, summary, tab, authorId, createTime: this.app.mysql.literals.now
+    async newAndSave(data) {
+        const { title, content, summary, tab, authorId, createTime, cid, imgUrl } = data
+        const result = await this.app.mysql.insert('article', {
+            title, content, summary, tab, authorId, cid, from: 'jianshu', imgUrl, createTime, modifyTime: this.app.mysql.literals.now
         })
+        // 更新状态不能重复入库
+        const res = await this.app.mysql.update('temparticle', {id: data.id, isPost: 1})
         return result
     }
 }

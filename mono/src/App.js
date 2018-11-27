@@ -23,7 +23,7 @@ class App extends Component {
               <Route path="/crawler/:id" component={Crawler}/>
               <Route path="/focus" component={Topic} />
               <Route path="/me" component={Me} />
-              {<Route path="/login" component={Login} />}
+              <Route path="/login" component={Login} />
               <Route path="/user" component={User} />
             </div>
             <div className="footer">

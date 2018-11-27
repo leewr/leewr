@@ -19,7 +19,7 @@ class TopicService extends Service {
       totalCount = await this.app.mysql.count('article', {authorId: parseInt(authorId)})
       
     } else {
-      result = await this.app.mysql.query('select article.*, user.name, user.avatarUrl from article left join user on article.authorId = user.id order by createtime desc, id desc limit ? offset ?', [pagination.limit, pagination.skip])
+      result = await this.app.mysql.query('select article.*, user.name, user.avatarUrl from article left join user on article.authorId = user.id order by modifyTime desc, id desc limit ? offset ?', [pagination.limit, pagination.skip])
       totalCount = await this.app.mysql.count('article')
     }
     return {

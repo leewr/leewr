@@ -3,6 +3,9 @@
 	background:#fff;
 	margin-bottom: 20px;
 	padding: 6px 12px 12px 12px;
+	&:first-child{
+		padding-top: 20px;
+	}
 	.itemHead{
 		display: flex;
 	    justify-content: space-between;
@@ -22,7 +25,7 @@
 		}
 	}
 	.itemImg{
-		height: 220px;
+		height: 160px;
 		width: 100%;
 		vertical-align: bottom;
 	}

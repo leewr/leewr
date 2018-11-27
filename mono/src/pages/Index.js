@@ -73,7 +73,6 @@ class Index extends Component {
 		})
 	}
 	render () {
-		console.log(this.state.dataSource)
 		const row = (val, sectionID, rowId) => {
 			return (
 				<Item key={rowId} itemVal={val}/>
@@ -93,7 +92,7 @@ class Index extends Component {
 			        className="am-list"
 			        pageSize={4}
 			        useBodyScroll
-			        onScroll={() => { console.log('scroll'); }}
+			        onScroll={() => { }}
 			        scrollRenderAheadDistance={500}
 			        onEndReached={this.onEndReached}
 			        onEndReachedThreshold={10}

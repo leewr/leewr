@@ -9,5 +9,6 @@ module.exports = () => {
             data: body,
             status: ctx.status
         }
+        ctx.status = 200
 	}
 }
