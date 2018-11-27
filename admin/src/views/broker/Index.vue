@@ -29,7 +29,7 @@
                 <template scope="scope">
                 <el-button size="mini" @click="toDetail(scope.row)">查看</el-button>
                 <el-button size="mini" type="primary" @click="toSendSms(scope.row)">修改</el-button>
-                <el-button size="mini" type="success" @click="toAppoint(scope.row)">发布</el-button>
+                <el-button size="mini" type="success" @click="put(scope.row)">发布</el-button>
                 </template>
             </el-table-column>
         </el-table>
@@ -68,8 +68,13 @@
           },'操作');
         },
         toDetail(row) {
-            console.log(row)
             this.$router.push({name: 'crawlerarticle', params: {id: row.id}})
+        },
+        put(row) {
+            this.$axios.post(`/api/v1/crawlers/${row.id}`)
+                .then(res => {
+                    console.log(res)
+                })
         }
       },
       components: {

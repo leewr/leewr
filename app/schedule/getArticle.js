@@ -13,8 +13,8 @@ class getArticle extends Subscription {
     }
     static get schedule() {
         return {
-            // cron: '0 30 12 * * *', // 每天 12：30执行定时任务
-            interval: '2m',
+            cron: '0 30 12 * * *', // 每天 12：30执行定时任务
+            // interval: '2m',
             type: 'all'
         }
     }

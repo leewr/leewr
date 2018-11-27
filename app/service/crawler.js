@@ -52,9 +52,11 @@ class Crawler extends Service {
     }
 
     // 保存到文章库
-    async saveToArticle() {
-        const { ctx, server } = this
-        server.topic.newAndSave()
+    async newAndSave(title, content, summary, tab, authorId) {
+        const result = await this.app.mysql.insert('article', { 
+            title, content, summary, tab, authorId, createTime: this.app.mysql.literals.now
+        })
+        return result
     }
 }
 

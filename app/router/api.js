@@ -18,6 +18,7 @@ module.exports = app => {
 	// 爬虫内容
 	apiV1Router.get('/crawlers', pagination, resetApiData, crawler.getList)
 	apiV1Router.get('/crawlers/:id', resetApiData, crawler.view)
+	apiV1Router.post('/crawlers/:id', resetApiData, crawler.save)
 
 	// 评论
 	apiV1Router.get('/topic/:id/comment', pagination, topic.commentList)

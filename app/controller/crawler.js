@@ -20,9 +20,28 @@ class Crawler extends Controller {
   async view() {
     const { ctx, service } = this
     const id = ctx.params.id
-    console.log(id)
     const topic = await service.crawler.getArticleById(id)
-    ctx.body = topic
+    const userInfo = await service.user.getUserInfo(topic.authorId)
+    let data = Object.assign(topic, { userInfo: userInfo})
+    ctx.body = data
+  }
+
+  // 保存文章
+  async save() {
+    const { ctx, service } = this
+    const id = ctx.params.id
+    const topic = await service.crawler.getArticleById(id)
+    // 数据库保存
+    const result = await service.crawler.newAndSave(
+      topic.title,
+      topic.content,
+      topic.summary,
+      topic.tab,
+      topic.authorId
+    )
+    // 增加用户帖子发表数量 increaseArticleCount
+    await service.user.increaseArticleCount( topic.authorId, 1, 1)
+    return result
   }
 }
 

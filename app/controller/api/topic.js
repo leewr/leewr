@@ -23,9 +23,8 @@ class Topic extends Controller {
     if (current_user) {
       const isFollowed = await service.user.getFollowStatus(topic.authorId, current_user)
       const isLiked = await service.user.getLikeStatus(id, current_user)
-      console.log('isLiked', isLiked)
       data = Object.assign(data, { isLiked: isLiked ? true : false})
-      data.userInfo = Object.assign(data.userInfo, { isFollowed: isFollowed.status})
+      data.userInfo = Object.assign(data.userInfo, { isFollowed: isFollowed !==null ? isFollowed.status : false})
     }
     ctx.body = {
       success: true,
@@ -65,7 +64,6 @@ class Topic extends Controller {
     let data = null
     if (current_user) {
       data = await service.topic.toggleLike(id, current_user)
-      console.log('toggleLike', data)
       if (data) {
         ctx.body = {
           status: data.status

@@ -15,7 +15,7 @@ class Header extends Component {
 						{
 							this.props.navData && this.props.navData.map((item, key) => (
 								<NavLink to={`${item.router}`} key={key} activeClassName="active">
-								{item.name}
+									{item.name}
 									<span></span>
 								</NavLink>
 							))

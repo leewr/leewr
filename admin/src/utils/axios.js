@@ -2,12 +2,13 @@ import axios from 'axios'
 import { Message, MessageBox } from 'element-ui'
 import Config from '../config/'
 import store from '../store'
-
+import utils from './index'
 
 const service = axios.create({
     baseURL: Config.apiUrl + '/' + Config.apiPrefix, // api的base_url
     headers: {
-        'Accept': '*/*'
+        'Accept': '*/*',
+        'x-csrf-token': utils.getCookie('csrfToken')
     },
     timeout: Config.timeout
 })
