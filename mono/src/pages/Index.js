@@ -66,7 +66,6 @@ class Index extends Component {
 		this.setState({ isLoading: true })
 		getData(++pageIndex, (res) => {
 			this.rData.push(...res.data.list)
-			console.log(this.rData)
 			this.setState({ 
 				dataSource: this.state.dataSource.cloneWithRows(this.rData),
 				isLoading: false

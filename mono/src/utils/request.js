@@ -3,14 +3,13 @@ import { getCookie } from '../utils/common'
 const instance = Axios.create({
     timeout: 1000,
     headers: {'x-csrf-token': getCookie('csrfToken')}
-  })
+})
 export default {
     get (url, params) {
         console.log(params)
         return new Promise((resolve, reject) => {
             instance.get(url, { params: params })
             .then(res => {
-
                 resolve(res.data);
             })
             .catch(err => {

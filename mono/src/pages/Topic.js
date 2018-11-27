@@ -56,7 +56,6 @@ class Topic extends Component {
 		Axios.post(`/api/v1/topic/${id}/like`)
 			.then(res => {
 				apiStatusCheck(this.props, res, () =>{
-					console.log(res)
 					let data = this.state.data
 						data.isLiked = res.data.status
 						res.data.status ? data.likeNum++ : data.likeNum--

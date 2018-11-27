@@ -9,7 +9,7 @@ module.exports = appInfo => {
   config.tabs = [['article', '随想'], ['found', '发现'], ['top', '精华']]
   // add your config here
   config.middleware = ['authUser', 'errorHandler', 'notfoundHandler'];
-  config.HOSTS = 'http://www.leewr.com'
+  config.HOSTS = process.env.NODE_ENV === 'production' ? 'http://www.leewr.com' : 'http://localhost:7001'
   config.errorHandler = {
     match: '/api'
   }

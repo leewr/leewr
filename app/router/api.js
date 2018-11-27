@@ -7,7 +7,7 @@ module.exports = app => {
 	const apiV1Router = app.router.namespace('/api/v1')
 	const { controller, middleware } = app;
 	const { topic } = controller.api
-	const { user, sign, comment, crawler} = controller
+	const { user, sign, comment, crawler, images} = controller
 	const userRequired = middleware.userRequired()
 	const pagination = middleware.pagination()
 	const resetApiData = middleware.resetApiData()
@@ -19,6 +19,10 @@ module.exports = app => {
 	apiV1Router.get('/crawlers', pagination, resetApiData, crawler.getList)
 	apiV1Router.get('/crawlers/:id', resetApiData, crawler.view)
 	apiV1Router.post('/crawlers/:id', resetApiData, crawler.save)
+
+	// 上传图片
+	apiV1Router.post('/upload', userRequired, images.upload)
+
 
 	// 评论
 	apiV1Router.get('/topic/:id/comment', pagination, topic.commentList)

@@ -1,9 +1,6 @@
 import React, { Component } from 'react'
 import Header from '../comp/header.js'
-import Comment from '../comp/comment/Comment.js'
-import CommentList from '../comp/commentList/CommentList.js'
-import FollowAuthor from '../comp/follow/followAuthor.js'
-
+import { Toast } from 'antd-mobile';
 import Axios, { apiStatusCheck } from '../utils/request.js'
 
 import './topic/topic.scss'
@@ -56,7 +53,19 @@ class Crawler extends Component {
 				})
 			}
 		})
-		
+	}
+
+	uploadImage() {
+		let formFile = new FormData()
+		formFile.append("image", this.state.file)
+		Axios.post(`/upload`, formFile,  {headers: {'Content-Type': 'multipart/form-data'}})
+			.then(res => {
+				apiStatusCheck(res, () => {
+					Toast.info('图片上传成功')
+				})
+			}).catch(err => {
+				console.log(err)
+			})
 	}
 	
 	render () {
@@ -70,7 +79,7 @@ class Crawler extends Component {
 							上传封面图片
 							<img className={this.state.imgFile ? 'previewImage' : 'hide'} src={this.state.imgFile} />
 						</label>
-						<div className={this.state.imgFile ? 'btn active show' : 'hide'}>上传图片</div>
+						<div className={this.state.imgFile ? 'btn active show' : 'btn hide'} onClick={this.uploadImage.bind(this)}>上传图片</div>
 					</div>
 					<h1>{this.state.data.title}</h1>
 					<div className="author">
