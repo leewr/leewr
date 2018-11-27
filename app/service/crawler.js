@@ -7,6 +7,31 @@ class Crawler extends Service {
         const result = await this.app.mysql.query('select temparticle.cid from temparticle')
         return result
     }
+
+    async list() {
+        const result = await this.app.mysql.query('select * from temparticle')
+        return result
+    }
+
+    async getList(pagination) {
+        const { ctx } = this
+        pagination = pagination || {limit: 10, skip: 0}
+        let params = {
+          orders:[['createTime','desc'], ['id', 'desc']],
+          limit: pagination.limit,
+          offset: pagination.skip
+        }
+        let result, totalCount
+            result =  await this.app.mysql.select('temparticle', params)
+            totalCount = await this.app.mysql.count('temparticle')
+        return {
+            list: result,
+            currentPage: Number(pagination.skip),
+            pages: Math.ceil(totalCount/pagination.limit),
+            total: totalCount
+        }
+      }
+
     // 保存到抓取的temp库
     async save(info) {
         const {title, content, summary, cid, authorId, tab, createTime} = info
@@ -17,7 +42,10 @@ class Crawler extends Service {
         )
         return result
     }
-    
+    async getArticleById(id) {
+        const result = await this.app.mysql.get('temparticle', {id: id})
+        return result
+    }
     // 编辑临时文章
     async edit(id) {
 
@@ -25,7 +53,8 @@ class Crawler extends Service {
 
     // 保存到文章库
     async saveToArticle() {
-
+        const { ctx, server } = this
+        server.topic.newAndSave()
     }
 }
 

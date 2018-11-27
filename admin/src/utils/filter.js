@@ -70,6 +70,11 @@ const filter = () => {
     const result = `${+parseFloat((num * 100).toPrecision(12))}%`;
     return result;
   });
+  Vue.filter('textSubstr', (val) => {
+    if (!val) return '';
+    if (val.length > 30) val = val.substr(0, 30)
+    return val + '...';
+  });
 };
 
 export default filter;

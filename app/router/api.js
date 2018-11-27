@@ -7,7 +7,7 @@ module.exports = app => {
 	const apiV1Router = app.router.namespace('/api/v1')
 	const { controller, middleware } = app;
 	const { topic } = controller.api
-	const { user, sign, comment } = controller
+	const { user, sign, comment, crawler} = controller
 	const userRequired = middleware.userRequired()
 	const pagination = middleware.pagination()
 	const resetApiData = middleware.resetApiData()
@@ -15,6 +15,10 @@ module.exports = app => {
 	apiV1Router.get('/topics', pagination, resetApiData, topic.index)
 	apiV1Router.get('/topic/:id', topic.view)
 	apiV1Router.get('/topics/:day', pagination, topic.topArticle)
+	// 爬虫内容
+	apiV1Router.get('/crawlers', pagination, resetApiData, crawler.getList)
+	apiV1Router.get('/crawlers/:id', resetApiData, crawler.view)
+
 	// 评论
 	apiV1Router.get('/topic/:id/comment', pagination, topic.commentList)
 	apiV1Router.post('/topic/:id/comment', userRequired, comment.add)
@@ -35,4 +39,5 @@ module.exports = app => {
 	console.log(localStrategy)
 	apiV1Router.post('/passport/local', localStrategy)
 	apiV1Router.post('/signout', userRequired, resetApiData, sign.signout)
+
 }

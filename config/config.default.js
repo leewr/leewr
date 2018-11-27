@@ -62,7 +62,7 @@ module.exports = appInfo => {
     xframe: {
       enable: false
     },
-    domainWhiteList: ['m.leewr.com','localhost']
+    domainWhiteList: ['m.leewr.com','localhost', 'localhost:8080']
   }
 
 
