@@ -13,7 +13,8 @@ class getArticle extends Subscription {
     }
     static get schedule() {
         return {
-            cron: '0 30 12 * * *', // 每天 12：30执行定时任务
+            // cron: '0 30 12 * * *', // 每天 12：30执行定时任务
+            interval: '5m',
             type: 'all'
         }
     }
@@ -54,7 +55,6 @@ class getArticle extends Subscription {
                     this.ctx.logger.info('crawler', info.title)
                     await this.service.crawler.save(info)
                 } else {
-                    // console.log(info.title)
                 }
                 console.log(info.title)
                 this.finishedIndex++

@@ -14,8 +14,6 @@ class HomeController extends Controller {
 		} else {
 			await ctx.redirect('http://m.leewr.com')
 		}
-		
-		
 		return
   	} else {
   		const topis = await service.topic.getArticleList()
