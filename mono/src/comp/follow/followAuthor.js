@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import FollowBtn from './FollowBtn.js'
 import './followAuthor.scss'
 import defaultImg from '../../static/images/defaultUrl.jpg'
-const ImageHost = window.location.host.indexOf('leewr.com') > -1 ? 'http://www.leewr.com' : 'http://10.1.5.110:7001'
+const ImageHost = window.location.host.indexOf('leewr.com') > -1 ? 'http://www.leewr.com' : 'http://localhost:7001'
 
 class FollowAuthor extends Component {
 	constructor (props) {

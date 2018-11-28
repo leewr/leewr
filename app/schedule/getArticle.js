@@ -1,6 +1,8 @@
 const Subscription = require('egg').Subscription
 const superagent = require('superagent');
 const cheerio = require('cheerio');
+const nodemailer = require('nodemailer')
+const moment = require('moment')
 
 class getArticle extends Subscription {
     constructor(props) {
@@ -14,7 +16,7 @@ class getArticle extends Subscription {
     static get schedule() {
         return {
             cron: '0 30 12 * * *', // 每天 12：30执行定时任务
-            // interval: '2m',
+            // interval: '20s',
             type: 'all'
         }
     }
@@ -86,6 +88,7 @@ class getArticle extends Subscription {
         }
         
         this.asyn(middle, function () {
+            // this.postMail()
             console.log('length', that.totalSize)
         })
     }
@@ -95,8 +98,29 @@ class getArticle extends Subscription {
             .then(cb)
     }
 
-    getPageSize () {
-
+    postMail () {
+        let transporter = nodemailer.createTransport({
+            service: 'qq',
+            port: 465,
+            secureConnection: true,
+            auth: {
+                user: '121657771@qq.com',
+                pass: 'nnxybiwrfcfhbgia',
+            }
+        })
+        let html = this.app.config.env === 'local' ? 'http://localhost:3000/crawlers' : 'http://m.leewr.com/crawlers'
+        let mailOptions = {
+            from: '"liwenrun" <121657771@qq.com>',
+            to: '121657771@qq.com',
+            subject: `[${moment().format('L')}]日新的信息已经入库`,
+            html: `页面已经生成${html}，快去上传图片发布吧！`
+        }
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+              return console.log(error);
+            }
+            console.log('Message sent: %s', info.messageId)
+        })
     }
 }
 

@@ -6,9 +6,7 @@ class HomeController extends Controller {
   async index() {
   	const { ctx, service, app } = this
 	const agent = ctx.request['headers']['user-agent'].toLowerCase()
-	console.log(app.config.env)
   	if (agent.match(/iphone|ipod|ipad|android/)) {
-		console.log('跳转到移动站')
 		if (app.config.env == 'local') {
 			await ctx.redirect('http://localhost:3000')
 		} else {

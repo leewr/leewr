@@ -16,6 +16,5 @@ module.exports = () => {
       }
       ctx.status = 200
     }
-    console.log(ctx.body)
   };
 };

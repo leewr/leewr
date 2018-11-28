@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import './Item.scss'
 import defaultImg from '../../static/images/defaultUrl.jpg'
-const ImageHost = window.location.host.indexOf('leewr.com') > -1 ? 'http://www.leewr.com' : ''
+const ImageHost = window.location.host.indexOf('leewr.com') > -1 ? 'http://www.leewr.com' : 'http://localhost:7001'
 class Item extends Component {
 	typeFilter (val) {
 		let obj = {
