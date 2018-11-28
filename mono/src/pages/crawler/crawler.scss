@@ -1,9 +1,13 @@
 .crawler{
-    height: 100vh;;
+    height: 100vh;
     .crawlerList{
         padding: 12px 12px 0 12px;
     }
     a{
         color: #333;
+    }
+    .summary{
+        font-size: 12px;
+        color: #666;
     }
 }

@@ -73,9 +73,12 @@ class Index extends Component {
 		const row = (val, sectionID, rowId) => {
 			return (
 				<div className="crawlerList">
-					<div className="title">
-						<Link className="itemBody" to={`/crawler/${val.id}`}>{val.title}</Link>
-					</div>
+					<Link className="itemBody" to={`/crawler/${val.id}`}>
+						<div className="title">{val.title}</div>
+						<div className="summary">
+							{val.summary}
+						</div>
+					</Link>
 				</div>
 			)
 		}
