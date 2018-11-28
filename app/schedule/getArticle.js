@@ -88,7 +88,7 @@ class getArticle extends Subscription {
         }
         
         this.asyn(middle, function () {
-            // this.postMail()
+            this.postMail()
             console.log('length', that.totalSize)
         })
     }
@@ -105,7 +105,7 @@ class getArticle extends Subscription {
             secureConnection: true,
             auth: {
                 user: '121657771@qq.com',
-                pass: 'nnxybiwrfcfhbgia',
+                pass: '',
             }
         })
         let html = this.app.config.env === 'local' ? 'http://localhost:3000/crawlers' : 'http://m.leewr.com/crawlers'

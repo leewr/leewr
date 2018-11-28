@@ -4,6 +4,7 @@ import Header from '../comp/header.js'
 import store from '../store'
 import { loginOutRquest } from '../actions'
 import './user/user.scss'
+const ImageHost = window.location.host.indexOf('leewr.com') > -1 ? 'http://www.leewr.com' : 'http://localhost:7001'
 
 export function userAuthoried (user, props) {
 
@@ -42,7 +43,7 @@ class User extends Component {
                     <div className="userHead">
                         <div className="name">{this.state.userState.username}</div>
                         <div className="avatar">
-                            <img src={this.state.userState.avatarUrl}/>
+                            <img src={ImageHost + this.state.userState.avatarUrl}/>
                         </div>
                     </div>
                     <div className="userInfo">
