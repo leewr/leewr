@@ -10,14 +10,16 @@ import './login/login.scss'
 class Login extends Component {
 	constructor (props) {
 		super(props)
+		
 		this.state = {
 			userName: '',
 			password: '',
 			loginState: false
 		}
 		if (store.getState().userState) {
-			console.log(this.props.history)
-			// this.props.history.push('/focus')
+			// console.log(this.props.history)
+			// this.props.history.goBack()
+			// this.props.history.push('/user')
 		}
 	}
 	onChange (type, event) {
@@ -38,6 +40,9 @@ class Login extends Component {
 		const params = {'username': this.state.userName, 'password': this.state.password}
 		if (this.state.loginState) {
 			dispatch(loginRequest(params, () => {
+				console.log('1')
+				console.log(store.getState().userState)
+				// this.props.history.push('/user', 'aa')
 				this.props.history.goBack()
 			}))
 		}

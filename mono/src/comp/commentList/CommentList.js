@@ -7,7 +7,7 @@ import './commentList.scss'
 
 class CommentList extends Component {
 	constructor(props) {
-		super()
+		super(props)
 		this.state = {
 			commentData: []
 		}

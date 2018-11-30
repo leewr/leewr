@@ -26,7 +26,7 @@ class Item extends Component {
 				<Link to={`/topics/${this.props.itemVal.id}`} className="itemBody">
 					{this.props.itemVal.imgUrl ? <img className="itemImg" src={this.props.itemVal.imgUrl ? ImageHost + this.props.itemVal.imgUrl : defaultImg}/>: ''}
 					<div className="title">
-						MONO电台 | {this.props.itemVal.title}
+						{this.props.itemVal.title}
 					</div>
 					{this.props.itemVal.tags ? <div className="tags">
 						<span>{this.props.itemVal.tags}</span>

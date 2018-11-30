@@ -87,8 +87,8 @@ class getArticle extends Subscription {
             )
         }
         
-        this.asyn(middle, function () {
-            this.postMail()
+        this.asyn(middle,  () => {
+            that.postMail()
             console.log('length', that.totalSize)
         })
     }

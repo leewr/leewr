@@ -10,7 +10,7 @@ import {
 export function userState(state = {}, action) {
 	switch (action.type) {
 		case GETUSERSTATE:
-			console.log(state)
+			console.log(action)
 			return action.userState
 		default:
 			return state

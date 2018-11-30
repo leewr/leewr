@@ -13,6 +13,7 @@ export function userAuthoried (user, props) {
 class User extends Component {
     constructor (props) {
         super(props)
+        console.log(store.getState())
         if (window.sessionStorage.userState) {
             this.state = {
                 userState: JSON.parse(window.sessionStorage.userState)
