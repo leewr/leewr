@@ -47,7 +47,7 @@ class TopicService extends Service {
       { 
         title, content, summary, tab, authorId, createTime: this.app.mysql.literals.now
       }
-      );
+    );
     return result
   }
 

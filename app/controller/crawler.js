@@ -7,11 +7,13 @@ class Crawler extends Controller {
     const { ctx, service } = this
     const pagination = ctx.pagination
     const topis = await service.crawler.index(pagination)
+    
     ctx.body = topis
   }
   async getList() {
-    const { ctx, service } = this
+    const { ctx, service, controller } = this
     const pagination = ctx.pagination
+    console.log(controller)
     const topis = await service.crawler.getList(pagination)
     ctx.body = topis
   }
@@ -28,7 +30,7 @@ class Crawler extends Controller {
 
   // 保存文章
   async save() {
-    const { ctx, service } = this
+    const { ctx, service, controller } = this
     const id = ctx.params.id
     const imgUrl = ctx.request.body.imgUrl
     console.log(ctx.request.body)
@@ -46,6 +48,8 @@ class Crawler extends Controller {
     // 数据库保存
     if (!topic.isPost) {
       data = await service.crawler.newAndSave(topic)
+      // 图片操作，将temp中图片移动到待日期的文件夹中yyyyMM中的文件夹中
+      
       // 增加用户帖子发表数量 increaseArticleCount
       await service.user.increaseArticleCount(topic.authorId, 1, 1)
       ctx.body = data.message
@@ -55,5 +59,6 @@ class Crawler extends Controller {
     }
   }
 }
+
 
 module.exports = Crawler
