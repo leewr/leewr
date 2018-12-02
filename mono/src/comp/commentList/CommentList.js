@@ -5,6 +5,7 @@ import dayjs from 'dayjs'
 
 import './commentList.scss'
 
+
 class CommentList extends Component {
 	constructor(props) {
 		super(props)
@@ -18,7 +19,6 @@ class CommentList extends Component {
 				commentData: nextProps.commentData
 			})
 		}, 0)
-		
 	}
 	toggleThumbs (index, commentId) {
 		let id = this.props.match.params.id

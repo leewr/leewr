@@ -21,7 +21,9 @@ module.exports = app => {
 	apiV1Router.post('/crawlers/:id', resetApiData, crawler.save)
 
 	// 上传图片
-	apiV1Router.post('/upload', userRequired, images.upload)
+	apiV1Router.post('/upload', userRequired, resetApiData, images.upload)
+	apiV1Router.get('/uploads', pagination, resetApiData, images.index)
+	apiV1Router.get('/uploads/:id', resetApiData, images.show)
 
 	// 评论
 	apiV1Router.get('/topic/:id/comment', pagination, topic.commentList)

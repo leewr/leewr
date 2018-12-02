@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Header from '../comp/header.js'
 import { Toast } from 'antd-mobile';
 import Axios, { apiStatusCheck } from '../utils/request.js'
-
+import ImgList from '../comp/imgList/imgList.js';
 import './topic/topic.scss'
 
 class Crawler extends Component {
@@ -15,7 +15,8 @@ class Crawler extends Component {
 			userInfo: '',
 			imgFile: '',
 			imgUrl: '',
-			postBtn: false
+			postBtn: false,
+			imagesListShow: false
 		}
 		console.log(this.props.match.params.id)
 	}
@@ -65,7 +66,7 @@ class Crawler extends Component {
 				apiStatusCheck(this.props, res, () => {
 					Toast.info('图片上传成功')
 					this.setState({
-						imgUrl: res.data,
+						imgUrl: res.data.data,
 						postBtn: true
 					})
 				})
@@ -92,32 +93,65 @@ class Crawler extends Component {
 		}
 		
 	}
+
+	imageChange(val) {
+		this.toggleBody(0)
+		this.setState({
+			imgUrl: val.originUrl,
+			imgFile: val.originUrl,
+			postBtn: true,
+			imagesListShow: false
+		})
+	}
+
+	openImageList() {
+		this.toggleBody(1)
+		this.refs.ImgList.list()
+		this.setState({
+			imagesListShow: true
+		})
+	}
+
+	toggleBody(isPin) {
+        if(isPin){
+            document.body.style.height = '100vh'
+            document.body.style['overflow-y'] = 'hidden'
+        }else{
+            document.body.style.height = 'unset'
+            document.body.style['overflow-y'] = 'auto'
+        }
+    }
 	
 	render () {
-		const Message = (props) => {
-			return (
-				<div className={this.state.data.isPost ? 'uploadBox hide': 'uploadBox'}>
-				<label htmlFor="uploadImage" className="uploadImage">
-					<input type="file" hidden id="uploadImage" name="uploadImage" onChange={(e) => this.getLocalImage(e)} />
-					上传封面图片
-					<img className={this.state.imgFile ? 'previewImage' : 'hide'} src={this.state.imgFile} />
-				</label>
-				<div className={this.state.imgFile ? 'btn active show' : 'btn hide'} onClick={this.uploadImage.bind(this)}>上传图片</div>
-			</div>
-			)
-		}
+		// const Message = (props) => {
+		// 	return (
+		// 		<div className='uploadBox'>
+		// 			<label htmlFor="uploadImage" className="uploadImage">
+						
+		// 				<input type="file" hidden id="uploadImage" name="uploadImage" onChange={(e) => this.getLocalImage(e)} />
+		// 				上传封面图片
+		// 				<img className={this.state.imgFile ? 'previewImage' : 'hide'} src={this.state.imgFile} />
+		// 			</label>
+		// 			<div className={this.state.imgFile && !this.state.imgUrl ? 'btn active show' : 'btn hide'} onClick={this.uploadImage.bind(this)}>上传图片</div>
+		// 		</div>
+		// 	)
+		// }
 		return (
 			<div className="topic">
 				<Header navData={this.state.navData} />
+				<ImgList ref="ImgList" onImageSelectChange={this.imageChange.bind(this)} show={this.state.imagesListShow}/>
 				<div className="topicWrap">
 					{
 						!this.state.data.isPost ? <div className='uploadBox'>
-						<label htmlFor="uploadImage" className="uploadImage">
-							<input type="file" hidden id="uploadImage" name="uploadImage" onChange={(e) => this.getLocalImage(e)} />
-							上传封面图片
-							<img className={this.state.imgFile ? 'previewImage' : 'hide'} src={this.state.imgFile} />
-						</label>
-						<div className={this.state.imgFile ? 'btn active show' : 'btn hide'} onClick={this.uploadImage.bind(this)}>上传图片</div>
+						<div className="uploadImageWrap">
+							<div className="getSysImgList" onClick={this.openImageList.bind(this)}>GET</div>
+							<label htmlFor="uploadImage" className="uploadImage">
+								<input type="file" hidden id="uploadImage" name="uploadImage" onChange={(e) => this.getLocalImage(e)} />
+								上传封面图片
+								<img className={this.state.imgFile ? 'previewImage' : 'hide'} src={this.state.imgFile} />
+							</label>
+						</div>
+						<div className={this.state.imgFile && !this.state.imgUrl ? 'btn active show' : 'btn hide'} onClick={this.uploadImage.bind(this)}>上传图片</div>
 					</div> : ''
 					}
 					<h1>{this.state.data.title}</h1>

@@ -53,6 +53,8 @@ class Crawler extends Service {
 
     // 保存到文章库
     async newAndSave(data) {
+        console.log(data)
+        debugger
         const { title, content, summary, tab, authorId, createTime, cid, imgUrl } = data
         const result = await this.app.mysql.insert('article', {
             title, content, summary, tab, authorId, cid, from: 'jianshu', imgUrl, createTime, modifyTime: this.app.mysql.literals.now

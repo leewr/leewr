@@ -20,6 +20,20 @@ class UploadFormController extends Controller {
       data: '/public/temp/' + filename
     }
   }
+
+  async index() {
+    const { ctx, service } = this
+    const pagination = ctx.pagination
+    const data = await service.images.index(pagination)
+    ctx.body = data
+  }
+
+  async show() {
+    const { ctx, service } = this
+    const id = ctx.params.id
+    const data = await service.images.show(id)
+    ctx.body = data
+  }
 }
 
 module.exports = UploadFormController

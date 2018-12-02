@@ -105,7 +105,7 @@ class getArticle extends Subscription {
             secureConnection: true,
             auth: {
                 user: '121657771@qq.com',
-                pass: '',
+                pass: 'nnxybiwrfcfhbgia',
             }
         })
         let html = this.app.config.env === 'local' ? 'http://localhost:3000/crawlers' : 'http://m.leewr.com/crawlers'
