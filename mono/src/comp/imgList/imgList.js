@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Axios, { apiStatusCheck } from '../../utils/request.js'
+import '../../utils/config';
 import './imgList.scss'
 // 图片nginx有必要处理一层
 
@@ -52,7 +53,7 @@ class ImgList extends Component {
             return (
                 <div className="imgItem" key={index}>
                     <div className="imgHolder" onClick={this.imageChange.bind(this, index)}>
-                        <img src={item.originUrl} />
+                        <img src={global.constants.ImageHost + item.originUrl} />
                     </div>
                 </div>
             )

@@ -3,11 +3,17 @@
     .crawlerList{
         padding: 12px 12px 0 12px;
     }
-    a{
+    .title{
         color: #333;
+        &.posted{
+            color: #666;
+        }
     }
     .summary{
         font-size: 12px;
         color: #666;
+        &.posted{
+            color: #999;
+        }
     }
 }

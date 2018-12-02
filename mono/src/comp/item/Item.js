@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import './Item.scss'
 import defaultImg from '../../static/images/defaultUrl.jpg'
-const ImageHost = window.location.host.indexOf('leewr.com') > -1 ? 'http://www.leewr.com' : 'http://localhost:7001'
+import '../../utils/config';
 class Item extends Component {
 	typeFilter (val) {
 		let obj = {
@@ -16,7 +16,7 @@ class Item extends Component {
 			<div className="item">
 				<div className="itemHead">
 					<div>
-						<img src={this.props.itemVal.avatarUrl ? ImageHost +  this.props.itemVal.avatarUrl : defaultImg} />
+						<img src={this.props.itemVal.avatarUrl ? global.constants.ImageHost +  this.props.itemVal.avatarUrl : defaultImg} />
 						<span>{this.props.itemVal.name}</span>
 					</div>
 					<span className="f12">
@@ -24,7 +24,7 @@ class Item extends Component {
 					</span>
 				</div>
 				<Link to={`/topics/${this.props.itemVal.id}`} className="itemBody">
-					{this.props.itemVal.imgUrl ? <img className="itemImg" src={this.props.itemVal.imgUrl ? ImageHost + this.props.itemVal.imgUrl : defaultImg}/>: ''}
+					{this.props.itemVal.imgUrl ? <img className="itemImg" src={this.props.itemVal.imgUrl ? global.constants.ImageHost + this.props.itemVal.imgUrl : defaultImg}/>: ''}
 					<div className="title">
 						{this.props.itemVal.title}
 					</div>

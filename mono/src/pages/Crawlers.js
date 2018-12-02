@@ -74,8 +74,8 @@ class Index extends Component {
 			return (
 				<div className="crawlerList">
 					<Link className="itemBody" to={`/crawler/${val.id}`}>
-						<div className="title">{val.title}</div>
-						<div className="summary">
+						<div className={val.isPost ? 'title posted' : 'title'}>{val.isPost ? '[已发布]' : ''}{val.title}</div>
+						<div className={val.isPost ? 'summary posted' : 'summary'}>
 							{val.summary}
 						</div>
 					</Link>

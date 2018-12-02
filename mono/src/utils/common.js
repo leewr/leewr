@@ -2,7 +2,6 @@ export function isEmpty(value) {
     if (value == null) {
         return true
     }
-
 }
 
 export function getCookie(name) {
