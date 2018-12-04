@@ -15,14 +15,12 @@ class getArticle extends Subscription {
     }
     static get schedule() {
         return {
-            cron: '0 30 12 * * *', // 每天 12：30执行定时任务
+            cron: '0 16 22 * * *', // 每天 12：30执行定时任务
             // interval: '20s',
             type: 'all'
         }
     }
-    async getPage () {
-        setInterval()
-    }
+
     async getDetail (res, resolve) {
         let index = setInterval(async () => {
             if (this.finishedIndex === res.data.length) {
@@ -63,7 +61,7 @@ class getArticle extends Subscription {
             } catch(err) {
                 console.log(err)
             }
-        }, 2000)
+        }, 300)
     }
     async subscribe() {
         console.log('this.page', this.page)
@@ -105,13 +103,13 @@ class getArticle extends Subscription {
             secureConnection: true,
             auth: {
                 user: '121657771@qq.com',
-                pass: 'nnxybiwrfcfhbgia',
+                pass: 'nnxybiwrfcfhbgia'
             }
         })
         let html = this.app.config.env === 'local' ? 'http://localhost:3000/crawlers' : 'http://m.leewr.com/crawlers'
         let mailOptions = {
             from: '"liwenrun" <121657771@qq.com>',
-            to: '121657771@qq.com',
+            to: 'liwenrunwj65423@touna.cn',
             subject: `[${moment().format('L')}]日新的信息已经入库`,
             html: `页面已经生成${html}，快去上传图片发布吧！`
         }
