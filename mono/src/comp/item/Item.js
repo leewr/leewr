@@ -16,7 +16,8 @@ class Item extends Component {
 		let prodImgStr = global.constants.env === 'prod' ? '_350x160' : ''
 		if (imgUrl) {
 			const  imgUrlName = imgUrl.split('.')
-			imgUrl = `${global.constants.ImageHost}${imgUrlName[0]}${prodImgStr}.${imgUrlName[1]}`
+			const webp = global.constants.webpa ? '.webp' : ''
+			imgUrl = `${global.constants.ImageHost}${imgUrlName[0]}${prodImgStr}.${imgUrlName[1]}${webp}`
 		}
 		
 		return (
