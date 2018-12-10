@@ -15,13 +15,14 @@ class getArticle extends Subscription {
     }
     static get schedule() {
         return {
-            cron: '0 16 22 * * *', // 每天 12：30执行定时任务
+            cron: '0 24 0 * * *', // 每天 12：30执行定时任务
             // interval: '20s',
             type: 'all'
         }
     }
 
     async getDetail (res, resolve) {
+        const { ctx } = this
         let index = setInterval(async () => {
             if (this.finishedIndex === res.data.length) {
                 this.pageFinish = true
@@ -31,6 +32,8 @@ class getArticle extends Subscription {
                 resolve(res)
                 return
             }
+            ctx.logger.info('this.finishedIndex', this.finishedIndex)
+            ctx.logger.info('res.data[this.finishedIndex].object', res.data[this.finishedIndex].object)
             let obj = res.data[this.finishedIndex].object
             let result = await this.ctx.curl(`https://www.jianshu.com/asimov/p/${obj.data.slug}`, {
                     method: 'GET',
@@ -61,7 +64,7 @@ class getArticle extends Subscription {
             } catch(err) {
                 console.log(err)
             }
-        }, 300)
+        }, 2000)
     }
     async subscribe() {
         console.log('this.page', this.page)
@@ -69,7 +72,8 @@ class getArticle extends Subscription {
         let middle = []
         // 获取所有文章长度
         let res = await that.ctx.curl(`https://www.jianshu.com/asimov/notebooks/679554/public_notes?page=${that.page}&count=1000`, {
-                        dataType: 'json'
+                        dataType: 'json',
+                        timeout: '10000'
                     })
         this.pageSize = res.data.length
         for (let i = 0; i < this.pageSize / this.count; i++) {
@@ -97,6 +101,7 @@ class getArticle extends Subscription {
     }
 
     postMail () {
+        const { ctx } = this
         let transporter = nodemailer.createTransport({
             service: 'qq',
             port: 465,
@@ -115,9 +120,9 @@ class getArticle extends Subscription {
         }
         transporter.sendMail(mailOptions, (error, info) => {
             if (error) {
-              return console.log(error);
+              return ctx.logger.info('Email Send error', error);
             }
-            console.log('Message sent: %s', info.messageId)
+            ctx.logger.info('Message sent: %s', info.messageId);
         })
     }
 }

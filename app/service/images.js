@@ -1,5 +1,6 @@
 const Service = require('egg').Service
 const fs = require('fs')
+const webp=require('webp-converter');
 
 class Images extends Service {
   async save(originUrlPath, targetPath, fileName, date) {
@@ -9,10 +10,16 @@ class Images extends Service {
     if (!fs.existsSync(targetPath)) {
       fs.mkdir(targetPath)
     }
+    // 移动图片
     await fs.rename(originUrlPath, targetPath + '/' + fileName, async (err) => {
       if (err) throw err;
-      await this.app.mysql.insert('images', { 
-        originUrl: `/public/upload/${date}/${fileName}`, cid, createTime: this.app.mysql.literals.now, modifyTime: this.app.mysql.literals.now
+      // 生成webp图片
+      webp.cwebp(targetPath + '/' + fileName, targetPath + '/' + fileName + '.webp', '-q 80', function(status){
+        if (status === 100) {
+          this.app.mysql.insert('images', { 
+            originUrl: `/public/upload/${date}/${fileName}`, cid, createTime: this.app.mysql.literals.now, modifyTime: this.app.mysql.literals.now
+          })
+        }
       })
     })
   }

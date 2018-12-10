@@ -4,7 +4,7 @@ import {
   Route,
   Link
 } from 'react-router-dom'
-
+import { getCookie } from './utils/common'
 import Index from './pages/Index.js'
 import Topic from './pages/Topic.js'
 import Crawler from './pages/Crawler.js'
@@ -14,6 +14,10 @@ import Login from './pages/Login.js'
 import User from './pages/User.js'
 
 class App extends Component {
+  constructor(props) {
+    super(props)
+    global.constants.webpa = getCookie('webpAvaile') === 'available' ? true : false
+  }
   render() {
     return (
       <Router>

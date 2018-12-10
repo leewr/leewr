@@ -12,6 +12,14 @@ class Item extends Component {
 		return obj[val]
 	}
 	render() {
+		let imgUrl = this.props.itemVal.imgUrl
+		let prodImgStr = global.constants.env === 'prod' ? '_350x160' : ''
+		if (imgUrl) {
+			const  imgUrlName = imgUrl.split('.')
+			const webp = global.constants.webpa ? '.webp' : ''
+			imgUrl = `${global.constants.ImageHost}${imgUrlName[0]}${prodImgStr}.${imgUrlName[1]}${webp}`
+		}
+		
 		return (
 			<div className="item">
 				<div className="itemHead">
@@ -24,7 +32,7 @@ class Item extends Component {
 					</span>
 				</div>
 				<Link to={`/topics/${this.props.itemVal.id}`} className="itemBody">
-					{this.props.itemVal.imgUrl ? <img className="itemImg" src={this.props.itemVal.imgUrl ? global.constants.ImageHost + this.props.itemVal.imgUrl : defaultImg}/>: ''}
+					{this.props.itemVal.imgUrl ? <img className="itemImg" src={imgUrl}/>: ''}
 					<div className="title">
 						{this.props.itemVal.title}
 					</div>
