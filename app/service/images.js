@@ -14,7 +14,7 @@ class Images extends Service {
     await fs.rename(originUrlPath, targetPath + '/' + fileName, async (err) => {
       if (err) throw err;
       // 生成webp图片
-      webp.cwebp(targetPath + '/' + fileName, targetPath + '/' + fileName + '.webp', '-q 80', function(status){
+      webp.cwebp(targetPath + '/' + fileName, targetPath + '/' + fileName.split('.')[0] + '.webp', '-q 80', function(status){
         if (status === 100) {
           this.app.mysql.insert('images', { 
             originUrl: `/public/upload/${date}/${fileName}`, cid, createTime: this.app.mysql.literals.now, modifyTime: this.app.mysql.literals.now
