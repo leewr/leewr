@@ -13,16 +13,13 @@ class Item extends Component {
 	}
 	render() {
 		let imgUrl = this.props.itemVal.imgUrl
-		let prodImgStr = global.constants.env === 'prod' ? '_350x160' : ''
-
+		let prodImgStr = global.constants.env === 'prod' ? '_350x160f' : ''
+		console.log(global.constants.webpa)
 		if (imgUrl) {
-			const  imgUrlName = imgUrl.split('.')
-			// const webp = global.constants.webpa ? '.webp' : ''
-			console.log('global.constants.webpa', global.constants.webpa)
-			if (global.constants.webpa) {
-				imgUrl = `${global.constants.ImageHost}${imgUrlName[0]}.webp`
-			} else {
-				imgUrl = `${global.constants.ImageHost}${imgUrlName[0]}${prodImgStr}.${imgUrlName[1]}`
+			if (global.constants.env === 'prod') {
+				const  imgUrlName = imgUrl.split('.')
+				const webp = global.constants.webpa ? '.webp' : ''
+				imgUrl = `${global.constants.ImageHost}${imgUrl}${prodImgStr}.${imgUrlName[1]}${webp}`
 			}
 		}
 		
