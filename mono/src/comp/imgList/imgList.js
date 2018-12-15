@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Axios, { apiStatusCheck } from '../../utils/request.js'
+import { webpExt } from '../../utils/common'
 import '../../utils/config';
 import './imgList.scss'
-// 图片nginx有必要处理一层
 
 class ImgList extends Component {
     constructor(props) {
@@ -50,10 +50,11 @@ class ImgList extends Component {
 
     render() {
         const list = this.state.imagesList.map((item, index) => {
+            item.originUrl = webpExt(item.originUrl, 350, 350, true)
             return (
                 <div className="imgItem" key={index}>
                     <div className="imgHolder" onClick={this.imageChange.bind(this, index)}>
-                        <img src={global.constants.ImageHost + item.originUrl} />
+                        <img src={item.originUrl} />
                     </div>
                 </div>
             )

@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import './Item.scss'
 import defaultImg from '../../static/images/defaultUrl.jpg'
-import '../../utils/config';
+import '../../utils/config'
+import { webpExt } from '../../utils/common'
 class Item extends Component {
 	typeFilter (val) {
 		let obj = {
@@ -12,17 +13,7 @@ class Item extends Component {
 		return obj[val]
 	}
 	render() {
-		let imgUrl = this.props.itemVal.imgUrl
-		let prodImgStr = global.constants.env === 'prod' ? '_350x160f' : ''
-		console.log(global.constants.webpa)
-		if (imgUrl) {
-			if (global.constants.env === 'prod') {
-				const  imgUrlName = imgUrl.split('.')
-				const webp = global.constants.webpa ? '.webp' : ''
-				imgUrl = `${global.constants.ImageHost}${imgUrl}${prodImgStr}.${imgUrlName[1]}${webp}`
-			}
-		}
-		
+		let imgUrl = webpExt(this.props.itemVal.imgUrl, 350, 160, true)		
 		return (
 			<div className="item">
 				<div className="itemHead">

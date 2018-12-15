@@ -40,3 +40,21 @@ export function webpInit(doc) {
         addRootTag();
     }
 }
+
+/*
+* 图片格式处理
+* src 图片地址 w 宽度 h 高度 f 是否强制转换
+*/
+export function webpExt(src, w, h, f) {
+    f ? f = 'f' : f = ''
+    if (src) {
+        if (global.constants.env === 'prod') {
+            const  imgUrlName = src.split('.')
+            const webp = global.constants.webpa ? '.webp' : ''
+            src = `${global.constants.ImageHost}${src}_${w}x${h}${f}.${imgUrlName[1]}${webp}`
+        }
+    }
+    return src
+}
+
+
