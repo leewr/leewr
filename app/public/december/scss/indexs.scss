@@ -1,22 +1,13 @@
-.webpbg(@url) {
-  background-image: url(@url);
-  .webpa & {
-    background-image: url('@{url}.webp');
-  }
+@charset "utf-8";
+
+@mixin clearfix { clear:both; }
+
+@mixin webpbg($url) {
+    background-image: url($url);
+    @at-root .webpa & {
+        background-image: url($url+'.webp');
+    }
 }
-
-
-// @charset "utf-8";
-
-// @mixin clearfix { clear:both; }
-
-// @mixin webpbg($url) {
-//     background-image: url($url);
-//     @at-root .webpa & {
-//         background-image: url($url+'.webp');
-//     }
-// }
-
 .hide{
     display: none;
 }
@@ -82,7 +73,7 @@ header{
         display: inline-block;
         width: .51rem;
         height: 0.87rem;
-        .webpbg('../images/ruleBtn.png');
+        @include webpbg('../images/ruleBtn.png');
         // background: url(../images/ruleBtn.png) no-repeat;
         background-size: 100% 100%;
     }
@@ -96,7 +87,7 @@ header{
     margin-top: -2.77rem;
     .one{
         margin: 0 0.36rem;
-        .webpbg('../images/top.png');
+        @include webpbg('../images/top.png');
     	// background-image:  url(../images/top.png);
     	background-size: 100%;
         background-repeat: no-repeat;
@@ -126,12 +117,12 @@ header{
     		}
     		.item{
                 height: 1.40rem;
-                .webpbg('../images/itembg.png');
+                @include webpbg('../images/itembg.png');
 	    		// background: url(../images/itembg.png) no-repeat;
 	    		background-size: 100% 1.4rem;
 	    		display: flex;
 				&.itembg{
-                    .webpbg('../images/itembg2.png');
+                    @include webpbg('../images/itembg2.png');
 					// background: url(../images/itembg2.png) no-repeat;
 					background-size: 100% 1.4rem;
                     .right{
@@ -179,7 +170,7 @@ header{
     }
     .title{
         text-align: center;
-        .webpbg('../images/title.png');
+        @include webpbg('../images/title.png');
     	// background:  url(../images/title.png) no-repeat center;
     	background-size: 110% 100%;
     	color: #fff;
@@ -202,12 +193,12 @@ header{
             }
             .titlel{
                 left: -1rem;
-                .webpbg('../images/titlel.png');
+                @include webpbg('../images/titlel.png');
                 // background-image:  url(../images/titlel.png);
             }
             .titler{
                 right: -1rem;
-                .webpbg('../images/titler.png');
+                @include webpbg('../images/titler.png');
                 // background-image:  url(../images/titler.png);
             }
         }
@@ -233,7 +224,7 @@ header{
 	        .item{
 	            height: 1.8rem;
                 margin-bottom: 0.27rem;
-                .webpbg('../images/november/item-bg.png');
+                @include webpbg('../images/november/item-bg.png');
 	            // background: url(../images/november/item-bg.png);
 	            background-size: 100% 100%;
 				box-shadow:0 0 30px rgba(244, 115, 122, 0.2);
@@ -323,7 +314,7 @@ header{
     }
     .two{
         margin: 0 0.36rem;
-        .webpbg('../images/top2.png');
+        @include webpbg('../images/top2.png');
         // background-image:  url(../images/top2.png);
         background-size: 100%;
         background-repeat: no-repeat;
@@ -342,13 +333,13 @@ header{
                 flex: 1;
                 margin: 0 .2rem;
                 .topBox{
-                    .webpbg('../images/flexBg.png');
+                    @include webpbg('../images/flexBg.png');
                     // background-image:  url(../images/flexBg.png);
                     background-size: 100%;
                     background-repeat: no-repeat;
                     height: 2.82rem;
                     &.topBox1{
-                        .webpbg('../images/flexBg1.png');
+                        @include webpbg('../images/flexBg1.png');
                         // background-image: url(../images/flexBg1.png)
                     }
                     .t1{
@@ -388,7 +379,7 @@ header{
         }
         .quanbox{
             margin: 0.4rem 0.26rem 0.6rem 0.26rem;
-            .webpbg('../images/quan.png');
+            @include webpbg('../images/quan.png');
             // background-image: url(../images/quan.png);
             height: 2.3rem;
             background-size: 100%;
@@ -450,7 +441,7 @@ header{
     .three{
         margin: 0.6rem 0.36rem 0.2rem 0.3rem;
         // background-image:  url(../images/top3.png);
-        .webpbg('../images/top3.png');
+        @include webpbg('../images/top3.png');
         background-size: 100%;
         background-repeat: no-repeat;
         .boxbody{
@@ -467,11 +458,11 @@ header{
             margin: 0.2rem;
             height: 2.92rem;
             // background-image:  url(../images/glbg.png);
-            .webpbg('../images/glbg.png');
+            @include webpbg('../images/glbg.png');
             background-size: 100%;
             background-repeat: no-repeat;
             &.glItemSpc{
-                .webpbg('../images/glbg1.png');
+                @include webpbg('../images/glbg1.png');
                 // background-image:  url(../images/glbg1.png);
                 .cff{
                     margin-top: 0.7rem;
@@ -612,7 +603,7 @@ header{
                     text-align: center;
                     line-height: 0.32rem;
                     margin-top: 0.05rem;
-                    .webpbg('../images/icon.png');
+                    @include webpbg('../images/icon.png');
                     // background:  url(../images/icon.png) no-repeat;
                     background-size: 100%;
                 }
@@ -662,7 +653,7 @@ header{
                 }
                 p{
                     background: #fc2666;
-                    .clearfix;
+                    @include clearfix;
                     span{
                         height: .56rem;
                         line-height: .56rem;
@@ -685,7 +676,7 @@ header{
                         background: #6a3acd;
                     }
                     li{
-                        .clearfix;
+                        @include clearfix;
                         span{
                             height: .63rem;
                             line-height: .63rem;
@@ -696,7 +687,7 @@ header{
                 }
             }
             .invitationRecordBtnBox,.icgbStatusBtnBox{
-                .clearfix;
+                @include clearfix;
                 margin: 0 .39rem .65rem;
                 a{
                     display: inline-block;

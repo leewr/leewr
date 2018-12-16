@@ -5,32 +5,34 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<meta name="format-detection" content="telephone=no" />
 		<title>新手活动</title>
-		<link rel="stylesheet" type="text/css" href="./css/index.css"/>
+		<link rel="stylesheet" type="text/css" href="./css/indexs.css"/>
     	<script type="text/javascript" src="js/adaptive.js"></script>
 	</head>
 	<body>
 		<!-- banner -->
 		<header>
-			<img class="img" id="headImg" data-url="images/banner.jpg"/>
+			<picture class="img">
+				<source class="img" srcset="images/banner.jpg.webp" type="image/webp">
+				<img class="img" id="headImg" src="images/banner.jpg"/>
+			</picture>
 			<a href="javascript:;" class="ruleBottomRight"></a>
 		</header>
 		<script type="text/javascript">
 			(function () {
 				function addRootTag() {
-			        let className = document.documentElement.className
-			        let name = className ? ' webpa' : 'webpa'
-			        document.documentElement.className += name 
+			        var className = document.documentElement.className;
+			        var name = className ? ' webpa' : 'webpa';
+			        document.documentElement.className += name ;
 			    }
-			    var headImg = document.getElementById('headImg')
-				var srcUrl = headImg.getAttribute('data-url')
-				console.log(/webpAvaile=availeable/.test(document.cookie))
-				if (/webpAvaile=availeable/.test(document.cookie)) {
-					console.log('config')
-					addRootTag()
-				    window.webpAvaile = true
-				    headImg.setAttribute('src',  srcUrl + '.webp')
+			    var headImg = document.getElementById('headImg');
+				var srcUrl = headImg.getAttribute('data-image');
+				console.log(/webpAvaile=true/.test(document.cookie));
+				if (/webpAvaile=true/.test(document.cookie)) {
+					addRootTag();
+				    window.webpAvaile = true;
+				    // headImg.setAttribute('src',  srcUrl + '.webp')
 				} else {
-				    headImg.setAttribute('src',  srcUrl)
+				    // headImg.setAttribute('src',  srcUrl)
 				}
 			})()
 		
@@ -222,9 +224,9 @@
 		<div class="mask hide"></div>
 		<div class="popup" id="popup">
 			<div class="popupBox">
-				<img src="images/close.png" class="close" />
+				<img src="" class="close" data-url="images/close.png" />
 				<div class="ruleBox hide">
-					<h2><img src="images/titleRule.jpg" /></h2>
+					<h2><img src="" data-url="images/titleRule.jpg"/></h2>
 					<div class="ruleText">
 						<div><span class="icon">1</span><p>活动时间：12月10日 — 12月31日</p></div>
 						<div><span class="icon">2</span><p>新用户出借新手专区指定产品≥10000，即可获得出借额的0.5%奖励；奖励以余额形式发放至账户；</p></div>
@@ -235,13 +237,7 @@
 				</div>
 			</div>
 		</div>
-		<!-- <script src="/static/libs/jquery.min.js" type="text/javascript"></script>
-		<script src="/static/config.js" type="text/javascript"></script>
-		<script src="/static/webapp.js" type="text/javascript"></script>
-		<script src="/static/utils/common.js" type="text/javascript"></script>
-		<script src="/static/utils/cache.js" type="text/javascript"></script>
-		<script src="/static/utils/jssdk.js" type="text/javascript"></script>
-		<script src="/static/utils/siteflow.js" type="text/javascript"></script>
-		<script src="js/index.js" type="text/javascript"></script> -->
+		<script src="js/jquery.min.js" type="text/javascript"></script>
+		<script src="js/index.js" type="text/javascript"></script>
 	</body>
 </html>
