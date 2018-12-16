@@ -26,19 +26,24 @@ export function webpInit(doc) {
         let name = className ? ' webpa' : 'webpa'
         doc.documentElement.className += name 
     }
-    if (!/webpAvaile=available/.test(document.cookie)) {
-        var image = new Image();
-        image.onload = function() {
-            if (image.width == 1) {
-                addRootTag();
-                document.cookie = "webpAvaile=available; max-age=31536000; domain=";
-            }
-        };
-        // 一张支持alpha透明度的webp的图片，使用base64编码
-        image.src = 'data:image/webp;base64,UklGRkoAAABXRUJQVlA4WAoAAAAQAAAAAAAAAAAAQUxQSAwAAAARBxAR/Q9ERP8DAABWUDggGAAAABQBAJ0BKgEAAQAAAP4AAA3AAP7mtQAAAA==';
-    } else {
+    if (/webpAvaile=true/.test(document.cookie)) {
+        console.log(document.cookie)
+        window.webpa = true
         addRootTag();
     }
+    // if (!/webpAvaile=true/.test(document.cookie)) {
+    //     var image = new Image();
+    //     image.onload = function() {
+    //         if (image.width == 1) {
+    //             addRootTag();
+    //             // document.cookie = "webpAvaile=available; max-age=31536000; domain=";
+    //         }
+    //     };
+    //     // 一张支持alpha透明度的webp的图片，使用base64编码
+    //     image.src = 'data:image/webp;base64,UklGRkoAAABXRUJQVlA4WAoAAAAQAAAAAAAAAAAAQUxQSAwAAAARBxAR/Q9ERP8DAABWUDggGAAAABQBAJ0BKgEAAQAAAP4AAA3AAP7mtQAAAA==';
+    // } else {
+    //     addRootTag();
+    // }
 }
 
 /*
