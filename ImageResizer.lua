@@ -1,4 +1,3 @@
-
 local sizeType
 local command
 if ngx.var.enforce == 'f'
@@ -11,11 +10,11 @@ else
 end
 
 -- local command = "convert  " ..ngx.var.request_filepath.." -resize ".. ngx.var.width .. "x" .. ngx.var.height .. ngx.var.enforce .. " +profile \"*\" " .. ngx.var.request_filepath .. "_" .. ngx.var.width .. "x" .. ngx.var.height .. ngx.var.enforce .. "." .. ngx.var.ext
-if ngx.var.webp == ".webp" 
+if ngx.var.webp == ".webp"
 then
     command = command ..ngx.var.webp
 end
--- ngx.say(command)
+-- ngx.say(ngx.var.noresize)
 os.execute(command)
 ngx.exec(ngx.var.request_uri)
 

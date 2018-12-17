@@ -26,17 +26,40 @@ export function webpInit(doc) {
         let name = className ? ' webpa' : 'webpa'
         doc.documentElement.className += name 
     }
-    if (!/webpAvaile=available/.test(document.cookie)) {
-        var image = new Image();
-        image.onload = function() {
-            if (image.width == 1) {
-                addRootTag();
-                document.cookie = "webpAvaile=available; max-age=31536000; domain=";
-            }
-        };
-        // 一张支持alpha透明度的webp的图片，使用base64编码
-        image.src = 'data:image/webp;base64,UklGRkoAAABXRUJQVlA4WAoAAAAQAAAAAAAAAAAAQUxQSAwAAAARBxAR/Q9ERP8DAABWUDggGAAAABQBAJ0BKgEAAQAAAP4AAA3AAP7mtQAAAA==';
-    } else {
+    if (/webpAvaile=true/.test(document.cookie)) {
+        console.log(document.cookie)
+        window.webpa = true
         addRootTag();
     }
+    // if (!/webpAvaile=true/.test(document.cookie)) {
+    //     var image = new Image();
+    //     image.onload = function() {
+    //         if (image.width == 1) {
+    //             addRootTag();
+    //             // document.cookie = "webpAvaile=available; max-age=31536000; domain=";
+    //         }
+    //     };
+    //     // 一张支持alpha透明度的webp的图片，使用base64编码
+    //     image.src = 'data:image/webp;base64,UklGRkoAAABXRUJQVlA4WAoAAAAQAAAAAAAAAAAAQUxQSAwAAAARBxAR/Q9ERP8DAABWUDggGAAAABQBAJ0BKgEAAQAAAP4AAA3AAP7mtQAAAA==';
+    // } else {
+    //     addRootTag();
+    // }
 }
+
+/*
+* 图片格式处理
+* src 图片地址 w 宽度 h 高度 f 是否强制转换
+*/
+export function webpExt(src, w, h, f) {
+    f ? f = 'f' : f = ''
+    if (src) {
+        if (global.constants.env === 'prod') {
+            const  imgUrlName = src.split('.')
+            const webp = global.constants.webpa ? '.webp' : ''
+            src = `${global.constants.ImageHost}${src}_${w}x${h}${f}.${imgUrlName[1]}${webp}`
+        }
+    }
+    return src
+}
+
+

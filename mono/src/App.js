@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { 
-  BrowserRouter as Router,
+  hashHistory as Router,
   Route,
   Link
 } from 'react-router-dom'
@@ -16,7 +16,7 @@ import User from './pages/User.js'
 class App extends Component {
   constructor(props) {
     super(props)
-    global.constants.webpa = getCookie('webpAvaile') === 'available' ? true : false
+    global.constants.webpa = window.webpa
   }
   render() {
     return (
