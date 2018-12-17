@@ -2,7 +2,7 @@ $(function(){
 	$('[data-url]').each(function(item, index){
 		var ext = window.webpAvaile ? '.webp' : ''
 		$(this).attr('src', $(this).attr('data-url') + ext)
-	})	
+	})
 })
 
 //去掉alert网址

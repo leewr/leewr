@@ -1,4 +1,3 @@
-
 local sizeType
 local command
 if ngx.var.enforce == 'f'
