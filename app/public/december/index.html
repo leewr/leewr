@@ -26,7 +26,7 @@
 			    }
 			    var headImg = document.getElementById('headImg');
 				var srcUrl = headImg.getAttribute('data-image');
-				console.log(/webpAvaile=true/.test(document.cookie));
+				console.log(/webpAvaile=.webp/.test(document.cookie));
 				if (/webpAvaile=true/.test(document.cookie)) {
 					addRootTag();
 				    window.webpAvaile = true;
