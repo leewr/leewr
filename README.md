@@ -50,10 +50,9 @@ $ npm stop
 
     4、图片保存的时候开启webp图片格式存储，支持webp时候采用webp图片展示。
 
-    5、前端采用手动判断是否支持webp。
+    5、前端采用手动判断是否支持webp。（更新2018-12-17 nginx层判断webp支持情况）
 
-    6、todo nginx支持对webp图片格式的剪裁 / 2018-12-11 nginx 更换图片剪裁方式 lua + gm。
-   支持webp，下一个版本修改lua，支持webp图片。
+    6、todo nginx支持对webp图片格式的剪裁 / 2018-12-11 nginx 更换图片剪裁方式 lua + imageMagic。
 
 ## 感想
 这些年就想在互联网上做一点点自己的东西，所以做了这个一个站点。陆陆续续的不断完善中。
