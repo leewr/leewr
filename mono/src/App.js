@@ -1,17 +1,24 @@
 import React, { Component } from 'react';
 import { 
-  hashHistory as Router,
+  BrowserRouter as Router,
   Route,
   Link
 } from 'react-router-dom'
-import { getCookie } from './utils/common'
+// import { getCookie } from './utils/common'
+import asyncComponent from './comp/AsyncComponent'
 import Index from './pages/Index.js'
-import Topic from './pages/Topic.js'
-import Crawler from './pages/Crawler.js'
-import Crawlers from './pages/Crawlers.js'
-import Me from './pages/Me.js'
-import Login from './pages/Login.js'
-import User from './pages/User.js'
+// import Topic from './pages/Topic.js'
+// import Crawler from './pages/Crawler.js'
+// import Crawlers from './pages/Crawlers.js'
+// import Me from './pages/Me.js'
+// import Login from './pages/Login.js'
+// import User from './pages/User.js'
+const Crawler     = asyncComponent(() => import('./pages/Crawler.js'))
+const Crawlers     = asyncComponent(() => import('./pages/Crawlers.js'))
+const Topic     = asyncComponent(() => import('./pages/Topic.js'))
+const Me     = asyncComponent(() => import('./pages/Me.js'))
+const Login     = asyncComponent(() => import('./pages/Login.js'))
+const User     = asyncComponent(() => import('./pages/User.js'))
 
 class App extends Component {
   constructor(props) {
