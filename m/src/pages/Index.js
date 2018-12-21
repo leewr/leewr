@@ -15,6 +15,10 @@ const navData = [{name:"连载",'router': '/'}, {name:"前端", 'router': '/me'}
 
 function getData(pIndex = 1, callBack) {
 	console.log('pIndex', pIndex)
+	if (sessionStorage.getItem(`indexList-${pIndex}`)) {
+		callBack && typeof callBack === 'function' && callBack(JSON.parse(sessionStorage.getItem(`indexList-${pIndex}`)))
+		return
+	}
 	Axios.get('/api/v1/topics', {page: pIndex})
 		.then(res => {
 			if (res.success) {
@@ -50,8 +54,12 @@ class Index extends Component {
 	}
 	componentDidMount () {
 		getData(1, (res) => {
+			console.log(res)
 			this.rData = res.data.list
-			console.log(this.rData)
+			console.log(res.data)
+			// 将数据存储到sessionStorage
+			// let indexList = Object.assign({})
+			sessionStorage.setItem(`indexList-${1}`, JSON.stringify(res))
 			this.setState({
 				dataSource: this.state.dataSource.cloneWithRows(this.rData),
 				isLoading: false
@@ -66,6 +74,7 @@ class Index extends Component {
 		this.setState({ isLoading: true })
 		getData(++pageIndex, (res) => {
 			this.rData.push(...res.data.list)
+			sessionStorage.setItem(`indexList-${pageIndex}`, JSON.stringify(res))
 			this.setState({ 
 				dataSource: this.state.dataSource.cloneWithRows(this.rData),
 				isLoading: false
