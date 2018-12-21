@@ -54,6 +54,9 @@ $ npm stop
 
     6、nginx支持对webp图片格式的剪裁 / 2018-12-11 nginx 更换图片剪裁方式 lua + imageMagic。
 Todo react ssr、 service worker 支持
+2018-12-21
+修改爬虫发布的逻辑，如果7天为操作自动入库。
+
 ## 感想
 这些年就想在互联网上做一点点自己的东西，所以做了这个一个站点。陆陆续续的不断完善中。
 
