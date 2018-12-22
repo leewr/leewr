@@ -142,6 +142,10 @@ class TopicController extends Controller {
     if (!body.summary) {
       body.summary = body.content.substr(0, 100)
     }
+    for (let i = 0; i < 5; i++) {
+      this.app.redis.del(`indexList-${i + 1}`)
+      console.log(i)
+    }
     // 数据库保存
     const topic = await service.topic.newAndSave(
       body.title,

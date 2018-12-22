@@ -39,3 +39,8 @@ exports.routerPlus = {
   enable: true,
   package: 'egg-router-plus',
 };
+
+exports.redis = {
+  enable: true,
+  package: 'egg-redis',
+};

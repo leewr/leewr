@@ -53,7 +53,10 @@ class Crawler extends Controller {
 
     // 数据库保存
     if (!topic.isPost) {
-
+      for (let i = 0; i < 5; i++) {
+        this.app.redis.del(`indexList-${i + 1}`)
+        console.log(i)
+      }
       // 先处理图片、再保存文章
       const fileName = imgUrl.substr(imgUrl.lastIndexOf('/') + 1)
       const date = moment().format('YYYY-MM-DD')

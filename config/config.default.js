@@ -65,6 +65,15 @@ module.exports = appInfo => {
     domainWhiteList: ['m.leewr.com','localhost', 'localhost:8080']
   }
 
+  config.redis = {
+    client: {
+      port: 6379,          // Redis port
+      host: '127.0.0.1',   // Redis host
+      password: 'auth',
+      db: 0,
+    },
+  }
+
 
   config.default_page = 1
   config.default_limit = 20

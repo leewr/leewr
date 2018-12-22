@@ -16,5 +16,5 @@ then
 end
 -- ngx.say(ngx.var.noresize)
 os.execute(command)
-ngx.exec(ngx.var.request_uri)
+ngx.exec(ngx.var.request_uri..ngx.var.webp)
 
