@@ -58,12 +58,14 @@
     "webpack": "4.19.1",
     "webpack-dev-server": "3.1.9",
     "webpack-manifest-plugin": "2.0.4",
+    "whatwg-fetch": "^3.0.0",
     "workbox-webpack-plugin": "3.6.3"
   },
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js"
+    "test": "node scripts/test.js",
+    "analyz": "NODE_ENV=production npm_config_report=true npm run build"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -115,5 +117,9 @@
       "node"
     ]
   },
-  "proxy": "http://localhost:7001/"
+  "proxy": "http://localhost:7001/",
+  "devDependencies": {
+    "es3ify-webpack-plugin": "^0.1.0",
+    "webpack-bundle-analyzer": "^3.0.3"
+  }
 }

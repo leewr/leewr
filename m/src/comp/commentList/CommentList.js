@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { withRouter } from "react-router"
 import Axios, { apiStatusCheck } from '../../utils/request.js'
-import dayjs from 'dayjs'
+import { dateFtt } from '../../utils/common.js'
+
 
 import './commentList.scss'
 
@@ -44,7 +45,7 @@ class CommentList extends Component {
 					<div className="chead">
 						<img alt="" src="http://upload.jianshu.io/users/upload_avatars/3334769/95a8e26b-bb13-4d93-92b3-2e504cf66237.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/96/h/96" />
 						<span className="name">{item.authorName}</span>
-						<span className="time">{dayjs().format('YYYY.MM.DD HH:mm', item.modifyTime)}</span>
+						<span className="time">{dateFtt(new Date(item.modifyTime), 'yyyy.MM.dd hh:mm')}</span>
 					</div>
 					<div className="cbody">
 						{item.content}

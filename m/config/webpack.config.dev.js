@@ -17,6 +17,7 @@ const ManifestPlugin = require('webpack-manifest-plugin');
 const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin-alt');
 const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
+const es3ifyPlugin = require('es3ify-webpack-plugin');
 
 
 // Webpack uses `publicPath` to determine where the app is being served from.
@@ -150,6 +151,17 @@ module.exports = {
       // Support React Native Web
       // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
       'react-native': 'react-native-web',
+      // 'react': 'anujs',
+      // 'react-dom': 'anujs',
+      // 若要兼容 IE 请使用以下配置
+      // 'react': 'anujs/dist/ReactIE',
+      // 'react-dom': 'anujs/dist/ReactIE',
+      // 如果引用了 prop-types 或 create-react-class
+      // 需要添加如下别名
+      // 'prop-types': 'anujs/lib/ReactPropTypes',
+      // 'create-react-class': 'anujs/lib/createClass',
+      // 如果你在移动端用到了onTouchTap事件
+      // 'react-tap-event-plugin': 'anujs/lib/injectTapEventPlugin', 
     },
     plugins: [
       // Adds support for installing with Plug'n'Play, leading to faster installs and adding
@@ -336,6 +348,7 @@ module.exports = {
     ],
   },
   plugins: [
+    new es3ifyPlugin(),
     // Generates an `index.html` file with the <script> injected.
     new HtmlWebpackPlugin({
       inject: true,

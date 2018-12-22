@@ -4,10 +4,24 @@ const Controller = require('egg').Controller
 class Topic extends Controller {
   // 文章列表
   async index() {
-    const { ctx, service } = this
+    const { ctx, service, app } = this
     const pagination = ctx.pagination
-    const topis = await service.topic.getArticleList(pagination)
-    ctx.body = topis
+    let topic
+    console.log('pagination', pagination)
+    let index = (pagination.skip / pagination.limit) + 1
+    topic = await app.redis.get(`indexList-${index}`)
+    if (topic) {
+      console.log('redis')
+      topic = Object.assign(JSON.parse(topic), {redis: true})
+      console.log(topic)
+      ctx.body = topic
+    } else {
+      console.log('mysql')
+      topic = await service.topic.getArticleList(pagination)
+      await app.redis.set(`indexList-${index}`, JSON.stringify(topic))
+      topic = Object.assign(topic, {mysql: true})
+      ctx.body = topic
+    }
   }
   // 单篇文章
   async view() {

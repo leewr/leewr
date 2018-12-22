@@ -21,6 +21,8 @@ const getClientEnvironment = require('./env');
 const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin-alt');
 const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const es3ifyPlugin = require('es3ify-webpack-plugin');
 
 
 // Webpack uses `publicPath` to determine where the app is being served from.
@@ -156,6 +158,7 @@ module.exports = {
             // Pending futher investigation:
             // https://github.com/terser-js/terser/issues/120
             inline: 2,
+            drop_console: true
           },
           mangle: {
             safari10: true,
@@ -221,6 +224,12 @@ module.exports = {
       .map(ext => `.${ext}`)
       .filter(ext => useTypeScript || !ext.includes('ts')),
     alias: {
+      // 'react': 'anujs',
+      // 'react-dom': 'anujs',
+      // 'prop-types': 'anujs/lib/ReactPropTypes',
+      // 'create-react-class': 'anujs/lib/createClass',
+      // //如果你在移动端用到了onTouchTap事件
+      // 'react-tap-event-plugin': 'anujs/lib/injectTapEventPlugin', 
       // Support React Native Web
       // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
       'react-native': 'react-native-web',
@@ -425,6 +434,10 @@ module.exports = {
     ],
   },
   plugins: [
+    // 切换anu.js 的es3插件
+    new es3ifyPlugin(),
+    // 添加打包分析
+    new BundleAnalyzerPlugin(),
     // Generates an `index.html` file with the <script> injected.
     new HtmlWebpackPlugin({
       inject: true,

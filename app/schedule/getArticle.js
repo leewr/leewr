@@ -111,12 +111,12 @@ class getArticle extends Subscription {
                 pass: 'nnxybiwrfcfhbgia'
             }
         })
-        let html = this.app.config.env === 'local' ? 'http://localhost:3000/crawlers' : 'http://m.leewr.com/crawlers'
+        let html = this.app.config.env !== 'local' ? 'http://localhost:3000/crawlers' : 'http://m.leewr.com/crawlers'
         let mailOptions = {
             from: '"liwenrun" <121657771@qq.com>',
             to: 'liwenrunwj65423@touna.cn',
-            subject: `[${moment().format('L')}]日新的信息已经入库`,
-            html: `页面已经生成${html}，快去上传图片发布吧！`
+            subject: `[${moment().format('L')}] 日新的信息已经入库`,
+            html: `页面已经生成 ${html} ，快去上传图片发布吧！`
         }
         transporter.sendMail(mailOptions, (error, info) => {
             if (error) {

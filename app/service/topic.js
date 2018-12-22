@@ -40,9 +40,10 @@ class TopicService extends Service {
 
 
   /**
-   * 新增文章
+   * 新增文章、同时删除redis中缓存的数据
    */
   async newAndSave (title, content, summary, tab, authorId) {
+    // 删除四组数据
     const result = await this.app.mysql.insert('article', 
       { 
         title, content, summary, tab, authorId, createTime: this.app.mysql.literals.now

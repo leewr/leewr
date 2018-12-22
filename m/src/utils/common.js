@@ -7,7 +7,7 @@ export function isEmpty(value) {
 export function getCookie(name) {
     let arr, 
         reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)")
-    return (arr === document.cookie.match(reg)) ? unescape(arr[2]) : null
+    return (arr = document.cookie.match(reg)) ? unescape(arr[2]) : null
 }
 
 export function apiStatusCheck (props, res, callback) {
@@ -31,19 +31,6 @@ export function webpInit(doc) {
         window.webpa = true
         addRootTag();
     }
-    // if (!/webpAvaile=true/.test(document.cookie)) {
-    //     var image = new Image();
-    //     image.onload = function() {
-    //         if (image.width == 1) {
-    //             addRootTag();
-    //             // document.cookie = "webpAvaile=available; max-age=31536000; domain=";
-    //         }
-    //     };
-    //     // 一张支持alpha透明度的webp的图片，使用base64编码
-    //     image.src = 'data:image/webp;base64,UklGRkoAAABXRUJQVlA4WAoAAAAQAAAAAAAAAAAAQUxQSAwAAAARBxAR/Q9ERP8DAABWUDggGAAAABQBAJ0BKgEAAQAAAP4AAA3AAP7mtQAAAA==';
-    // } else {
-    //     addRootTag();
-    // }
 }
 
 /*
@@ -62,4 +49,40 @@ export function webpExt(src, w, h, f) {
     return src
 }
 
+export function dateFtt(date, fmt) { //author: meizz   
+    var o = {
+        "M+" : date.getMonth() + 1, //月份   
+        "d+" : date.getDate(), //日   
+        "h+" : date.getHours(), //小时   
+        "m+" : date.getMinutes(), //分   
+        "s+" : date.getSeconds(), //秒   
+        "q+" : Math.floor((date.getMonth() + 3) / 3), //季度   
+        "S" : date.getMilliseconds()//毫秒   
+    };
+    if (arguments.length === 1) {
+        fmt = 'yyyy-MM-dd hh:mm:ss'
+    }
+    if (/(y+)/.test(fmt)){
+        fmt = fmt.replace(RegExp.$1, (date.getFullYear() + "").substr(4 - RegExp.$1.length))
+    }
+    for ( var k in o){
+        if (new RegExp("(" + k + ")").test(fmt)){
+            fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? (o[k]): (("00" + o[k]).substr(("" + o[k]).length)))
+        }
+    }
+    return fmt
+}
 
+export function parseParam (param, key) {
+    var paramStr = ""
+    if (param instanceof String || param instanceof Number || param instanceof Boolean) {
+        paramStr += "&" + key + "=" + encodeURIComponent(param)
+    } else {
+        console.log(param)
+        for (let i in param) {
+            var k = key === null ? i : key + (param instanceof Array ? "[" + i + "]" : "." + i)
+            paramStr += '&' + parseParam (this, k)
+        }
+    }
+    return paramStr.substr(1)
+}
