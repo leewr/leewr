@@ -1,0 +1,35 @@
+@import '../../assets/scss/reset.scss';
+
+.me{
+    background: #fff;
+    height: 100vh;
+    .head{
+        height: 50px;
+        background: #fff;
+        text-align: center;
+        line-height: 50px;
+    }
+    .meBox{
+        padding: 0 12px;
+        text-align: center;
+        .item{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 90px;
+            border-radius: 4px;
+            background: #f9f9f9;
+            margin-bottom: 20px;
+            font-size: 18px;
+            color: #666;
+        }
+    }
+    .footTxt{
+        position: fixed;
+        bottom: 80px;
+        width: 100%;
+        color: #eeeeee;
+        font-size: 9px;
+        text-align: center;
+    }
+}
