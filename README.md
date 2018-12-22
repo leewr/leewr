@@ -10,7 +10,7 @@
 
 app： 为egg.js项目
 
-Mono：移动端h5项目
+m：移动端h5项目
 
 android: 安卓端项目
 
