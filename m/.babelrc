@@ -1,8 +1,19 @@
 {
   "presets": [
-    "react-app"
+      [ "env",
+          {
+              "modules": false,
+              "useBuiltIns": "usage"
+          }
+      ],
+      "react",
+      "jest"
   ],
-  "plugins": [
-    ["import", { "libraryName": "antd-mobile", "libraryDirectory": "lib"}, "antd-mobile"]
-  ]
+  "env": {
+      "test": {
+          "presets": ["react"],
+          "plugins": ["transform-es2015-modules-commonjs"]
+      }
+
+  }
 }
