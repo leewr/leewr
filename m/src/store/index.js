@@ -1,23 +1,92 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk'
-// import { createLogger } from 'redux-logger'
+import thunkMiddleware from 'redux-thunk'
+import { getArticleList } from '../api'
 
-import rootReducer from '../reducers';
-
-const middleware = [ thunk ]
-// if (process.env.NODE_ENV !== 'production') {
-//   middleware.push(createLogger())
-// }
-// const store = createStore(
-//     rootReducer,
-//     applyMiddleware(...middleware)
-// )
-// export default store
-
-const rootReducer = combineReducers({
-    
+export const initializeSession = ( ) => ( {
+    type: "INITIALIZE_SESSION",
+} );
+const storeData = (data) => ({
+    type: "STORE_DATA",
+    data
 })
 
 
-export default (initialState) =>
-    createStore(rootReducer, initialState, applyMiddleware(...middleware))
+// export const fetchData = () => (dispatch) => 
+//     getArticleList(1).then(res => dispatch((storeData)(res)))
+
+export const fetchData = () => {
+    return (dispatch) => {
+         return getArticleList(1).then(res => {
+            return dispatch((storeData)(res))
+        })
+    }
+}
+
+const sessionReducer = ( state = false, action ) => {
+    switch ( action.type ) {
+        case "INITIALIZE_SESSION":
+            return true;
+        default: return state;
+    }
+};
+
+const dataReducer = ( state = [], action) => {
+    switch (action.type) {
+        case 'STORE_DATA':
+            console.log('action.data', action.data)
+            return action.data
+        default: return state;
+    }
+}
+
+const reducer = combineReducers({
+    loggedIn: sessionReducer,
+    data: dataReducer
+})
+
+
+export default ( initialState ) =>
+    createStore( reducer, initialState, applyMiddleware( thunkMiddleware ) );
+
+
+    // import { createStore, combineReducers, applyMiddleware } from "redux";
+    // import thunkMiddleware from "redux-thunk";
+    // import { getArticleList } from '../api'
+    
+    // export const initializeSession = ( ) => ( {
+    //     type: "INITIALIZE_SESSION",
+    // } );
+    
+    // const storeData = ( data ) => ( {
+    //     type: "STORE_DATA",
+    //     data,
+    // } );
+    
+    // export const fetchData = ( ) => ( dispatch ) =>
+    //     fetchCircuits( ).then( res => dispatch( (storeData)( res ) ) );
+    
+    // const sessionReducer = ( state = false, action ) => {
+    //     switch ( action.type ) {
+    //         case "INITIALIZE_SESSION":
+    //             return true;
+    //         default: return state;
+    //     }
+    // };
+    
+    // const dataReducer = ( state = [ ], action ) => {
+    //     switch ( action.type ) {
+    //         case "STORE_DATA":
+    //             console.log('action.data', action.data)
+    //             return action.data;
+    //         default: return state;
+    //     }
+    // };
+    
+    // const reducer = combineReducers( {
+    //     loggedIn: sessionReducer,
+    //     data: dataReducer,
+    // } );
+    
+    // export default ( initialState ) =>
+    //     createStore( reducer, initialState, applyMiddleware( thunkMiddleware ) );
+    

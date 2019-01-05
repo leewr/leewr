@@ -5,42 +5,56 @@ import React from "react"
 import { renderToString } from 'react-dom/server'
 import { StaticRouter, matchPath } from "react-router-dom"
 import { Provider as ReduxProvider } from "react-redux"
-
-
+import routes from './src/routes'
+import createStore, { initializeSession } from "./src/store/index";
+import Layout from "./src/comp/layout"
 import App from './src/App'
 
 const app = express()
 
 app.get('/*', (req, res) => {
-  const context = {}
+  const context = { };
+  const store = createStore( );
 
-  const dataRequirements = 
-    routes
-      .filter(route => matchPath(req.url, route))
-      .map(route => route.component)
-      .filter(comp => comp.serverFetch)
-      .map(comp = store.dispatch(comp.serverFetch()))
+  store.dispatch( initializeSession( ) );
+
+  // const dataRequirements = 
+  //   routes
+  //     .filter(route => matchPath(req.url, route))
+  //     .map(route => route.component)
+  //     .filter(comp => comp.serverFetch)
+  //     .map(comp => store.dispatch(comp.serverFetch()))
+  
+    const dataRequirements =
+      routes
+          .filter( route => matchPath( req.url, route ) ) // filter matching paths
+          .map( route => route.component ) // map to components
+          .filter( comp => comp.serverFetch ) // check if components have data requirement
+          .map( comp => store.dispatch( comp.serverFetch( ) ) ); // dispatch data requirement
   
   Promise.all(dataRequirements).then(() => {
     const jsx = (
       <ReduxProvider store={ store }>
-        <StaticRouter context={ context } location={ req.url }>
-          <Layout />
-        </StaticRouter>
+          <StaticRouter context={ context } location={ req.url }>
+              <Layout />
+          </StaticRouter>
       </ReduxProvider>
-    )
+    );
+    console.log('asdfasd')
+    const html = renderToString(jsx)
+    console.log(html)
+    const reduxState = store.getState();
+    console.log('reduxState', reduxState)
+    res.writeHead( 200, { "Content-Type": "text/html" } );
+    res.end(htmlTemplate(html, reduxState))
   })
-
-  const html = renderToString(<App  />)
-  console.log(html)
-  res.end(htmlTemplate(html))
 })
 
-app.listen(3001, () => {
+app.listen(3000, () => {
   console.log('server runned')
 })
 
-function htmlTemplate(reactDom) {
+function htmlTemplate(reactDom, reduxState) {
   return `
     <!DOCTYPE html>
     <html>
@@ -48,9 +62,11 @@ function htmlTemplate(reactDom) {
         <meta charset="utf-8">
         <title>React SSR</title>
     </head>
-    
     <body>
         <div id="app">${ reactDom }</div>
+        <script>
+          window.REDUX_DATA = ${ JSON.stringify( reduxState ) }
+      </script>
     </body>
     </html>
   `

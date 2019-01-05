@@ -1,8 +1,8 @@
 import Axios from 'axios'
-import { getCookie } from '../utils/common'
+// import { getCookie } from '../utils/common'
 const instance = Axios.create({
     timeout: 5000,
-    headers: {'x-csrf-token': getCookie('csrfToken')}
+    // headers: {'x-csrf-token': getCookie('csrfToken')}
 })
 export default {
     get (url, params) {

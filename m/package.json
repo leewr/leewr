@@ -63,6 +63,9 @@
     "workbox-webpack-plugin": "3.6.3"
   },
   "scripts": {
+    "dev": "npm-run-all --parallel server client",
+    "server": "nodemon index.js",
+    "client": "webpack --watch --progress",
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
