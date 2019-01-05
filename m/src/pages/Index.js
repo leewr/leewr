@@ -19,11 +19,15 @@ class Home extends React.Component {
                 <h2>F1 2018 Season Calendar</h2>
                 <ul>
                 { circuits.list.map( ( {id,  title } ) => (
-                        <li key={ id } >{title}</li>
+                        <li key={ id } onClick={this.getShow}>{title}</li>
                     ) ) }
                 </ul>
             </div>
         );
+    }
+
+    getShow() {
+        console.log('click')
     }
 }
 Home.serverFetch = fetchData; // static declaration of data requirements

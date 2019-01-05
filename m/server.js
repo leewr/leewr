@@ -12,6 +12,8 @@ import App from './src/App'
 
 const app = express()
 
+app.use( express.static( path.resolve( __dirname, "./dist" ) ) );
+
 app.get('/*', (req, res) => {
   const context = { };
   const store = createStore( );
@@ -67,6 +69,7 @@ function htmlTemplate(reactDom, reduxState) {
         <script>
           window.REDUX_DATA = ${ JSON.stringify( reduxState ) }
       </script>
+      <script src="./app.bundle.js"></script>
     </body>
     </html>
   `
