@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { 
+import {
   BrowserRouter as Router,
   Route,
   Link
@@ -29,17 +29,17 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-            <div>
-              <Route exact path="/" component={Index} />
-              {/* <Route path="/topics/:id" component={Topic}/>
+          <div>
+            <Route exact path="/" component={Index} />
+            {/* <Route path="/topics/:id" component={Topic}/>
               <Route path="/crawlers" component={Crawlers}/>
               <Route path="/crawler/:id" component={Crawler}/>
               <Route path="/focus" component={Topic} />
               <Route path="/me" component={Me} />
               <Route path="/login" component={Login} />
               <Route path="/user" component={User} /> */}
-            </div>
-            {/* <div className="footer">
+          </div>
+          {/* <div className="footer">
               <Link to="/"><i className="iconfont icon-shouye"></i></Link>
               <Link to="/me"><i className="iconfont icon-faxian1"></i></Link>
               <Link to="/user"><i className="iconfont icon-geren"></i></Link>

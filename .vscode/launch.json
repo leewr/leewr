@@ -13,7 +13,8 @@
       "protocol": "auto",
       "restart": true,
       "port": 9229,
-      "autoAttachChildProcesses": true
+      "autoAttachChildProcesses": true,
+      "editor.tabSize": 2,
     }
   ]
 }

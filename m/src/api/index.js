@@ -1,8 +1,8 @@
 import fetch from "isomorphic-fetch";
 
-export function getArticleList( ) {
-    return fetch( "http://localhost:7001/api/v1/topics")
-        .then( response => response.json())
+export function getArticleList() {
+    return fetch("http://localhost:7001/api/v1/topics")
+        .then(response => response.json())
         .then((res) => {
             console.log(res)
             return res.data
