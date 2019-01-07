@@ -13,3 +13,4 @@ run/
 /mono/README.md
 /app/public/upload/2018-12-02
 /app/public/temp
+*dist*

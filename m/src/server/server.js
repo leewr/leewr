@@ -74,6 +74,3 @@ function htmlTemplate(reactDom, reduxState) {
     </html>
   `
 }
-
-
- 
