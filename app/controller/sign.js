@@ -5,12 +5,12 @@ const Controller = require('egg').Controller
 class signController extends Controller {
   async showLogin() {
     const { ctx } = this
-    await ctx.render('/sign/signin', { pageTitle: '登录'})
+    await ctx.render('/sign/signin', { pageTitle: '登录' })
   }
 
-  async showSignup () {
+  async showSignup() {
     const { ctx } = this
-    await ctx.render('sign/signup', { pageTitle: '注册'})
+    await ctx.render('sign/signup', { pageTitle: '注册' })
   }
 
   // 用户注册
@@ -20,11 +20,13 @@ class signController extends Controller {
     const password = ctx.request.body.password
     const repassword = ctx.request.body.repassword
     let msg
-    if ([loginname, password, repassword].some(item => {
-      return item === ''
-    })) {
+    if (
+      [loginname, password, repassword].some(item => {
+        return item === ''
+      })
+    ) {
       msg = '信息不完整'
-    } else if(loginname.length < 5) {
+    } else if (loginname.length < 5) {
       msg = '用户名长度不能小于5'
     } else if (password.length < 6) {
       msg = '密码长度不能小于5'
@@ -38,7 +40,7 @@ class signController extends Controller {
         error: msg,
         loginname
       })
-      return 
+      return
     }
 
     const users = await service.user.getUserQuery(loginname)
@@ -51,7 +53,7 @@ class signController extends Controller {
         error: '用户名已被使用',
         loginname
       })
-      return 
+      return
     }
 
     const pass = ctx.helper.bhash(password)
@@ -68,7 +70,7 @@ class signController extends Controller {
     // hashpass 对密码进行加密
     // todo 用户头像
     // service 添加一条数据保存
-    
+
     // todo 邮箱验证
     // await ctx.render('sign/signup', {
     //   success: '欢迎加入' + this.config.name + '！我们已给您的注册邮箱发送了一封邮件，请点击里面的链接来激活您的帐号。',
@@ -76,7 +78,7 @@ class signController extends Controller {
     // })
     // 跳转登录页面
     await ctx.render('sign/signin', {
-       success: '注册成功，请重新登录'
+      success: '注册成功，请重新登录'
     })
   }
 
@@ -84,7 +86,7 @@ class signController extends Controller {
     console.log('signout')
     const { ctx } = this
     ctx.session = null
-    // egg-passport api 
+    // egg-passport api
     // Exit and clear user information from session
     ctx.logout()
     // 其实应该采用状态码更好
@@ -94,5 +96,3 @@ class signController extends Controller {
 }
 
 module.exports = signController
-
-

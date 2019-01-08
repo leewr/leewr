@@ -7,30 +7,30 @@ import Index from './pages/Index.js'
 // import User from './pages/User.js'
 
 export default [
-    {
-        path: '/',
-        component: Index,
-        exact: true
-    }
-    // },
-    // {
-    //     path: '/topics/:id',
-    //     component: Topic,
-    //     exact: true
-    // },
-    // {
-    //     path: '/me',
-    //     component: Me,
-    //     exact: true
-    // },
-    // {
-    //     path: '/login',
-    //     component: Login,
-    //     exact: true
-    // },
-    // {
-    //     path: '/login',
-    //     component: User,
-    //     exact: true
-    // }
+  {
+    path: '/',
+    component: Index,
+    exact: true
+  }
+  // },
+  // {
+  //     path: '/topics/:id',
+  //     component: Topic,
+  //     exact: true
+  // },
+  // {
+  //     path: '/me',
+  //     component: Me,
+  //     exact: true
+  // },
+  // {
+  //     path: '/login',
+  //     component: Login,
+  //     exact: true
+  // },
+  // {
+  //     path: '/login',
+  //     component: User,
+  //     exact: true
+  // }
 ]

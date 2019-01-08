@@ -6,11 +6,11 @@ class TopicsController extends Controller {
     this.createRule = {
       accesstoken: 'string',
       title: 'string',
-      tab: { type: 'enum', values: ['ask', 'share', 'job'], required: false},
+      tab: { type: 'enum', values: ['ask', 'share', 'job'], required: false },
       content: 'string'
     }
   }
-  async show () {
+  async show() {
     const { ctx } = this
     ctx.body = await ctx.service.topics.show({
       id: ctx.params.id,
@@ -18,13 +18,20 @@ class TopicsController extends Controller {
       accesstoken: ctx.query.accesstoken || ''
     })
   }
-  async index () {
+  async index() {
     const { ctx } = this
-    ctx.validate({
-      page: {type: 'string', format: /\d+/, required: false},
-      tab: {type: 'enum', values: ['ask', 'share', 'job', 'good'], required: false},
-      limit: {type: 'string', format: /\d+/, required: false}
-    },ctx.query)
+    ctx.validate(
+      {
+        page: { type: 'string', format: /\d+/, required: false },
+        tab: {
+          type: 'enum',
+          values: ['ask', 'share', 'job', 'good'],
+          required: false
+        },
+        limit: { type: 'string', format: /\d+/, required: false }
+      },
+      ctx.query
+    )
 
     ctx.body = await ctx.service.topics.list({
       page: ctx.query.page,
@@ -33,7 +40,7 @@ class TopicsController extends Controller {
       mdrender: ctx.query.mdrender !== 'fase'
     })
   }
-  async create () {
+  async create() {
     const ctx = this.ctx
     ctx.validate(createRule)
     const id = await ctx.service.topics.create(ctx.request.body)

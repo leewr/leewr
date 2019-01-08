@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 const Controller = require('egg').Controller
 
 class Topic extends Controller {
@@ -8,18 +8,18 @@ class Topic extends Controller {
     const pagination = ctx.pagination
     let topic
     console.log('pagination', pagination)
-    let index = (pagination.skip / pagination.limit) + 1
+    let index = pagination.skip / pagination.limit + 1
     topic = await app.redis.get(`indexList-${index}`)
     if (topic) {
       console.log('redis')
-      topic = Object.assign(JSON.parse(topic), {redis: true})
+      topic = Object.assign(JSON.parse(topic), { redis: true })
       console.log(topic)
       ctx.body = topic
     } else {
       console.log('mysql')
       topic = await service.topic.getArticleList(pagination)
       await app.redis.set(`indexList-${index}`, JSON.stringify(topic))
-      topic = Object.assign(topic, {mysql: true})
+      topic = Object.assign(topic, { mysql: true })
       ctx.body = topic
     }
   }
@@ -32,13 +32,18 @@ class Topic extends Controller {
     const userInfo = await service.user.getUserInfo(topic.authorId)
     await service.topic.addView(id)
     const current_user = ctx.locals.current_user
-    let data = Object.assign(topic, { userInfo: userInfo})
+    let data = Object.assign(topic, { userInfo: userInfo })
     // 用户已经登录 查询关注信息
     if (current_user) {
-      const isFollowed = await service.user.getFollowStatus(topic.authorId, current_user)
+      const isFollowed = await service.user.getFollowStatus(
+        topic.authorId,
+        current_user
+      )
       const isLiked = await service.user.getLikeStatus(id, current_user)
-      data = Object.assign(data, { isLiked: isLiked ? true : false})
-      data.userInfo = Object.assign(data.userInfo, { isFollowed: isFollowed !==null ? isFollowed.status : false})
+      data = Object.assign(data, { isLiked: isLiked ? true : false })
+      data.userInfo = Object.assign(data.userInfo, {
+        isFollowed: isFollowed !== null ? isFollowed.status : false
+      })
     }
     ctx.body = {
       success: true,
@@ -48,13 +53,13 @@ class Topic extends Controller {
   }
 
   async topArticle() {
-  	const { ctx, service } = this
-  	const day = ctx.params.day
-  	const topics = await service.topic.topArticle(day)
-  	ctx.body = {
-  		success: true,
-  		data: topics
-  	}
+    const { ctx, service } = this
+    const day = ctx.params.day
+    const topics = await service.topic.topArticle(day)
+    ctx.body = {
+      success: true,
+      data: topics
+    }
   }
   // 文章评论列表
   async commentList() {
@@ -81,7 +86,7 @@ class Topic extends Controller {
       if (data) {
         ctx.body = {
           status: data.status
-        } 
+        }
       } else {
         ctx.body = {
           success: false

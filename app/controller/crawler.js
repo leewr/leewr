@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 const Controller = require('egg').Controller
 const moment = require('moment')
 const path = require('path')
@@ -10,7 +10,7 @@ class Crawler extends Controller {
     const { ctx, service } = this
     const pagination = ctx.pagination
     const topis = await service.crawler.index(pagination)
-    
+
     ctx.body = topis
   }
   async getList() {
@@ -27,7 +27,7 @@ class Crawler extends Controller {
     const id = ctx.params.id
     const topic = await service.crawler.getArticleById(id)
     const userInfo = await service.user.getUserInfo(topic.authorId)
-    let data = Object.assign(topic, { userInfo: userInfo})
+    let data = Object.assign(topic, { userInfo: userInfo })
     ctx.body = data
   }
 
@@ -39,14 +39,14 @@ class Crawler extends Controller {
     const imgUrl = ctx.request.body.imgUrl
 
     console.log(ctx.request.body)
-    if (!imgUrl)  {
+    if (!imgUrl) {
       ctx.body = '缺少必要参数'
       ctx.status = 412
       return
     }
     console.log('imgUrl', imgUrl)
     let topic = await service.crawler.getArticleById(id)
-    
+
     // topic.imgUrl = imgUrl
     console.log('imgUrl', topic.imgUrl)
     let data
@@ -60,10 +60,20 @@ class Crawler extends Controller {
       // 先处理图片、再保存文章
       const fileName = imgUrl.substr(imgUrl.lastIndexOf('/') + 1)
       const date = moment().format('YYYY-MM-DD')
-      const targetPath = path.join(this.config.baseDir, `app/public/upload/${date}`)
+      const targetPath = path.join(
+        this.config.baseDir,
+        `app/public/upload/${date}`
+      )
       let originUrlPath = path.join(this.config.baseDir, `app/${imgUrl}`)
       // 当图片已经是upload中的时候，不再存数据库
-      if (!fs.existsSync(path.join(this.config.baseDir, `app/public/upload/${date}/${fileName}`))) {
+      if (
+        !fs.existsSync(
+          path.join(
+            this.config.baseDir,
+            `app/public/upload/${date}/${fileName}`
+          )
+        )
+      ) {
         service.images.save(originUrlPath, targetPath, fileName, date)
       }
       topic.imgUrl = `/public/upload/${date}/${fileName}`
@@ -77,6 +87,5 @@ class Crawler extends Controller {
     }
   }
 }
-
 
 module.exports = Crawler

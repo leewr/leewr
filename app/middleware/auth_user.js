@@ -1,5 +1,5 @@
 module.exports = () => {
-  return async function (ctx, next) {
+  return async function(ctx, next) {
     // 验证是否登录
     // 添加全局变量数据 ctx.locals.current_user
     ctx.locals.current_user = null

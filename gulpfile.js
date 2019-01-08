@@ -1,7 +1,7 @@
-'use strict';
+'use strict'
 var path = require('path')
-var gulp = require('gulp');
-var sass = require('gulp-sass');
+var gulp = require('gulp')
+var sass = require('gulp-sass')
 var paths = {
   scss: {
     src: 'app/public/static/scss/*.scss',
@@ -11,22 +11,23 @@ var paths = {
     src: 'src/scripts/**/*.js',
     dest: 'assets/scripts/'
   }
-};
+}
 
 function clean() {
   // You can use multiple globbing patterns as you would with `gulp.src`,
   // for example if you are using del 2.0 or above, return its promise
-  return del([ 'assets' ]);
+  return del(['assets'])
 }
 
-gulp.task('scss', function () {
- console.log(path.resolve(paths.scss.src))
-  return gulp.src(paths.scss.src)
+gulp.task('scss', function() {
+  console.log(path.resolve(paths.scss.src))
+  return gulp
+    .src(paths.scss.src)
     .pipe(sass().on('error', sass.logError))
-    .pipe(gulp.dest(paths.scss.dest));
-});
+    .pipe(gulp.dest(paths.scss.dest))
+})
 
-gulp.task('dev', function () {
-    console.log(path.resolve(paths.scss.src))
-  gulp.watch(paths.scss.src, ['scss']);
-});
+gulp.task('dev', function() {
+  console.log(path.resolve(paths.scss.src))
+  gulp.watch(paths.scss.src, ['scss'])
+})

@@ -4,7 +4,7 @@ const Service = require('egg').Service
 class userService extends Service {
   /**
    * 根据登录名查找用户
-   * @param {*} username 
+   * @param {*} username
    */
   getUserByLoginName(username) {
     const query = { username: username }
@@ -13,11 +13,11 @@ class userService extends Service {
 
   /**
    * 登录时用户名重复查询
-   * @param {*} username 
+   * @param {*} username
    */
-   getUserQuery (username) {
-    const query = { username: username}
-    return  this.app.mysql.get('user', query)
+  getUserQuery(username) {
+    const query = { username: username }
+    return this.app.mysql.get('user', query)
   }
 
   /**
@@ -38,8 +38,11 @@ class userService extends Service {
   /**
    * 用户表增加文章数量
    */
-  async increaseArticleCount (authorId) {
-    const result = await this.app.mysql.query('update user set articleNum = (articleNum + ?) where id = ?', [1, authorId])
+  async increaseArticleCount(authorId) {
+    const result = await this.app.mysql.query(
+      'update user set articleNum = (articleNum + ?) where id = ?',
+      [1, authorId]
+    )
     console.log(result.affectedRows)
     const updateSuccess = result.affectedRows === 1
     console.log('increaseArticleCount:' + updateSuccess)
@@ -50,19 +53,34 @@ class userService extends Service {
    */
   async getUserInfo(authorId) {
     console.log('用户id', authorId)
-    const result = await this.app.mysql.get('user', { 
-      id: authorId
-    },
-    {
-      columns: ['id', 'username', 'avatarUrl', 'articleNum', 'followNum', 'fansNum', 'likeNum', 'intro', 'worldNum']
-    })
+    const result = await this.app.mysql.get(
+      'user',
+      {
+        id: authorId
+      },
+      {
+        columns: [
+          'id',
+          'username',
+          'avatarUrl',
+          'articleNum',
+          'followNum',
+          'fansNum',
+          'likeNum',
+          'intro',
+          'worldNum'
+        ]
+      }
+    )
     return result
   }
   /**
-   * 获取用户设置信息 
+   * 获取用户设置信息
    */
-  async getUserSettingInfo (authorId) {
-    const result = await this.app.mysql.get('user', {
+  async getUserSettingInfo(authorId) {
+    const result = await this.app.mysql.get(
+      'user',
+      {
         id: authorId
       },
       {
@@ -71,7 +89,15 @@ class userService extends Service {
     )
     return result
   }
-  async saveUserSettingInfo (id, avatarUrl, username, email, sex, homePage, intro) {
+  async saveUserSettingInfo(
+    id,
+    avatarUrl,
+    username,
+    email,
+    sex,
+    homePage,
+    intro
+  ) {
     const result = await this.app.mysql.update('user', {
       id,
       avatarUrl,
@@ -88,10 +114,16 @@ class userService extends Service {
    */
   async toggleFollow(authorId, current_user) {
     // 关注表添加一条记录
-    let followStatus = await this.app.mysql.query('update follow set status = !status, modifyTime = now() where userId = ? and followedUser = ?', [authorId, current_user.id])
+    let followStatus = await this.app.mysql.query(
+      'update follow set status = !status, modifyTime = now() where userId = ? and followedUser = ?',
+      [authorId, current_user.id]
+    )
     console.log(followStatus)
     if (!followStatus.changedRows) {
-      followStatus = await this.app.mysql.query('insert into follow values(0, ?, ?, 1, now(), now())', [authorId, current_user.id])
+      followStatus = await this.app.mysql.query(
+        'insert into follow values(0, ?, ?, 1, now(), now())',
+        [authorId, current_user.id]
+      )
     }
 
     // 粉丝表添加一条记录
@@ -107,20 +139,26 @@ class userService extends Service {
     })
     console.log('status', status)
 
-    await this.app.mysql.query('update user set fansNum = (fansNum + ?) where id = ?', [status.status ? 1 : -1, authorId])
-    await this.app.mysql.query('update user set followNum = (followNum + ?) where id = ?', [status.status ? 1 : -1, current_user.id])
+    await this.app.mysql.query(
+      'update user set fansNum = (fansNum + ?) where id = ?',
+      [status.status ? 1 : -1, authorId]
+    )
+    await this.app.mysql.query(
+      'update user set followNum = (followNum + ?) where id = ?',
+      [status.status ? 1 : -1, current_user.id]
+    )
     console.log('followStatus', followStatus)
     return {
       data: followStatus,
       followed: status.status
     }
   }
-  
+
   /**
    * 是否关注
    * getFollowStatus
    */
-  async getFollowStatus (authorId, current_user) {
+  async getFollowStatus(authorId, current_user) {
     console.log('authorId', authorId)
     const status = await this.app.mysql.get('follow', {
       userId: authorId,
@@ -133,7 +171,7 @@ class userService extends Service {
   /**
    * 是否喜欢/赞
    */
-  async getLikeStatus (articleId, current_user) {
+  async getLikeStatus(articleId, current_user) {
     const status = await this.app.mysql.get('thumbs', {
       articleId: articleId,
       userId: current_user.id
@@ -145,14 +183,16 @@ class userService extends Service {
   /**
    * 关注数量
    */
-  async followNun (current_user) {
-  }
+  async followNun(current_user) {}
 
   /**
    * 更新作者喜欢数
    */
-  async like (status, authorId) {
-    await this.app.mysql.query('update user set likeNum = (likeNum + ?) where id = ?', [status ? 1 : -1, authorId])
+  async like(status, authorId) {
+    await this.app.mysql.query(
+      'update user set likeNum = (likeNum + ?) where id = ?',
+      [status ? 1 : -1, authorId]
+    )
   }
 }
 

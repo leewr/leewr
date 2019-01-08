@@ -7,10 +7,13 @@ class TopicService extends Service {
   }
   async request(url, opts) {
     url = `${this.root}${url}`
-    opts = Object.assign({
-      timeout: ['30s', '30s'],
-      dataType: 'json'
-    }, opts)
+    opts = Object.assign(
+      {
+        timeout: ['30s', '30s'],
+        dataType: 'json'
+      },
+      opts
+    )
     return this.ctx.curl(url, opts)
   }
   // 单个topic内容
@@ -47,8 +50,11 @@ class TopicService extends Service {
 
   checkSuccess(result) {
     if (result.status !== 200) {
-      const errorMsg = result.data && result.data.error_msg ? result.data.error_msg : 'unknown error';
-      this.ctx.throw(result.status, errorMsg);
+      const errorMsg =
+        result.data && result.data.error_msg
+          ? result.data.error_msg
+          : 'unknown error'
+      this.ctx.throw(result.status, errorMsg)
     }
     if (!result.data.success) {
       this.ctx.throw(500, 'remote response error', { data: result.data })

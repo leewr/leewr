@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 // had enabled by egg
 // exports.static = true;
@@ -8,7 +8,6 @@ exports.security = {
     enable: false
   }
 }
-
 
 exports.nunjucks = {
   enabled: true,
@@ -37,10 +36,10 @@ exports.passportLocal = {
 
 exports.routerPlus = {
   enable: true,
-  package: 'egg-router-plus',
-};
+  package: 'egg-router-plus'
+}
 
 exports.redis = {
   enable: true,
-  package: 'egg-redis',
-};
+  package: 'egg-redis'
+}

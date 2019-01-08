@@ -2,10 +2,11 @@ body {
   margin: 0;
   padding: 0;
   min-height: 100vh;
-  font-family: -apple-system,SF UI Display,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,WenQuanYi Micro Hei,sans-serif;
+  font-family: -apple-system, SF UI Display, Arial, PingFang SC,
+    Hiragino Sans GB, Microsoft YaHei, WenQuanYi Micro Hei, sans-serif;
 }
 .btn,
-.loginBtn{
+.loginBtn {
   margin-top: 40px;
   height: 40px;
   line-height: 40px;
@@ -13,11 +14,11 @@ body {
   color: #fff;
   border-radius: 3px;
   text-align: center;
-  &.active{
-      background: #222;
+  &.active {
+    background: #222;
   }
 }
-.footer{
+.footer {
   position: fixed;
   bottom: 0;
   left: 0;
@@ -29,12 +30,11 @@ body {
   justify-content: center;
   align-items: center;
   border-top: 1px solid #efefef;
-  a{
+  a {
     flex: 1;
     color: #333;
-    .iconfont{
+    .iconfont {
       font-size: 24px;
     }
   }
 }
-

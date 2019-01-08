@@ -1,7 +1,7 @@
-"use strict"
+'use strict'
 
 module.exports = app => {
-  console.log("app")
+  console.log('app')
   const localHander = async (ctx, { username, password }) => {
     const getUser = username => {
       // todo email
@@ -9,7 +9,7 @@ module.exports = app => {
     }
     const exitUser = await getUser(username)
     if (!exitUser) {
-      console.log("not found")
+      console.log('not found')
       return null
     }
     const passHash = exitUser.password
@@ -30,14 +30,14 @@ module.exports = app => {
     console.log(exitUser)
     if (exitUser) {
       // 设置cookies
-      const auth_token = exitUser._id + "$$$$"
+      const auth_token = exitUser._id + '$$$$'
       const opts = {
-        path: "/",
+        path: '/',
         maxAge: 1000 * 60 * 60 * 24 * 30,
         signed: true,
         httpOnly: true
       }
-      ctx.cookies.set("token", auth_token, opts)
+      ctx.cookies.set('token', auth_token, opts)
     }
     return exitUser
   })

@@ -1,12 +1,12 @@
-import fetch from "isomorphic-fetch";
+import fetch from 'isomorphic-fetch'
 
 export function getArticleList() {
-    return fetch("http://localhost:7001/api/v1/topics")
-        .then(response => response.json())
-        .then((res) => {
-            console.log(res)
-            return res.data
-        })
+  return fetch('http://localhost:7001/api/v1/topics')
+    .then(response => response.json())
+    .then(res => {
+      console.log(res)
+      return res.data
+    })
 }
 
 // import Axios from '../utils/request.js'
@@ -19,5 +19,3 @@ export function getArticleList() {
 //         console.log(err)
 //     })
 // }
-
-

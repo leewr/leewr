@@ -2,7 +2,6 @@
 const Controller = require('egg').Controller
 
 class TopicController extends Controller {
-
   // 文章列表
   async index() {
     const { ctx, service } = this
@@ -37,13 +36,22 @@ class TopicController extends Controller {
     let isFollowed
     let isLiked
     if (current_user) {
-      isFollowed = await service.user.getFollowStatus(topic.authorId, current_user)
+      isFollowed = await service.user.getFollowStatus(
+        topic.authorId,
+        current_user
+      )
       isLiked = await service.user.getLikeStatus(id, current_user)
       console.log('isLiked', isLiked)
     }
 
     if (topic) {
-      await ctx.render('/topic/view.tpl', { data: topic, author: author, isFollowed: isFollowed, isLiked: isLiked, comment: { data: commentList, total: commentList.length}})
+      await ctx.render('/topic/view.tpl', {
+        data: topic,
+        author: author,
+        isFollowed: isFollowed,
+        isLiked: isLiked,
+        comment: { data: commentList, total: commentList.length }
+      })
     } else {
       ctx.status = 404
     }
@@ -54,7 +62,7 @@ class TopicController extends Controller {
     const { ctx, service } = this
     const id = ctx.params.id
     const topic = await service.topic.getArticleById(id)
-    await ctx.render('/topic/edit.tpl', { data: topic})
+    await ctx.render('/topic/edit.tpl', { data: topic })
   }
 
   async update() {
@@ -85,7 +93,7 @@ class TopicController extends Controller {
       }
 
       if (editError) {
-        await ctx.redirect('/topic/note/'+id, {
+        await ctx.redirect('/topic/note/' + id, {
           action: 'edit',
           edit_error: editError,
           topic_id: topic.id,
@@ -95,16 +103,10 @@ class TopicController extends Controller {
         return
       }
       // 保存话题
-      const result = await service.topic.save(
-        id,
-        title,
-        content,
-        summary,
-        tab
-      )
+      const result = await service.topic.save(id, title, content, summary, tab)
       if (result.protocol41) {
         ctx.redirect('/topic/' + topic.id)
-      } 
+      }
     } else {
       ctx.status = 403
       ctx.message = '对不起，你不能编辑此话题'
@@ -118,7 +120,7 @@ class TopicController extends Controller {
     const { ctx, service } = this
     const { tabs } = this.config
     const { body } = ctx.request
-    const allTabs = tabs.map( item => item[0])
+    const allTabs = tabs.map(item => item[0])
     // 内容验证
     const RULE_CREATE = {
       title: {
@@ -172,7 +174,7 @@ class TopicController extends Controller {
       if (data) {
         ctx.body = {
           success: true
-        } 
+        }
       } else {
         ctx.body = {
           success: false
@@ -191,7 +193,7 @@ class TopicController extends Controller {
 
   // 我喜欢的文章
   async likedAeticle() {
-    const { ctx , service } = this
+    const { ctx, service } = this
     const userId = ctx.locals.current_user.id
     return await service.topic.likedAeticle(userId)
   }

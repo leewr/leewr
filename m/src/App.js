@@ -1,9 +1,5 @@
-import React, { Component } from 'react';
-import {
-  BrowserRouter as Router,
-  Route,
-  Link
-} from 'react-router-dom'
+import React, { Component } from 'react'
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 // import { getCookie } from './utils/common'
 // import asyncComponent from './comp/AsyncComponent'
 import Index from './pages/Index.js'
@@ -46,8 +42,8 @@ class App extends Component {
             </div> */}
         </div>
       </Router>
-    );
+    )
   }
 }
 
-export default App;
+export default App
