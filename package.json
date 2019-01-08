@@ -58,5 +58,10 @@
     "url": ""
   },
   "author": "",
-  "license": "MIT"
+  "license": "MIT",
+  "husky": {
+    "hooks": { 
+      "pre-commit": "pretty-quick --staged" 
+    }
+  }
 }
