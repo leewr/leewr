@@ -1,6 +1,6 @@
 {
+  "extends": "prettier/standard",
   "rules": {
-    "semi": ["error", "never"],
-    "object-shorthand": ["error", "never"]
+    "prettier/prettier": "error"
   }
 }
