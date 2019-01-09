@@ -5,10 +5,10 @@ import React from 'react'
 import { renderToString } from 'react-dom/server'
 import { StaticRouter, matchPath } from 'react-router-dom'
 import { Provider as ReduxProvider } from 'react-redux'
-import routes from './src/routes'
-import createStore, { initializeSession } from './src/store/index'
-import Layout from './src/comp/layout'
-import App from './src/App'
+import routes from '../router'
+import createStore, { initializeSession } from '../store'
+import Layout from '../comp/layout'
+import App from '../App'
 
 const app = express()
 
