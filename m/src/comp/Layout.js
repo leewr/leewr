@@ -1,7 +1,7 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 // import Header from "./Header";
-import routes from '../routes'
+import routes from '../router'
 
 class Layout extends React.Component {
   constructor() {

@@ -5,19 +5,19 @@ import React from 'react'
 import { renderToString } from 'react-dom/server'
 import { StaticRouter, matchPath } from 'react-router-dom'
 import { Provider as ReduxProvider } from 'react-redux'
-import routes from './src/routes'
-import createStore, { initializeSession } from './src/store/index'
-import Layout from './src/comp/layout'
-import App from './src/App'
+import routes from '../router'
+import createStore, { initializeSession } from '../store'
+import Layout from '../comp/layout'
+import App from '../App'
 
 const app = express()
 
-app.use(express.static(path.resolve(__dirname, './dist')))
+app.use(express.static(path.resolve(__dirname, './dist/client')))
 
 app.get('/*', (req, res) => {
   const context = {}
   const store = createStore()
-
+  console.log('localhost')
   store.dispatch(initializeSession())
 
   // const dataRequirements =
@@ -45,9 +45,10 @@ app.get('/*', (req, res) => {
     const html = renderToString(jsx)
     console.log(html)
     const reduxState = store.getState()
+    const meta = {}
     console.log('reduxState', reduxState)
     res.writeHead(200, { 'Content-Type': 'text/html' })
-    res.end(htmlTemplate(html, reduxState))
+    res.render('../dist/server/index.ejs', {html, reduxState, meta})
   })
 })
 

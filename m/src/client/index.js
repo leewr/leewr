@@ -2,10 +2,11 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
+import { getUserInfo } from '@/store/reducers/user'
 import { StaticRouter, matchPath } from 'react-router'
 import Loadable from 'react-loadable'
 
-import configureStore from '../store/index.js'
+import configureStore from '../store'
 import createRouter from '../router/index.js'
 
 // 引入 bootstrap
@@ -27,7 +28,7 @@ import '../pages/Home/Home.scss'
 // 从页面中获取服务端生产redux数据，作为客户端redux初始值
 const store = configureStore(window.__initState__)
 
-import { getUserInfo } from './../store/reducers/user'
+// import { getUserInfo } from './../store/reducers/user'
 
 let userinfo = getUserInfo(store.getState())
 
@@ -61,11 +62,11 @@ const run = async () => {
     document.getElementById('app')
   )
 
-  if (process.env.NODE_ENV === 'development') {
-    if (module.hot) {
-      module.hot.accept()
-    }
-  }
+  // if (process.env.NODE_ENV !== 'development') {
+  //   if (module.hot) {
+  //     module.hot.accept()
+  //   }
+  // }
 }
 
 run()
