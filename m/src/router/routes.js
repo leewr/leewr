@@ -1,4 +1,4 @@
-import Index from './pages/Index.js'
+import Index from '../pages/Index.js'
 // import Topic from './pages/Topic.js'
 // import Crawler from './pages/Crawler.js'
 // import Crawlers from './pages/Crawlers.js'

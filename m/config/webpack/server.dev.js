@@ -1,6 +1,6 @@
 const base = require('./server.base')
 const webpack = require('webpack')
-const WriteFileWebpackPlugin = require('WriteFileWebpackPlugin')
+const WriteFileWebpackPlugin = require('write-file-webpack-plugin')
 
 module.exports = {
     ...base,
