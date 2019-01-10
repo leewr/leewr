@@ -30,7 +30,7 @@ module.exports = {
   target: 'web',
 
   entry: {
-    app: ['@babel/polyfill', './src/client/index.js']
+    app: ['./src/client/index.js']
   },
 
   output: {

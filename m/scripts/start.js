@@ -15,7 +15,7 @@ const compilerPromise = compiler => {
       if (!stats.hasErrors()) {
         return resolve()
       }
-        return reject(new Error('Compilation failed'))
+      return reject(new Error('Compilation failed'))
     })
   })
 }

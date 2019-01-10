@@ -1,5 +1,6 @@
 {
   "editor.formatOnSave": true,
   "prettier.semi": false,
-  "prettier.singleQuote": true
+  "prettier.singleQuote": true,
+  "typescript.format.insertSpaceAfterFunctionKeywordForAnonymousFunctions": false
 }

@@ -1,6 +1,7 @@
 {
   "extends": "prettier/standard",
   "rules": {
-    "prettier/prettier": "error"
+    "prettier/prettier": "error",
+    "space-before-function-paren": "never"
   }
 }

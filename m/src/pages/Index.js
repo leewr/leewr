@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { fetchData } from '../store'
-import './Home/Home.scss'
+// import './Home/Home.scss'
 
 class Home extends React.Component {
   componentDidMount() {
@@ -10,7 +10,6 @@ class Home extends React.Component {
       this.props.fetchData()
     }
   }
-
   render() {
     const { circuits } = this.props
     console.log('circuits', circuits)
