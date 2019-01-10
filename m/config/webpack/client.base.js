@@ -46,9 +46,9 @@ module.exports = {
     }
   },
 
-  resolveLoader: {
-    moduleExtensions: ['-loader']
-  },
+  // resolveLoader: {
+  //   moduleExtensions: ['-loader']
+  // },
 
   optimization: {
     namedModules: true,
@@ -86,17 +86,15 @@ module.exports = {
             loader: MiniCssExtractPlugin.loader
           },
           {
-            loader: `css`,
+            loader: 'css-loader',
             options: {
               modules: true,
               localIdentName: config.class_scoped_name,
-              minimize: true,
-              sourceMap: true,
-              importLoaders: 1
+              sourceMap: true
             }
           },
           {
-            loader: `sass`
+            loader: 'sass-loader'
           },
           { ...postcssConfig }
         ]
@@ -111,7 +109,7 @@ module.exports = {
             loader: MiniCssExtractPlugin.loader
           },
           {
-            loader: `css`
+            loader: 'css-loader'
           },
           { ...postcssConfig }
         ]

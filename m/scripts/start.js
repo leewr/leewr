@@ -3,6 +3,7 @@ const express = require('express')
 const nodemon = require('nodemon')
 const rimraf = require('rimraf')
 const webpackDevMiddleware = require('webpack-dev-middleware')
+const webpackHotMiddleware = require('webpack-hot-middleware')
 
 const clientConfig = require('../config/webpack/client.dev')
 const serverConfig = require('../config/webpack/server.dev')
@@ -11,7 +12,7 @@ const config = require('../config')
 
 const compilerPromise = compiler => {
   return new Promise((resolve, reject) => {
-    compiler.hooks.done.tap(compiler, stats => {
+    compiler.plugin('done', stats => {
       if (!stats.hasErrors()) {
         return resolve()
       }
@@ -56,7 +57,7 @@ const start = async () => {
   )
 
   // 客户端热更新
-  // app.use(webpackHotMiddleware(_clientCompiler))
+  app.use(webpackHotMiddleware(_clientCompiler))
 
   app.use(express.static('../dist/client'))
 
@@ -76,7 +77,9 @@ const start = async () => {
   })
 
   await serverPromise
-  await clientPromise
+  await clientPromise.then(res => {
+    console.log('loaded')
+  })
 
   console.log('111')
 

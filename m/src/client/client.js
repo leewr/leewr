@@ -5,25 +5,13 @@ import { Provider } from 'react-redux'
 import { getUserInfo } from './../store/reducers/user'
 import { StaticRouter, matchPath } from 'react-router'
 import Loadable from 'react-loadable'
+import routes from '../router'
 
 import configureStore from '../store'
 import createRouter from '../router/index.js'
 
-// 引入 bootstrap
-// import 'bootstrap/dist/css/bootstrap.min.css'
-// import 'jquery'
-// import 'popper.js'
-// import 'bootstrap/dist/js/bootstrap.min.js'
-
 // 引入全局样式
-// import '../pages/Home/Home.scss'
-
-// import runtime from 'serviceworker-webpack-plugin/lib/runtime'
-// if ('serviceWorker' in navigator) {
-//   const registration = runtime.register();
-// } else {
-//   console.log("Don't support serviceWorker")
-// }
+import '../pages/Home/Home.scss'
 
 // 从页面中获取服务端生产redux数据，作为客户端redux初始值
 const store = configureStore(window.__initState__)

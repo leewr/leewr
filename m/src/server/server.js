@@ -47,8 +47,8 @@ app.get('/*', (req, res) => {
     const reduxState = store.getState()
     const meta = {}
     console.log('reduxState', reduxState)
-    res.writeHead(200, { 'Content-Type': 'text/html' })
-    res.render('../dist/server/index.ejs', {html, reduxState, meta})
+    // res.writeHead(200, { 'Content-Type': 'text/html' })
+    res.render('../dist/server/index.ejs', { html, reduxState, meta })
   })
 })
 
